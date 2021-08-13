@@ -4,8 +4,8 @@
 
     if(!empty($_SESSION['id_usuario']))
     {
-        // require 'partials/header.html';
-        // require 'activos-del-dia.php';
+        require 'partials/header.html';
+        require 'menu.php';
     }
     else
     {

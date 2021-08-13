@@ -9,7 +9,7 @@
     --font2: #f9fafb;
     --rojo: #de1c47;
     --verde: #15a95b;
-    --theme-bg-color: rgba(16 18 27 / 40%);
+    --theme-bg-color: rgba(16 18 27 / 22%);
     --delay: 0s;
 }
 
@@ -45,14 +45,54 @@ body
 	font-size: 15px;
 	color: var(--font);
     background-image: url(../img/macos-monterey-wwdc-21-stock-dark-mode-5k-6016x6016-5585.jpg);
-	overflow-x: hidden;
+	overflow: hidden;
     background-size: cover;
     background-position: center;
     width: 100%;
     height: 100vh;
+    margin: 0;
+}
+
+nav
+{
+    border-bottom: 1px solid rgba(113 119 144 / 55%);
+    margin-bottom: 20px;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5%;
+    align-items: center;
+}
+
+nav h2
+{
+    margin: 0;
 }
 
 /* CONTAINER */
+
+.container-controles-nav
+{
+    display: flex;
+    align-items: center;
+}
+
+.container-btn-menu
+{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    padding: 5% 20%;
+    padding-top: 2%;
+}
+
+.container
+{
+    background-color: var(--theme-bg-color);
+    backdrop-filter: blur(20px);
+    margin: 2% 10%;
+    border-radius: 10px;
+}
 
 .container-alerta
 {
@@ -287,6 +327,43 @@ body
 
 /* BOTONES */
 
+.btn-nav
+{
+    border: none;
+    background: transparent;
+    color: var(--font2);
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.btn-nav:hover
+{
+    color: var(--font);
+    transition: .3s ease;
+}
+
+.btn-general-menu
+{
+    width: 100%;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--font2);
+    font-size: 24px;
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+    padding: 20px;
+    /* border: 1px solid white; */
+    border: none;
+    box-shadow: 0 8px 24px 0 rgb(0 0 0 / 42%);
+    cursor: pointer;
+}
+
+.btn-general-menu:hover
+{
+    transform: scale(1.03);
+    transition: .3s ease;
+}
+
 .btn-acceder, .btn-enviar-comentario, .btn-cancelar-comentario, .btn-cerrar-comentario
 {
     width: 100%;
@@ -372,6 +449,16 @@ h2
 }
 
 /* OTROS */
+
+.img-nav
+{
+    width: 125px;
+}
+
+.ico-btn-menu
+{
+    font-size: 50px
+}
 
 .container-card-alerta.active 
 {

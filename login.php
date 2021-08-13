@@ -11,7 +11,7 @@
         </div>        
     </div>
     <div class="section">
-        <div class="container">
+        <div>
             <div class="full-height justify-content-center">
                 <div class="container-text-opciones">
                     <span>Iniciar Sesión</span>
