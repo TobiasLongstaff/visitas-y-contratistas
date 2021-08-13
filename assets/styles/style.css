@@ -4,6 +4,7 @@
 {
     --bg-color: #220088;
     --fondo: #110033;
+    --secundario: #883399;
     --azul: #2200ee;
     --font: rgb(113 119 144 / 78%);
     --font2: #f9fafb;
@@ -70,6 +71,59 @@ nav h2
 }
 
 /* CONTAINER */
+
+.td-controles
+{
+    width: 40px;
+}
+
+.container-abm-secores, .container-abm-empresa
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 5%;
+    gap: 5%;
+    padding-top: 0;
+}
+
+.container-agregar-sector, .container-tabla-sector, .container-agregar-empresa, .container-tabla-empresa
+{
+    width: 100%;
+}
+
+.container-tabla
+{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    height: 70vh;
+    overflow: auto;
+    color: var(--font2);
+}
+
+.container-img-visita
+{
+    display: flex;
+    justify-content: center;
+}
+
+.container-form-ingreso-visitas
+{
+    display: flex;
+    padding: 0 5%;
+    padding-bottom: 5%;
+    justify-content: space-between;
+    gap: 5%;
+}
+
+.container-right-visitas
+{
+    width: 100%;
+}
+
+.container-left-ingreso
+{
+    width: 100%;
+}
 
 .container-controles-nav
 {
@@ -205,6 +259,35 @@ nav h2
 
 /* TEXTBOX */
 
+.form-style-date
+{
+    padding-left: 20px;
+    width: calc(100% - 40px);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator 
+{
+    color: transparent;
+    background: none;
+    z-index: 1;
+}
+
+input[type="date"]:before 
+{
+    color: transparent;
+    background: none;
+    display: block;
+    font-family: 'unicons';
+    content: '\e9bd';
+    width: 15px;
+    font-size: 20px;
+    height: 20px;
+    position: absolute;
+    top: 35px;
+    right: 20px;
+    color: white;
+}
+
 .form-group
 { 
     position: relative;
@@ -226,10 +309,11 @@ nav h2
     line-height: 22px;
     letter-spacing: 0.5px;
     outline: none;
-    color: var(--font2);
+    color: var(--font);
     background-color: var(--fondo);
     border: none;
     -webkit-transition: all 200ms linear;
+    font-family: 'Poppins', sans-serif;
     transition: all 200ms linear;
     box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
 }
@@ -327,6 +411,58 @@ nav h2
 
 /* BOTONES */
 
+.btn-editar
+{
+    border-radius: 5px;
+    background-color: transparent;
+    cursor: pointer;
+    margin-top: 5px;
+    height: 40px;
+    width: 45px;
+    outline: 0;
+    font-size: 20px;
+    border: 2px solid var(--verde);
+    color: var(--verde);
+}
+
+.btn-editar:hover
+{
+    background-color: var(--verde);
+    color: white;
+    transition: .3s ease;
+}
+
+.btn-editar:active
+{
+    transform: scale(1.05);
+}
+
+.btn-eliminar
+{
+    border-radius: 5px;
+    background-color: transparent;
+    cursor: pointer;
+    margin-top: 5px;
+    height: 40px;
+    width: 45px;
+    outline: 0;
+    font-size: 20px;
+    border: 2px solid var(--rojo);
+    color: var(--rojo);
+}
+
+.btn-eliminar:hover
+{
+    background-color: var(--rojo);
+    color: white;
+    transition: .3s ease;
+}
+
+.btn-eliminar:active
+{
+    transform: scale(1.05);
+}
+
 .btn-nav
 {
     border: none;
@@ -378,6 +514,11 @@ nav h2
     box-shadow: 0 8px 24px 0 rgba(66, 85, 212, .3);
     -webkit-transition: all 200ms linear;
         transition: all 200ms linear;
+}
+
+.btn-secundario
+{
+    background-color: var(--secundario);
 }
 
 /* TEXTO */
@@ -448,7 +589,76 @@ h2
     transform: rotateY(180deg);
 }
 
+/* TABLA */
+
+table
+{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table tr 
+{
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+th.right, td.right 
+{
+    text-align: right;
+    padding-right: 1em;
+}
+
+.columna-header
+{
+    background-color: #331155;
+}
+
+table caption, table th, table td 
+{
+    padding: .6em;
+    vertical-align: inherit;
+}
+
+th 
+{
+    font-weight: normal;
+}
+
+table tr
+{
+    background: var(--fondo);
+    border-bottom: none;
+}
+
+.data-tabla
+{
+    position: absolute;
+}
+
+/* .colborder 
+{
+    cursor: col-resize;
+    height: 100%;
+    background-color: var(--secundario);
+    margin-left: -6px;
+    position: absolute;
+    width: 5px;
+} */
+
 /* OTROS */
+
+h3
+{
+    color: var(--font2);
+}
+
+.img-visita
+{
+    width: 220px;
+    height: 200px;
+    background-color: var(--fondo);
+}
 
 .img-nav
 {
