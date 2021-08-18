@@ -1,5 +1,6 @@
 <?php
-    require 'partials/header.html'
+    require 'partials/header.html';
+    require 'partials/conexion.php';
 ?>
 <body>
     <div class="container">
@@ -14,8 +15,8 @@
                 </a>                
             </div>
         </nav>
-        <form method="post" class="container-form-ingreso-visitas">
-            <div class="container-left-ingreso">
+        <div class="container-form-ingreso-visitas">
+            <form class="container-left-ingreso" method="post">
                 <div class="form-group">
                     <input type="text" id="" class="form-style" placeholder="Nombre y Apellido" autocomplete="off" required>
                     <i class="input-icon uil uil-user"></i>
@@ -29,11 +30,11 @@
                     <input type="date" id="" class="form-style-date" placeholder="Fecha de Nacimiento" autocomplete="off" required>
                 </div>
                 <div class="form-group">
-                    <select class="form-style" autocomplete="off" required>
-                        <option value="" selected disabled>Empresa</option>
-                    </select>
+                    <input type="search" id="buscar-empresa" class="form-style-search" placeholder="Empresa" required>
                     <i class="input-icon uil uil-building"></i>
+                    <div id="container-empresas"></div>
                 </div>
+                <div id="container-empresas"></div>
                 <div class="form-group">
                     <input type="text" id="" class="form-style" placeholder="Temperatura" autocomplete="off" required>
                     <i class="input-icon uil uil-temperature-half"></i>
@@ -41,6 +42,15 @@
                 <div class="form-group">
                     <select class="form-style" autocomplete="off" required>
                         <option value="" selected disabled>Sector Habilitado</option>
+                        <?php
+                            $sql="SELECT * FROM sector";
+                            $resultado=mysqli_query($conexion,$sql);
+                            while($filas = mysqli_fetch_array($resultado))
+                            {
+                                echo '<option value="'.$filas['nombre'].'">'.$filas['nombre'].'</option>';
+                            }
+                            mysqli_close($conexion);
+                        ?>
                     </select>
                     <i class="input-icon uil-chart-pie-alt"></i>
                 </div>
@@ -67,19 +77,44 @@
                 <div class="form-group">
                     <label>Fecha y Hora</label>
                     <input type="date" id="" class="form-style-date" placeholder="Fecha y Hora" autocomplete="off" required>
-                </div>          
-            </div>
-            <div class="container-right-visitas">
-                <div class="container-img-visita">
-                    <img class="img-visita" src="">
                 </div>
                 <label>Observacion:</label>
-                <textarea class="form-style-textarea"></textarea> 
+                <textarea class="form-style-textarea"></textarea>  
                 <div class="container-controles-visitas">
                     <input type="submit" class="btn-acceder" value="Guardar y Imprimir">
                     <button type="button" class="btn-acceder btn-secundario">Cancelar</button>
-                </div>     
+                </div>  
+            </form>
+            <div class="container-right-visitas">
+                <div class="container-escanear-dni">
+                    <button type="button" class="btn-dni" id="btn-dni">
+                        <span>Escaner DNI</span><br>
+                        <i class="icono-barcode fas fa-barcode"></i>
+                    </button>
+                </div>
+                <input type="text" class="textbox-dni" value="">
+                <form method="post">
+                    <div class="file-upload">
+                        <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Agregar Imagen</button>
+                        <div class="image-upload-wrap">
+                            <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                            <div class="drag-text">
+                            <h3>Arrastre o suelte un imagen o seleccione agregar imagen</h3>
+                            </div>
+                        </div>
+                        <div class="file-upload-content">
+                            <img class="file-upload-image" src="#" alt="your image" />
+                            <div class="image-title-wrap">
+                                <button type="button" onclick="removeUpload()" class="remove-image">Remover <span class="image-title">Uploaded Image</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 </body>
+<script src="assets/plugins/jquery-3.5.1.min.js"></script>
+<script src="assets/plugins/sweetalert2.all.min.js"></script>
+<script src="assets/scripts/ingreso-de-visitas.js"></script>
+</html>

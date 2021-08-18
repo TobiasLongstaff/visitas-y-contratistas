@@ -72,6 +72,26 @@ nav h2
 
 /* CONTAINER */
 
+.container-escanear-dni
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+#container-empresas
+{
+    display: none;
+    border: 1px solid var(--font2);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background: var(--fondo);
+    position: absolute;
+    z-index: 1;
+    box-shadow: 0 4px 8px 0 rgb(21 21 21 / 41%);
+}
+
 .td-controles
 {
     width: 40px;
@@ -110,9 +130,10 @@ nav h2
 {
     display: flex;
     padding: 0 5%;
-    padding-bottom: 5%;
     justify-content: space-between;
     gap: 5%;
+    height: 70vh;
+    overflow: auto;
 }
 
 .container-right-visitas
@@ -259,6 +280,11 @@ nav h2
 
 /* TEXTBOX */
 
+.textbox-dni
+{
+    
+}
+
 .form-style-date
 {
     padding-left: 20px;
@@ -298,7 +324,7 @@ input[type="date"]:before
     width: 100%;
 }
 
-.form-style, .form-style-selectlist, .form-style-date, .form-style-textarea
+.form-style, .form-style-selectlist, .form-style-date, .form-style-textarea, .form-style-search
 {
     padding: 13px 20px;
     padding-left: 55px;
@@ -326,6 +352,11 @@ input[type="date"]:before
     height: 100px;
     margin-top: 10px;
     font-family: 'Poppins', sans-serif;
+}
+
+.form-style-search
+{
+    width: 100%;
 }
 
 .form-style-date
@@ -410,6 +441,42 @@ input[type="date"]:before
 }
 
 /* BOTONES */
+
+.btn-dni
+{
+    width: 40%;
+    color: var(--font2);
+    background-color: var(--secundario);
+    border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.btn-dni:hover
+{
+    background-color: #9552a2;
+    transition: .3s ease;
+}
+
+.btn-nombre-empresa
+{
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    color: var(--font2);
+    cursor: pointer;
+}
+
+.btn-nombre-empresa:hover
+{
+    background-color: #3a0dc4;
+    transition: .3s ease;
+}
 
 .btn-editar
 {
@@ -519,6 +586,7 @@ input[type="date"]:before
 .btn-secundario
 {
     background-color: var(--secundario);
+    margin-bottom: 20px;
 }
 
 /* TEXTO */
@@ -646,7 +714,133 @@ table tr
     width: 5px;
 } */
 
+/* SUBIR IMAGEN */
+
+.file-upload 
+{
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+}
+
+.file-upload-btn 
+{
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    margin: 0;
+    font-size: 15px;
+    color: var(--font2);
+    background: var(--azul);
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    transition: all .2s ease;
+    outline: none;
+}
+
+.file-upload-btn:hover 
+{
+    background: #6349ff;
+    transition: all .2s ease;
+    cursor: pointer;
+}
+
+.file-upload-btn:active 
+{
+    border: 0;
+    transition: all .2s ease;
+}
+
+.file-upload-content 
+{
+    display: none;
+    text-align: center;
+}
+
+.file-upload-input 
+{
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.image-upload-wrap 
+{
+    margin-top: 20px;
+    border: 4px dashed var(--azul);
+    position: relative;
+}
+
+.image-dropping,
+.image-upload-wrap:hover 
+{
+    border: 4px dashed var(--font2);
+}
+
+.image-title-wrap 
+{
+    padding: 0 15px 15px 15px;
+    color: #222;
+}
+
+.drag-text 
+{
+    text-align: center;
+}
+
+.drag-text h3 
+{
+    font-weight: 100;
+    color: var(--font2);
+    padding: 60px 0;
+}
+
+.file-upload-image 
+{
+    max-height: 200px;
+    max-width: 200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.remove-image 
+{
+    font-family: 'Poppins', sans-serif;
+    width: 200px;
+    font-size: 15px;
+    margin: 0;
+    color: var(--font2);
+    background: var(--rojo);
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    transition: all .2s ease;
+    outline: none;
+}
+
+.remove-image:hover 
+{
+    background: #ea3c62;
+    transition: all .2s ease;
+    cursor: pointer;
+}
+
+.remove-image:active 
+{
+    border: 0;
+    transition: all .2s ease;
+}
+
 /* OTROS */
+
+.icono-barcode
+{
+    font-size: 50px;
+}
 
 h3
 {
