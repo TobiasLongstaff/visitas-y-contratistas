@@ -1,16 +1,30 @@
 
 $(document).ready(() =>
 {
-    $('#btn-dni').click(function(e)
+    $('#btn-dni').click(function()
     {
-        $('.textbox-dni').focus();
         $(this).css('background', '#9552a2');
-        
+
+        $('.textbox-dni').show();
+        $('.textbox-dni').focus();
     });
 
-    $('.textbox-dni').blur(function()
+    // $('.textbox-dni').blur(function()
+    // {
+    //     $('#btn-dni').css('background', '#883399');
+    //     $('.textbox-dni').hide();
+    // })
+
+    $('#form-cargar-datos-dni').submit(function(e)
     {
-        $('#btn-dni').css('background', '#883399');
+        var codigo = $('#textbox-codigo').val();
+
+        array_dni = codigo.split("@"); 
+
+        console.log(array_dni)
+
+        $('#nombre-apellido').val(array_dni.length(0));
+        e.preventDefault();
     })
 
     $("#buscar-empresa").keyup(function()

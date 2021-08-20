@@ -18,16 +18,16 @@
         <div class="container-form-ingreso-visitas">
             <form class="container-left-ingreso" method="post">
                 <div class="form-group">
-                    <input type="text" id="" class="form-style" placeholder="Nombre y Apellido" autocomplete="off" required>
+                    <input type="text" id="nombre-apellido" class="form-style" placeholder="Nombre y Apellido" autocomplete="off" required>
                     <i class="input-icon uil uil-user"></i>
                 </div>	
                 <div class="form-group">
-                    <input type="text" id="" class="form-style" placeholder="DNI" autocomplete="off" required>
+                    <input type="text" id="dni" class="form-style" placeholder="DNI" autocomplete="off" required>
                     <i class="input-icon uil uil-postcard"></i>
                 </div>
                 <div class="form-group">
                     <label>Fecha de nacimiento</label>
-                    <input type="date" id="" class="form-style-date" placeholder="Fecha de Nacimiento" autocomplete="off" required>
+                    <input type="date" id="fecha-de-nacimiento" class="form-style-date" placeholder="Fecha de Nacimiento" autocomplete="off" required>
                 </div>
                 <div class="form-group">
                     <input type="search" id="buscar-empresa" class="form-style-search" placeholder="Empresa" required>
@@ -36,7 +36,7 @@
                 </div>
                 <div id="container-empresas"></div>
                 <div class="form-group">
-                    <input type="text" id="" class="form-style" placeholder="Temperatura" autocomplete="off" required>
+                    <input type="text" id="temperatura" class="form-style" placeholder="Temperatura" autocomplete="off" required>
                     <i class="input-icon uil uil-temperature-half"></i>
                 </div>
                 <div class="form-group">
@@ -55,19 +55,19 @@
                     <i class="input-icon uil-chart-pie-alt"></i>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="" class="form-style" placeholder="Visita a ..." autocomplete="off" required>
+                    <input type="text" id="visita-a" class="form-style" placeholder="Visita a ..." autocomplete="off" required>
                     <i class="input-icon uil uil-user-location"></i>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="" class="form-style" placeholder="Vehiculo Modelo" autocomplete="off" required>
+                    <input type="text" id="vehiculo-modelo" class="form-style" placeholder="Vehiculo Modelo" autocomplete="off" required>
                     <i class="input-icon uil-car-sideview"></i>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="" class="form-style" placeholder="Patente" autocomplete="off" required>
+                    <input type="text" id="patente" class="form-style" placeholder="Patente" autocomplete="off" required>
                     <i class="input-icon uil uil-car"></i>
                 </div>
                 <div class="form-group">
-                    <select id="" class="form-style" autocomplete="off" required>
+                    <select id="registra-fichada" class="form-style" autocomplete="off" required>
                         <option value="" selected disabled>Registra Fichada S/N</option>
                         <option value="Si">Si</option>
                         <option value="No">No</option>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="form-group">
                     <label>Fecha y Hora</label>
-                    <input type="date" id="" class="form-style-date" placeholder="Fecha y Hora" autocomplete="off" required>
+                    <input type="date" id="fecha-hora" class="form-style-date" placeholder="Fecha y Hora" autocomplete="off" required>
                 </div>
                 <label>Observacion:</label>
                 <textarea class="form-style-textarea"></textarea>  
@@ -92,7 +92,10 @@
                         <i class="icono-barcode fas fa-barcode"></i>
                     </button>
                 </div>
-                <input type="text" class="textbox-dni" value="">
+                <form id="form-cargar-datos-dni" class="container-cargar-datos-dni" method="post">
+                    <input type="text" id="textbox-codigo" class="textbox-dni">
+                    <!-- <button type="submit" class="btn-cargar">Cargar datos</button> -->
+                </form>
                 <form method="post">
                     <div class="file-upload">
                         <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Agregar Imagen</button>
