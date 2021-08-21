@@ -1,6 +1,9 @@
 <?php
     require 'partials/header.html';
     require 'partials/conexion.php';
+
+    date_default_timezone_set('America/Buenos_Aires');
+    $fecha_actual = date('Y-m-d');
 ?>
 <body>
     <div class="container">
@@ -16,7 +19,7 @@
             </div>
         </nav>
         <div class="container-form-ingreso-visitas">
-            <form class="container-left-ingreso" method="post">
+            <form class="container-left-ingreso" id="form-ingreso-de-visitas" method="post">
                 <div class="form-group">
                     <input type="text" id="nombre-apellido" class="form-style" placeholder="Nombre y Apellido" autocomplete="off" required>
                     <i class="input-icon uil uil-user"></i>
@@ -27,7 +30,7 @@
                 </div>
                 <div class="form-group">
                     <label>Fecha de nacimiento</label>
-                    <input type="date" id="fecha-de-nacimiento" class="form-style-date" placeholder="Fecha de Nacimiento" autocomplete="off" required>
+                    <input id="fecha-de-nacimiento" class="form-style-date" type="date" required value="<?=$fecha_actual?>">
                 </div>
                 <div class="form-group">
                     <input type="search" id="buscar-empresa" class="form-style-search" placeholder="Empresa" required>
@@ -40,7 +43,7 @@
                     <i class="input-icon uil uil-temperature-half"></i>
                 </div>
                 <div class="form-group">
-                    <select class="form-style" autocomplete="off" required>
+                    <select class="form-style" autocomplete="off" id="sector-habilitado" required>
                         <option value="" selected disabled>Sector Habilitado</option>
                         <?php
                             $sql="SELECT * FROM sector";
@@ -76,13 +79,13 @@
                 </div>
                 <div class="form-group">
                     <label>Fecha y Hora</label>
-                    <input type="date" id="fecha-hora" class="form-style-date" placeholder="Fecha y Hora" autocomplete="off" required>
+                    <input type="datetime-local" id="fecha-hora" class="form-style-date" required>
                 </div>
                 <label>Observacion:</label>
-                <textarea class="form-style-textarea"></textarea>  
+                <textarea class="form-style-textarea" id="observacion"></textarea>  
                 <div class="container-controles-visitas">
                     <input type="submit" class="btn-acceder" value="Guardar y Imprimir">
-                    <button type="button" class="btn-acceder btn-secundario">Cancelar</button>
+                    <button type="button" id="btn-cancelar" class="btn-acceder btn-secundario">Cancelar</button>
                 </div>  
             </form>
             <div class="container-right-visitas">
@@ -93,8 +96,7 @@
                     </button>
                 </div>
                 <form id="form-cargar-datos-dni" class="container-cargar-datos-dni" method="post">
-                    <input type="text" id="textbox-codigo" class="textbox-dni">
-                    <!-- <button type="submit" class="btn-cargar">Cargar datos</button> -->
+                    <input type="text" id="textbox-codigo" autocomplete="off" class="textbox-dni">
                 </form>
                 <form method="post">
                     <div class="file-upload">
@@ -113,6 +115,27 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+        <div class="overlay" id="overlay">
+            <div class="container-popup" id="popup">
+                <div class="header-popup">
+                    <h2>Elegir una opcion</h2>
+                </div>
+                <div class="container-btn-popup">
+                    <button type="button" class="btn-imprimir-general btn-ticket" id="btn-ticket">
+                        <span>Imprimir ticket</span><br>
+                        <i class="icono-popup uil uil-ticket"></i>
+                    </button>
+                    <button type="button" class="btn-imprimir-general btn-tarjeta" id="btn-tarjeta">
+                        <span>Imprimir tarjeta</span><br>
+                        <i class="icono-popup uil uil-postcard"></i>   
+                    </button>
+                    <button type="button" class="btn-imprimir-general btn-cancelar" id="btn-cerrar-popup">
+                        <span>Cancelar</span><br>
+                        <i class="icono-popup uil uil-times-circle"></i>
+                    </button>                    
+                </div>
             </div>
         </div>
     </div>

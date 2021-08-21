@@ -72,6 +72,29 @@ nav h2
 
 /* CONTAINER */
 
+.container-btn-popup
+{
+    width: 100%;
+    height: calc(89% - 64px);
+    display: flex;
+    gap: 3%;
+    justify-content: center;
+}
+
+.container-popup
+{
+    background: var(--fondo);
+    box-shadow: 0px 3px 6px 0px #0e0e0e9e;
+    border-radius: 10px;
+    padding: 5%;
+    width: 50%;
+    height: 28vh;
+    transition: .3s ease all;
+    transform: scale(0.7);
+    font-size: 15px;
+    opacity: 0;
+}
+
 .container-cargar-datos-dni
 {
     text-align: center;
@@ -307,27 +330,32 @@ nav h2
     width: calc(100% - 40px);
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator 
+input[type="date"]::-webkit-calendar-picker-indicator
 {
     color: transparent;
     background: none;
     z-index: 1;
 }
 
-input[type="date"]:before 
+input[type="date"]:before
 {
     color: transparent;
     background: none;
     display: block;
     font-family: 'unicons';
     content: '\e9bd';
-    width: 15px;
+    width: 20px;
     font-size: 20px;
     height: 20px;
     position: absolute;
     top: 35px;
-    right: 20px;
+    right: 30px;
     color: white;
+}
+
+input[type="datetime-local"]:before
+{
+    right: 2px;
 }
 
 .form-group
@@ -458,6 +486,51 @@ input[type="date"]:before
 
 /* BOTONES */
 
+.btn-ticket
+{
+    background-color: var(--azul);
+}
+
+.btn-ticket:hover
+{
+    background-color: #6651e4;
+    transition: .3s ease;
+}
+
+.btn-tarjeta
+{
+    background-color: var(--secundario);
+}
+
+.btn-tarjeta:hover
+{
+    background-color: #9658a2;
+    transition: .3s ease;
+}
+
+.btn-cancelar
+{
+    background-color: var(--rojo)
+}
+
+.btn-cancelar:hover
+{
+    background-color: #e24c6d;
+    transition: .3s ease;
+}
+
+.btn-imprimir-general
+{
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 18px;
+    color: white;
+}
+
 .btn-cargar
 {
     background-color: var(--verde);
@@ -483,7 +556,7 @@ input[type="date"]:before
     cursor: pointer;
 }
 
-.btn-dni:hover
+.btn-dni:hover, .btn-secundario:hover
 {
     background-color: #9552a2;
     transition: .3s ease;
@@ -500,7 +573,7 @@ input[type="date"]:before
     cursor: pointer;
 }
 
-.btn-nombre-empresa:hover
+.btn-nombre-empresa:hover, .btn-acceder:hover
 {
     background-color: #3a0dc4;
     transition: .3s ease;
@@ -864,6 +937,48 @@ table tr
 }
 
 /* OTROS */
+
+.icono-popup
+{
+    font-size: 40px;
+}
+
+
+.header-popup
+{
+    padding: 30px;
+    padding-top: 0px;
+}
+
+.header-popup h2
+{
+    margin: 0;
+}
+
+.container-popup.active 
+{
+    opacity: 1;
+    transform: scale(1.5);
+}
+
+.overlay.active
+{
+    visibility: visible;
+}
+
+.overlay
+{
+    background: rgba(0,0,0,.3);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    visibility: hidden;
+}
 
 .icono-barcode
 {
