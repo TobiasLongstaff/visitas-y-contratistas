@@ -1,7 +1,7 @@
 <?php
 
     require 'partials/header.html';
-
+    session_start();
 ?>
 <body>
     <div class="container">
@@ -57,4 +57,15 @@
 <script src="assets/plugins/jquery-3.5.1.min.js"></script>
 <script src="assets/plugins/sweetalert2.all.min.js"></script>
 <script src="assets/scripts/abm-sectores.js"></script>
+<?php
+    if($_SESSION['planta_usuario'] == 'Landl')
+    {
+?>
+        <script type="text/javascript">
+            $('body').css("background-image", "url(assets/img/fondo-landl.jpg)"); 
+            $('.img-nav').attr("src", "assets/img/Landl.png")</script>
+        </script>
+<?php
+    }
+?>
 </html>

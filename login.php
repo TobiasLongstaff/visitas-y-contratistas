@@ -50,6 +50,14 @@
                                         <i class="input-icon uil uil-at"></i>
                                     </div>	
                                     <div class="form-group">
+                                        <select id="regis-planta" class="form-style-selectlist" autocomplete="off" required>
+                                            <option selected disabled>Planta</option>
+                                            <option value="FrigoPico">FrigoPico</option>
+                                            <option value="Landl">Landl</option>
+                                        </select>
+                                        <i class="input-icon uil uil-building"></i>
+                                    </div>
+                                    <div class="form-group">
                                         <input type="password" id="regis-pass" class="form-style" placeholder="Contraseña" autocomplete="off" required>
                                         <i class="input-icon uil uil-padlock"></i>
                                     </div>	

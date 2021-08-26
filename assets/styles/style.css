@@ -72,6 +72,11 @@ nav h2
 
 /* CONTAINER */
 
+.container-tabla-historial
+{
+    padding: 0 5%;
+}
+
 .container-btn-popup
 {
     width: 100%;
@@ -155,7 +160,7 @@ nav h2
     justify-content: center;
 }
 
-.container-form-ingreso-visitas
+.container-form-ingreso-visitas, .container-form-ingreso-contratistas
 {
     display: flex;
     padding: 0 5%;
@@ -165,12 +170,7 @@ nav h2
     overflow: auto;
 }
 
-.container-right-visitas
-{
-    width: 100%;
-}
-
-.container-left-ingreso
+.container-right-visitas, .container-right-contratistas, .container-left-ingreso
 {
     width: 100%;
 }
@@ -399,6 +399,11 @@ input[type="datetime-local"]:before
 }
 
 .form-style-search
+{
+    width: 100%;
+}
+
+.form-style-selectlist
 {
     width: 100%;
 }

@@ -36,7 +36,8 @@ $(document).ready(() =>
             mail: $('#regis-mail').val(),
             nombre_apellido: $('#regis-user').val(),
             password: $('#regis-pass').val(),
-            password_con: $('#regis-pass-veri').val()
+            password_con: $('#regis-pass-veri').val(),
+            planta: $('#regis-planta').val()
         };
         $.post('partials/crear-cuenta.php', postData, function (data)
         {    

@@ -1,6 +1,7 @@
 <?php
     require 'partials/header.html';
     require 'partials/conexion.php';
+    session_start();
 
     date_default_timezone_set('America/Buenos_Aires');
     $fecha_actual = date('Y-m-d');
@@ -123,6 +124,7 @@
                     <h2>Elegir una opcion</h2>
                 </div>
                 <div class="container-btn-popup">
+                    <input type="hidden" id="id-ingreso-visita">
                     <button type="button" class="btn-imprimir-general btn-ticket" id="btn-ticket">
                         <span>Imprimir ticket</span><br>
                         <i class="icono-popup uil uil-ticket"></i>
@@ -143,4 +145,16 @@
 <script src="assets/plugins/jquery-3.5.1.min.js"></script>
 <script src="assets/plugins/sweetalert2.all.min.js"></script>
 <script src="assets/scripts/ingreso-de-visitas.js"></script>
+<?php
+
+    if($_SESSION['planta_usuario'] == 'Landl')
+    {
+?>
+        <script type="text/javascript">
+            $('body').css("background-image", "url(assets/img/fondo-landl.jpg)"); 
+            $('.img-nav').attr("src", "assets/img/Landl.png")</script>
+        </script>
+<?php
+    }
+?>
 </html>

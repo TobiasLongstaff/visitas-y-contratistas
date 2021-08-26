@@ -23,12 +23,11 @@
         $observacion = $_POST['observacion']; 
         $imagen = '';
 
-        $sql = "INSERT INTO ingreso_de_visitas (nombre_apellido, dni, fecha_de_nacimiento, empresa,
+        $sql = "INSERT INTO ingreso (nombre_apellido, dni, fecha_de_nacimiento, empresa,
         temperatura, sector_habilitado, visita, vehiculo_modelo, patente, registra_fichada, fecha_hora,
-        observacion, id_usuario, fecha_hora_actual, imagen) VALUES ('$nombre_apellido', '$dni', 
+        observacion, id_usuario, imagen, ingreso) VALUES ('$nombre_apellido', '$dni', 
         '$fecha_de_nacimiento', '$empresa', '$temperatura', '$sector_habilitado', '$visita',
-        '$vehiculo_modelo', '$patente', '$registra_fichada', '$fecha_hora', '$observacion', '$id_usuario',
-        '$fecha_actual', '$imagen')";
+        '$vehiculo_modelo', '$patente', '$registra_fichada', '$fecha_hora', '$observacion', '$id_usuario', '$imagen', 'Visita')";
         $resultado = mysqli_query($conexion, $sql);
         if(!$resultado)
         {
@@ -36,7 +35,14 @@
         }
         else
         {
-            echo '1';
+            $sql = "SELECT id FROM ingreso";
+            $resultado=mysqli_query($conexion,$sql);
+            while($filas = mysqli_fetch_array($resultado))
+            {
+                $id_ingreso = $filas['id'];
+            }
+            
+            echo $id_ingreso;
         }
     }
 

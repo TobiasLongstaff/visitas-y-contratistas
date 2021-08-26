@@ -18,18 +18,22 @@
                     <label>Ingreso de Visitas</label>
                 </button>                
             </a>
-            <button type="button" class="btn-general-menu">
-                <i class="ico-btn-menu uil uil-constructor"></i><br>
-                <label>Ingreso de Contratistas</label>
-            </button>
+            <a href="ingreso-de-contratistas.php">
+                <button type="button" class="btn-general-menu">
+                    <i class="ico-btn-menu uil uil-constructor"></i><br>
+                    <label>Ingreso de Contratistas</label>
+                </button>                
+            </a>
             <button type="button" class="btn-general-menu">
                 <i class="ico-btn-menu uil uil-user-minus"></i><br>
                 <label>Egreso de Visitas</label>
             </button>
-            <button type="button" class="btn-general-menu">
-                <i class="ico-btn-menu uil uil-history"></i><br>
-                <label>Consultar Historial</label>
-            </button>
+            <a href="consultar-historial.php">
+                <button type="button" class="btn-general-menu">
+                    <i class="ico-btn-menu uil uil-history"></i><br>
+                    <label>Consultar Historial</label>
+                </button>                
+            </a>
             <a href="abm-sectores.php">
                 <button type="button" class="btn-general-menu">
                     <i class="ico-btn-menu uil-chart-pie-alt"></i><br>

@@ -11,6 +11,7 @@
 
     if(isset($_POST['mail']))
     {
+        $planta = $_POST['planta'];
         $mail_cliente = $_POST['mail'];        
         $nombre_apellido = $_POST['nombre_apellido'];
         $password = sha1($_POST['password']);
@@ -35,8 +36,8 @@
         {
             if($password == $password_con)
             {
-                $sql = "INSERT INTO usuarios (mail, password, nombre_apellido, hash, tipo) 
-                VALUES ('$mail_cliente', '$password', '$nombre_apellido', '$hash', 'Pendiente')";
+                $sql = "INSERT INTO usuarios (mail, password, nombre_apellido, hash, planta, tipo) 
+                VALUES ('$mail_cliente', '$password', '$nombre_apellido', '$hash', '$planta', 'Pendiente')";
                 $resultado = mysqli_query($conexion, $sql);
                 if(!$resultado)
                 {

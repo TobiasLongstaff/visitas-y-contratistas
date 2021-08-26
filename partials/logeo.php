@@ -21,6 +21,7 @@
                 $_SESSION['tipo_usuario'] = $tipo_usuario;
                 $_SESSION['nombre_usuario'] = $filas['nombre_apellido'];
                 $_SESSION['mail_usuario'] = $filas['mail'];
+                $_SESSION['planta_usuario'] = $filas['planta'];
 
                 echo '1';                
             }
