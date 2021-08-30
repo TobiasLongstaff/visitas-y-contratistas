@@ -7,8 +7,9 @@
     {
         $id_sector = $_POST['id']; 
         $nombre = $_POST['nombre'];
+        $color = $_POST['color'];
 
-        $sql="UPDATE sector SET nombre = '$nombre' WHERE id = '$id_sector'";
+        $sql="UPDATE sector SET nombre = '$nombre', color = '$color' WHERE id = '$id_sector'";
         $resultado = mysqli_query($conexion,$sql);
         if(!$resultado)
         {

@@ -20,10 +20,24 @@
             </div>
         </nav>
         <div class="container-tabla-historial">
+            <div class="container-buscar">
+                <label>Filtrar: </label>
+                <div class="form-group">
+                    <select id="selectlist-filtrar" class="form-style">
+                        <option value="Todos">Todos</option>
+                        <option value="visitas">Visitas</option>
+                        <option value="contratistas">Contratistas</option>
+                    </select>                    
+                    <i class="input-icon uil uil-filter"></i>
+                </div>
+            </div>
             <div class="container-tabla">
                 <table id="tabla">
                     <thead>
                         <tr>
+                            <th class="columna-header">
+                                <span>Controles</span>    
+                            </th>
                             <th class="columna-header">
                                 <span>Id</span>    
                             </th>

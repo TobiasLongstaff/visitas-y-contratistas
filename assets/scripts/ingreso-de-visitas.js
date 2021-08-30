@@ -1,6 +1,25 @@
 
 $(document).ready(() =>
 {
+
+    $('#dni').keyup(function()
+    {
+        var dni = $(this).val();
+        if(dni != '')
+        {
+            $.post('partials/buscar-trabajadores.php', {dni}, function (data)
+            {
+                if(data !== '')
+                {
+                    const usuario = JSON.parse(data);
+                    $('#nombre-apellido').val(usuario.nombre);
+                    $('#fecha-de-nacimiento').val(usuario.fecha_de_nacimiento);
+                    $('#buscar-empresa').val(usuario.empresa);                    
+                }
+            });
+        }
+    })
+
     $('#form-ingreso-de-visitas').submit(function(e) 
     {
         const postData =
@@ -22,6 +41,7 @@ $(document).ready(() =>
 
         $.post('partials/agregar-visita.php', postData, function (data)
         {
+            console.log(data);
             const form = document.getElementById("form-ingreso-de-visitas");
             form.reset();
             $('#id-ingreso-visita').val(data);

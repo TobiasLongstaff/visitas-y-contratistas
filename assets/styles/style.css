@@ -3,6 +3,7 @@
 :root
 {
     --bg-color: #220088;
+    --subfondo: #1100334a;
     --fondo: #110033;
     --secundario: #883399;
     --azul: #2200ee;
@@ -72,9 +73,32 @@ nav h2
 
 /* CONTAINER */
 
+.container-buscar
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.container-info-card
+{
+    display: flex;
+    gap: 15px;
+    color: var(--font);
+}
+
+.container-card-tabla
+{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+
 .container-tabla-historial
 {
     padding: 0 5%;
+    padding-bottom: 20px;
 }
 
 .container-btn-popup
@@ -149,7 +173,7 @@ nav h2
 {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    height: 70vh;
+    height: 64vh;
     overflow: auto;
     color: var(--font2);
 }
@@ -368,7 +392,7 @@ input[type="datetime-local"]:before
     width: 100%;
 }
 
-.form-style, .form-style-selectlist, .form-style-date, .form-style-textarea, .form-style-search
+.form-style, .form-style-selectlist, .form-style-date, .form-style-textarea, .form-style-search, .form-color
 {
     padding: 13px 20px;
     padding-left: 55px;
@@ -386,6 +410,11 @@ input[type="datetime-local"]:before
     font-family: 'Poppins', sans-serif;
     transition: all 200ms linear;
     box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
+}
+
+.form-color
+{
+    width: 30%;
 }
 
 .form-style-textarea
@@ -610,7 +639,7 @@ input[type="datetime-local"]:before
     transform: scale(1.05);
 }
 
-.btn-eliminar
+.btn-eliminar, .btn-general
 {
     border-radius: 5px;
     background-color: transparent;
@@ -624,6 +653,12 @@ input[type="datetime-local"]:before
     color: var(--rojo);
 }
 
+.btn-general
+{
+    border: 2px solid var(--azul);
+    color: var(--azul);
+}
+
 .btn-eliminar:hover
 {
     background-color: var(--rojo);
@@ -631,9 +666,16 @@ input[type="datetime-local"]:before
     transition: .3s ease;
 }
 
-.btn-eliminar:active
+.btn-eliminar:active, .btn-general:active
 {
     transform: scale(1.05);
+}
+
+.btn-desplegable:hover
+{
+    background-color: var(--azul);
+    color: white;
+    transition: .3s ease;
 }
 
 .btn-nav
@@ -697,11 +739,18 @@ input[type="datetime-local"]:before
 
 /* TEXTO */
 
+
 h2 
 {
     font-weight: 600;
     color: var(--font2);
     margin-bottom: 40px;
+}
+
+.text-card
+{
+    margin-bottom: 10px;
+    margin-top: 0;
 }
 
 .titulo-regis
@@ -711,8 +760,18 @@ h2
 
 /* CHECKBOX */
 
-[type="checkbox"]:checked,
-[type="checkbox"]:not(:checked)
+.checkbox-desplegar
+{
+    width: 50px;
+    height: 40px;
+    opacity: 0;
+    position: relative;
+    top: -43px;
+    left: -6px;
+}
+
+.checkbox:checked,
+.checkbox:not(:checked)
 {
     position: absolute;
     left: -9999px;
@@ -777,10 +836,20 @@ table tr
     border-bottom: 1px solid #eee;
 }
 
+.td-card-datos
+{
+    display: flex;
+}
+
 th.right, td.right 
 {
     text-align: right;
     padding-right: 1em;
+}
+
+.td-primer-fila
+{
+    padding: 15px;
 }
 
 .columna-header
@@ -790,7 +859,7 @@ th.right, td.right
 
 table caption, table th, table td 
 {
-    padding: .6em;
+    padding: 20px 10px;
     vertical-align: inherit;
 }
 
@@ -803,6 +872,12 @@ table tr
 {
     background: var(--fondo);
     border-bottom: none;
+}
+
+.tr-historial
+{
+    display: none; 
+    background-color: var(--subfondo);
 }
 
 .data-tabla
@@ -872,6 +947,12 @@ table tr
     outline: none;
     opacity: 0;
     cursor: pointer;
+}
+
+.img-card-tabla
+{
+    width: 150px;
+    border-radius: 5px;
 }
 
 .image-upload-wrap 

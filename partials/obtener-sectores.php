@@ -15,6 +15,7 @@
         $json[] = array(
             'id' => $filas['id'],
             'nombre' => $filas['nombre'],
+            'color' => $filas['color'],
             'cont' => $contador
         );
     }

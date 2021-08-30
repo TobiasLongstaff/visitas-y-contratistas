@@ -3,15 +3,63 @@
     require 'conexion.php';
     session_start();
 
-    $sql="SELECT * FROM ";
+    if(!empty($_POST['filtrar']) && $_POST['filtrar'] != 'Todos')
+    {
+        $filtro = $_POST['filtrar'];
+        $sql="SELECT * FROM ingreso WHERE ingreso = '$filtro'";
+    }
+    else
+    {
+        $sql="SELECT * FROM ingreso";
+    }
+    
     $resultado=mysqli_query($conexion,$sql);
     $json = array();
     while($filas = mysqli_fetch_array($resultado))
     {
+        $nombre = '';
+        $dni = '';
+        $fecha_de_nacimiento = '';
+        $empresa = '';
+        $img = '';
+        $id_usuario = $filas['id_usuario'];
+        $id_trabajadores = $filas['id_trabajador'];
+
+        $sql_usuario="SELECT * FROM usuarios WHERE id = '$id_usuario'";
+        $resultado_usuario=mysqli_query($conexion,$sql_usuario);
+        if($filas_usuario = mysqli_fetch_array($resultado_usuario))
+        {
+            $nombre_usuario = $filas_usuario['nombre_apellido'];
+        }
+
+        $sql_trabajadores="SELECT * FROM trabajadores WHERE id = '$id_trabajadores'";
+        $resultado_trabajadores=mysqli_query($conexion,$sql_trabajadores);
+        if($filas_trabajadores = mysqli_fetch_array($resultado_trabajadores))
+        {
+            $nombre = $filas_trabajadores['nombre_apellido'];
+            $dni = $filas_trabajadores['dni'];
+            $fecha_de_nacimiento = $filas_trabajadores['fecha_de_nacimiento'];
+            $empresa = $filas_trabajadores['empresa'];
+            $img = $filas_trabajadores['imagen'];
+        }
+
         $json[] = array(
             'id' => $filas['id'],
-            'nombre' => $filas['nombre'],
-            'cont' => $contador
+            'nombre' => $nombre,
+            'dni' => $dni,
+            'fecha_de_nacimiento' => $fecha_de_nacimiento,
+            'empresa' => $empresa,
+            'temperatura' => $filas['temperatura'],
+            'sector_habilitado' => $filas['sector_habilitado'],
+            'visita' => $filas['visita'],
+            'vehiculo_modelo' => $filas['vehiculo_modelo'],
+            'patente' => $filas['patente'],
+            'registra_fichada' => $filas['registra_fichada'],
+            'fecha_hora' => $filas['fecha_hora'],
+            'observacion' => $filas['observacion'],
+            'usuario' => $nombre_usuario,
+            'imagen' => $img,
+            'ingreso' => $filas['ingreso'],
         );
     }
 

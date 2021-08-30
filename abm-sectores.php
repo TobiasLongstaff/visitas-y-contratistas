@@ -34,7 +34,10 @@
                                 </th>
                                 <th class="columna-header columna-sector">
                                     <span>Sector</span>
-                                </th>                  
+                                </th>     
+                                <th class="columna-header columna-sector">
+                                    <span>Color</span>
+                                </th>              
                             </tr>   
                         </thead>
                         <tbody id="container-sectores">                     
@@ -48,7 +51,11 @@
                     <input type="hidden" id="id-sector">
                     <input type="text" id="nombre-sector" class="form-style" placeholder="Sector" autocomplete="off" required>
                     <i class="input-icon uil-chart-pie-alt"></i>
-                </div>	
+                </div>
+                <div class="form-group">
+                    <input type="color" class="form-color" id="color-sector" value="#2200ee" required>	
+                    <i class="input-icon uil uil-palette"></i>
+                </div>
                 <input type="submit" class="btn-acceder" id="btn-agregar-nuevo-sector" value="Agregar">
             </form>
         </div>

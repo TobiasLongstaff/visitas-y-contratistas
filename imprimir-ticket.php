@@ -21,12 +21,19 @@
         $resultado = mysqli_query($conexion, $sql);
         if($filas = mysqli_fetch_array($resultado, MYSQLI_ASSOC))
         {
-            $nombre_apellido = $filas['nombre_apellido'];
-            $dni = $filas['dni'];
-            $empresa = $filas['empresa'];
+            $id_trabajadores = $filas['id'];
             $sector = $filas['sector_habilitado'];
             $visita = $filas['visita'];
             $fecha_de_ingreso = $filas['fecha_hora'];
+
+            $sql_trabajador="SELECT * FROM trabajadores WHERE id = '$id_trabajadores'";
+            $resultado_trabajador = mysqli_query($conexion, $sql_trabajador);
+            if($filas_trabajador= mysqli_fetch_array($resultado_trabajador, MYSQLI_ASSOC))
+            {
+                $nombre_apellido = $filas_trabajador['nombre_apellido'];
+                $dni = $filas_trabajador['dni'];
+                $empresa = $filas_trabajador['empresa'];
+            }
 
             QRcode::png(
                 $id_visita,

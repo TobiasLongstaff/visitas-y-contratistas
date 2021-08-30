@@ -2,12 +2,44 @@ $(document).ready(() =>
 {
     obtener_historial()
 
-    function obtener_historial()
+    $(document).on('click', '.btn-mostrar-historial',function() 
+    {
+        console.log('click');
+        let element = $(this)[0].parentElement.parentElement;
+        let id_habilitacion = $(element).attr('filaid');
+        let elemento_tr = $('.tr-historial-'+id_habilitacion)
+
+        if($('.btn-mostrar-historial').is(":checked"))
+        {
+            elemento_tr.css('display','table-row');
+            elemento_tr.removeClass('animate__animated animate__fadeOutUp animate__faster');
+            elemento_tr.addClass('animate__animated animate__fadeInDown animate__faster'); 
+            $('.btn-mas-'+id_habilitacion).removeClass('fa-angle-right').addClass('fa-angle-down');
+        }
+        else
+        {
+            elemento_tr.removeClass('animate__animated animate__fadeInDown animate__faster'); 
+            elemento_tr.addClass('animate__animated animate__fadeOutUp animate__faster'); 
+            elemento_tr.one('animationend', () => {
+                elemento_tr.css('display','none'); 
+            }); 
+            $('.btn-mas-'+id_habilitacion).removeClass('fa-angle-down').addClass('fa-angle-right');
+        }
+    }); 
+    
+    $('#selectlist-filtrar').change(function() 
+    {
+        var filtrar = $(this).val();
+        obtener_historial(filtrar);
+    });
+
+    function obtener_historial(filtrar)
     {
         $.ajax(
         {
             url: 'partials/obtener-historial.php',
-            type: 'GET',
+            type: 'POST',
+            data: { filtrar },
             success: function (response)
             {
                 let sectores = JSON.parse(response);
@@ -19,8 +51,8 @@ $(document).ready(() =>
                     `
                     <tr filaId="${historial.id}">
                         <td class="td-primer-fila">
-                            <button class="btn-controles-general btn-agregar">
-                                <i class="fas fa-angle-right btn-mas-<?=$id?>"></i>
+                            <button class="btn-general btn-desplegable">
+                                <i class="fas fa-angle-right btn-mas-${historial.id}"></i>
                             </button><br/>
                             <input type="checkbox" class="checkbox-desplegar btn-mostrar-historial">
                         </td>
@@ -29,10 +61,42 @@ $(document).ready(() =>
                         <td>${historial.dni}</td>
                         <td>${historial.empresa}</td>
                         <td>${historial.sector_habilitado}</td>
-                        <td>${historial.visita_a}</td>
+                        <td>${historial.visita}</td>
                         <td>${historial.fecha_hora}</td>
                         <td>${historial.usuario}</td>
                     </tr>  
+                    <tr filaid="28" class="tr-historial tr-historial-${historial.id}">
+                        <td colspan="9">
+                            <div class="container-card-tabla">
+                                <div>
+                                    <h2 class="text-card">Mas Informacion</h2>
+                                    <div class="container-info-card">
+                                        <div>
+                                            <label>Id: ${historial.id}</label><br>
+                                            <label>Nombre apellido: ${historial.nombre}</label><br>
+                                            <label>DNI: ${historial.dni}</label><br>
+                                            <label>Empresa: ${historial.empresa}</label><br>
+                                            <label>Sector habilitado: ${historial.sector_habilitado}</label><br>
+                                            <label>Visita a:${historial.visita}</label><br>
+                                            <label>Fecha de nacimiento: ${historial.fecha_de_nacimiento}</label>
+                                        </div>
+                                        <div>
+                                            <label>Temperatura: ${historial.temperatura}</label><br>
+                                            <label>Modelo de vehiculo: ${historial.vehiculo_modelo}</label><br>
+                                            <label>Patente: ${historial.patente}</label><br>
+                                            <label>Registra fichada: ${historial.registra_fichada}</label><br>
+                                            <label>Observacion: ${historial.observacion}</label><br>
+                                            <label>Fecha y hora: ${historial.fecha_hora}</label><br>
+                                            <label>Usuario: ${historial.usuario}</label>
+                                        </div>
+                                        <div class="container-img-card">
+                                            <img class="img-card-tabla" src="https://image.shutterstock.com/image-photo/id-photo-portrait-businessman-suit-260nw-1505360618.jpg">
+                                        </div>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
                     `                           
                 });
                 $('#container-historial').html(plantilla);

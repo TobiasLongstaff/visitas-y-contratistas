@@ -41,4 +41,5 @@
             echo $id_ingreso;
         }
     }
+    mysqli_close($conexion);
 ?>

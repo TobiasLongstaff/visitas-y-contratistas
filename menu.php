@@ -24,10 +24,12 @@
                     <label>Ingreso de Contratistas</label>
                 </button>                
             </a>
-            <button type="button" class="btn-general-menu">
-                <i class="ico-btn-menu uil uil-user-minus"></i><br>
-                <label>Egreso de Visitas</label>
-            </button>
+            <a href="egreso-de-visitas.php">
+                <button type="button" class="btn-general-menu">
+                    <i class="ico-btn-menu uil uil-user-minus"></i><br>
+                    <label>Egreso de Visitas</label>
+                </button>                
+            </a>
             <a href="consultar-historial.php">
                 <button type="button" class="btn-general-menu">
                     <i class="ico-btn-menu uil uil-history"></i><br>

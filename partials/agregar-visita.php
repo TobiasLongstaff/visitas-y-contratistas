@@ -8,6 +8,7 @@
 
     if(isset($_POST['nombre_apellido']) && isset($_SESSION['id_usuario']))
     {
+        $id_trabajador = '';
         $id_usuario = $_SESSION['id_usuario'];
         $nombre_apellido = $_POST['nombre_apellido'];
         $dni = $_POST['dni'];
@@ -23,11 +24,36 @@
         $observacion = $_POST['observacion']; 
         $imagen = '';
 
-        $sql = "INSERT INTO ingreso (nombre_apellido, dni, fecha_de_nacimiento, empresa,
-        temperatura, sector_habilitado, visita, vehiculo_modelo, patente, registra_fichada, fecha_hora,
-        observacion, id_usuario, imagen, ingreso) VALUES ('$nombre_apellido', '$dni', 
-        '$fecha_de_nacimiento', '$empresa', '$temperatura', '$sector_habilitado', '$visita',
-        '$vehiculo_modelo', '$patente', '$registra_fichada', '$fecha_hora', '$observacion', '$id_usuario', '$imagen', 'Visita')";
+        $sql_select="SELECT * FROM trabajadores WHERE dni = '$dni'";
+        $resultado_select=mysqli_query($conexion,$sql_select);
+        if($filas_select = mysqli_fetch_array($resultado_select))
+        {
+            $id_trabajador = $filas_select['id_trabajador'];
+        }
+        else
+        {
+            $sql_insert = "INSERT INTO trabajadores (nombre_apellido, dni, fecha_de_nacimiento, empresa, imagen) 
+            VALUES ('$nombre_apellido', '$dni', '$fecha_de_nacimiento', '$empresa', '$imagen')";
+            $resultado_insert = mysqli_query($conexion, $sql_insert);
+            if(!$resultado_insert)
+            {
+                echo 'error';
+            }
+            else
+            {
+                $sql_select="SELECT * FROM trabajadores WHERE dni = '$dni'";
+                $resultado_select=mysqli_query($conexion,$sql_select);
+                if($filas_select = mysqli_fetch_array($resultado_select))
+                {
+                    $id_trabajador = $filas_select['id'];
+                }
+            }
+        }
+
+        $sql = "INSERT INTO ingreso (temperatura, sector_habilitado, visita, vehiculo_modelo, patente, 
+        registra_fichada, fecha_hora, observacion, id_usuario, id_trabajador, ingreso) VALUES 
+        ('$temperatura', '$sector_habilitado', '$visita', '$vehiculo_modelo', '$patente', 
+        '$registra_fichada', '$fecha_hora', '$observacion', '$id_usuario', '$id_trabajador', 'Visita')";
         $resultado = mysqli_query($conexion, $sql);
         if(!$resultado)
         {
@@ -45,5 +71,5 @@
             echo $id_ingreso;
         }
     }
-
+    mysqli_close($conexion);
 ?>

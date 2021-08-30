@@ -13,6 +13,7 @@
         {
             $json[] = array(
                 'nombre' => $filas['nombre'],
+                'color' => $filas['color']
             );
         }
         $jsonstring = json_encode($json[0]);

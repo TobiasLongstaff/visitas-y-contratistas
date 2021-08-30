@@ -27,6 +27,7 @@ $(document).ready(() =>
         const postData =
         {
             nombre: $('#nombre-sector').val(),
+            color: $('#color-sector').val(),
             id: $('#id-sector').val()
         };
 
@@ -97,6 +98,7 @@ $(document).ready(() =>
         {
             const sector = JSON.parse(data);
             $('#nombre-sector').val(sector.nombre);
+            $('#color-sector').val(sector.color);
         })
 
         $('#btn-agregar-nuevo-sector').val('Editar');
@@ -130,6 +132,7 @@ $(document).ready(() =>
                         </td>
                         <td>${sector.id}</td>
                         <td>${sector.nombre}</td>
+                        <td>${sector.color}</td>
                     </tr>  
                     `                           
                 });
