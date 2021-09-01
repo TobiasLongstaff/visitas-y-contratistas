@@ -1,7 +1,7 @@
 <?php
 
-    require 'conexion.php';
     session_start();
+    require 'conexion_por_planta.php';    
 
     $contador = 0;
 

@@ -1,6 +1,7 @@
 <?php
-    require 'conexion.php';
+
     session_start();
+    require 'conexion.php';    
 
     /**
     * @version 1.0

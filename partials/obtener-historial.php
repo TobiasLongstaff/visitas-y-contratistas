@@ -1,7 +1,7 @@
 <?php
 
-    require 'conexion.php';
     session_start();
+    require 'conexion_por_planta.php';    
 
     if(!empty($_POST['filtrar']) && $_POST['filtrar'] != 'Todos')
     {
@@ -12,6 +12,8 @@
     {
         $sql="SELECT * FROM ingreso";
     }
+
+    $nombre_usuario = '';
     
     $resultado=mysqli_query($conexion,$sql);
     $json = array();
@@ -25,12 +27,12 @@
         $id_usuario = $filas['id_usuario'];
         $id_trabajadores = $filas['id_trabajador'];
 
-        $sql_usuario="SELECT * FROM usuarios WHERE id = '$id_usuario'";
-        $resultado_usuario=mysqli_query($conexion,$sql_usuario);
-        if($filas_usuario = mysqli_fetch_array($resultado_usuario))
-        {
-            $nombre_usuario = $filas_usuario['nombre_apellido'];
-        }
+        // $sql_usuario="SELECT * FROM usuarios WHERE id = '$id_usuario'";
+        // $resultado_usuario=mysqli_query($conexion,$sql_usuario);
+        // if($filas_usuario = mysqli_fetch_array($resultado_usuario))
+        // {
+        //     $nombre_usuario = $filas_usuario['nombre_apellido'];
+        // }
 
         $sql_trabajadores="SELECT * FROM trabajadores WHERE id = '$id_trabajadores'";
         $resultado_trabajadores=mysqli_query($conexion,$sql_trabajadores);
@@ -56,6 +58,7 @@
             'patente' => $filas['patente'],
             'registra_fichada' => $filas['registra_fichada'],
             'fecha_hora' => $filas['fecha_hora'],
+            'fecha_salida' => $filas['fecha_salida'],
             'observacion' => $filas['observacion'],
             'usuario' => $nombre_usuario,
             'imagen' => $img,

@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-    require 'conexion.php';
+    require 'conexion_por_planta.php';
 
     if(isset($_POST['nombre']) && isset($_SESSION['id_usuario']))
     {

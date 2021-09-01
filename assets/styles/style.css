@@ -73,6 +73,11 @@ nav h2
 
 /* CONTAINER */
 
+.container-img-art
+{
+    margin-top: 70px;
+}
+
 .container-buscar
 {
     display: flex;
@@ -372,7 +377,7 @@ input[type="date"]:before
     font-size: 20px;
     height: 20px;
     position: absolute;
-    top: 35px;
+    /* top: 35px; */
     right: 30px;
     color: white;
 }
@@ -903,7 +908,7 @@ table tr
     font-family: 'Poppins', sans-serif;
 }
 
-.file-upload-btn 
+.file-upload-btn, .file-upload-btn-art
 {
     font-family: 'Poppins', sans-serif;
     width: 100%;
@@ -918,26 +923,38 @@ table tr
     outline: none;
 }
 
-.file-upload-btn:hover 
+.file-upload-btn:hover
 {
     background: #6349ff;
     transition: all .2s ease;
     cursor: pointer;
 }
 
-.file-upload-btn:active 
+.file-upload-btn:active, .file-upload-btn-art:active
 {
     border: 0;
     transition: all .2s ease;
 }
 
-.file-upload-content 
+.file-upload-btn-art
+{
+    background: var(--secundario)
+}
+
+.file-upload-btn-art:hover
+{
+    background-color: #9552a2;
+    transition: all .2s ease;
+    cursor: pointer;
+}
+
+.file-upload-content, .file-upload-content-art
 {
     display: none;
     text-align: center;
 }
 
-.file-upload-input 
+.file-upload-input, .file-upload-input-art
 {
     position: absolute;
     margin: 0;
@@ -955,20 +972,26 @@ table tr
     border-radius: 5px;
 }
 
-.image-upload-wrap 
+.image-upload-wrap, .imagen-upload-art
 {
     margin-top: 20px;
     border: 4px dashed var(--azul);
     position: relative;
 }
 
-.image-dropping,
-.image-upload-wrap:hover 
+.imagen-upload-art
 {
+    border: 4px dashed var(--secundario);
+}
+
+.image-dropping,
+.image-upload-wrap:hover, .imagen-upload-art:hover
+{
+    transition: all .2s ease;
     border: 4px dashed var(--font2);
 }
 
-.image-title-wrap 
+.image-title-wrap, .image-title-art
 {
     padding: 0 15px 15px 15px;
     color: #222;
@@ -986,7 +1009,7 @@ table tr
     padding: 60px 0;
 }
 
-.file-upload-image 
+.file-upload-image, .file-upload-image-art
 {
     max-height: 200px;
     max-width: 200px;
@@ -1024,11 +1047,31 @@ table tr
 
 /* OTROS */
 
+.barra-progreso
+{
+    width: 100%;
+    height: 23px;
+    margin-top: 10px;
+}
+
+.validar-art
+{
+    position: absolute;
+    top: 0;
+    left: 18px;
+    width: 19px;
+    height: 19px;
+    border-radius: 12px;
+    margin: 13px 0;
+    border: 3px solid var(--font2);
+    -webkit-transition: all 200ms linear;
+    transition: all 200ms linear;
+}
+
 .icono-popup
 {
     font-size: 40px;
 }
-
 
 .header-popup
 {

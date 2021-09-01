@@ -4,7 +4,8 @@
     session_start();
 
     date_default_timezone_set('America/Buenos_Aires');
-    $fecha_actual = date('Y-m-d');
+    $fecha_actual = date('Y-m-d H:i');
+    $fecha_actual = str_replace(' ','T', $fecha_actual);
 ?>
 <body>
     <div class="container">
@@ -21,6 +22,8 @@
         </nav>
         <div class="container-form-ingreso-contratistas">
             <form class="container-left-ingreso" id="form-ingreso-de-contratistas" method="post">
+                <input type="hidden" id="imagen-perfil">
+                <input type="hidden" id="imagen-art">
                 <div class="form-group">
                     <input type="text" id="nombre-apellido" class="form-style" placeholder="Nombre y Apellido" autocomplete="off" required>
                     <i class="input-icon uil uil-user"></i>
@@ -31,7 +34,7 @@
                 </div>
                 <div class="form-group">
                     <label>Fecha de nacimiento</label>
-                    <input id="fecha-de-nacimiento" class="form-style-date" type="date" required value="<?=$fecha_actual?>">
+                    <input id="fecha-de-nacimiento" class="form-style-date" type="date" required>
                 </div>
                 <div class="form-group">
                     <input type="search" id="buscar-empresa" class="form-style-search" placeholder="Empresa" required>
@@ -66,6 +69,11 @@
                     <input type="text" id="patente" class="form-style" placeholder="Patente" autocomplete="off" required>
                     <i class="input-icon uil uil-car"></i>
                 </div>
+                <label>Vencimiento ART</label>
+                <div class="form-group">
+                    <input type="date" id="fecha-art" class="form-style" required>
+                    <div class="validar-art"></div>
+                </div>
                 <div class="form-group">
                     <select id="registra-fichada" class="form-style" autocomplete="off" required>
                         <option value="" selected disabled>Registra Fichada S/N</option>
@@ -75,15 +83,19 @@
                     <i class="input-icon uil uil-registered"></i>
                 </div>
                 <div class="form-group">
-                    <label>Fecha y Hora</label>
-                    <input type="datetime-local" id="fecha-hora" class="form-style-date" required>
+                    <label>Fecha y Hora de entrada</label>
+                    <input type="datetime-local" id="fecha-hora" class="form-style-date" required value="<?=$fecha_actual?>">
+                </div>
+                <div class="form-group">
+                    <label>Fecha de salida</label>
+                    <input type="date" id="fecha-de-salida" class="form-style-date" required>
                 </div>
                 <label>Observacion:</label>
                 <textarea class="form-style-textarea" id="observacion"></textarea>  
                 <div>
                     <input type="submit" class="btn-acceder" value="Guardar y Imprimir">
                     <button type="button" id="btn-cancelar" class="btn-acceder btn-secundario">Cancelar</button>
-                </div>  
+                </div> 
             </form>
             <div class="container-right-contratistas">
                 <div class="container-escanear-dni">
@@ -97,17 +109,36 @@
                 </form>
                 <form method="post">
                     <div class="file-upload">
-                        <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Agregar Imagen</button>
+                        <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Agregar Imagen de Perfil</button>
+                        <progress class="barra-progreso" id="img-upload-bar" value="0" max="100"></progress>
                         <div class="image-upload-wrap">
-                            <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                            <input class="file-upload-input" type='file' id="btn-subir-imagen-sistema" onchange="readURL(this);" accept="image/*" />
                             <div class="drag-text">
-                            <h3>Arrastre o suelte un imagen o seleccione agregar imagen</h3>
+                            <h3>Arrastre o suelte un imagen o seleccione agregar imagen de perfil</h3>
                             </div>
                         </div>
                         <div class="file-upload-content">
                             <img class="file-upload-image" src="#" alt="your image" />
                             <div class="image-title-wrap">
                                 <button type="button" onclick="removeUpload()" class="remove-image">Remover <span class="image-title">Uploaded Image</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form method="post" class="container-img-art">
+                    <div class="file-upload">
+                        <button class="file-upload-btn-art" type="button" onclick="$('.file-upload-input-art').trigger( 'click' )">Agregar Imagen de ART</button>
+                        <progress class="barra-progreso" id="img-upload-bar-art" value="0" max="100"></progress>
+                        <div class="imagen-upload-art">
+                            <input class="file-upload-input-art" type='file' id="btn-subir-imagen-art" onchange="readURL_art(this);" accept="image/*" />
+                            <div class="drag-text">
+                            <h3>Arrastre o suelte un imagen o seleccione agregar imagen de ART</h3>
+                            </div>
+                        </div>
+                        <div class="file-upload-content-art">
+                            <img class="file-upload-image-art" src="#" alt="your image" />
+                            <div class="image-title-wrap-art">
+                                <button type="button" onclick="removeUpload_art()" class="remove-image">Remover <span class="image-title">Uploaded Image</span></button>
                             </div>
                         </div>
                     </div>
@@ -135,8 +166,11 @@
     </div>
 </body>
 <script src="assets/plugins/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 <script src="assets/plugins/sweetalert2.all.min.js"></script>
 <script src="assets/scripts/ingreso-de-contratistas.js"></script>
+<script src="assets/scripts/subir-imagenes.js"></script>
+<script src="assets/scripts/subir-imagenes-art.js"></script>
 <?php
 
     if($_SESSION['planta_usuario'] == 'Landl')

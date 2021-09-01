@@ -14,7 +14,11 @@ $(document).ready(() =>
                     const usuario = JSON.parse(data);
                     $('#nombre-apellido').val(usuario.nombre);
                     $('#fecha-de-nacimiento').val(usuario.fecha_de_nacimiento);
-                    $('#buscar-empresa').val(usuario.empresa);                    
+                    $('#buscar-empresa').val(usuario.empresa);    
+                    $('.image-upload-wrap').hide();
+                    $('.file-upload-image').attr('src', usuario.imagen);  
+                    $('.file-upload-content').show(); 
+                    $('#imagen-perfil').val(usuario.imagen);                
                 }
             });
         }
@@ -36,7 +40,7 @@ $(document).ready(() =>
             registra_fichada: $('#registra-fichada').val(),
             fecha_hora: $('#fecha-hora').val(),
             observacion: $('#observacion').val(),
-            // imagen_perfil: $('#imagen_perfil').val(),
+            imagen_perfil: $('#imagen-perfil').val(),
         };
 
         $.post('partials/agregar-visita.php', postData, function (data)
@@ -57,10 +61,10 @@ $(document).ready(() =>
         window.open('imprimir-ticket.php?id='+id_ingreso);
     });
 
-    $('#btn-ticket').click(function ()
+    $('#btn-tarjeta').click(function ()
     {
         var id_ingreso = $('#id-ingreso-visita').val();
-        window.open('imprimir-tarjetas.php?id='+id_ingreso);
+        window.open('imprimir-tarjeta.php?id='+id_ingreso);
     });
 
     $('#btn-cerrar-popup').click(function()

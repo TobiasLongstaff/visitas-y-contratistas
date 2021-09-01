@@ -16,12 +16,16 @@
 
     if(isset($_GET['id']))
     {
+        $nombre_apellido = '';
+        $dni = '';
+        $empresa = '';
+        
         $id_visita = $_GET['id'];
         $sql="SELECT * FROM ingreso WHERE id = '$id_visita'";
         $resultado = mysqli_query($conexion, $sql);
         if($filas = mysqli_fetch_array($resultado, MYSQLI_ASSOC))
         {
-            $id_trabajadores = $filas['id'];
+            $id_trabajadores = $filas['id_trabajador'];
             $sector = $filas['sector_habilitado'];
             $visita = $filas['visita'];
             $fecha_de_ingreso = $filas['fecha_hora'];

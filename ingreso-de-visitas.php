@@ -4,7 +4,8 @@
     session_start();
 
     date_default_timezone_set('America/Buenos_Aires');
-    $fecha_actual = date('Y-m-d');
+    $fecha_actual = date('Y-m-d H:i');
+    $fecha_actual = str_replace(' ','T', $fecha_actual);
 ?>
 <body>
     <div class="container">
@@ -21,6 +22,7 @@
         </nav>
         <div class="container-form-ingreso-visitas">
             <form class="container-left-ingreso" id="form-ingreso-de-visitas" method="post">
+                <input type="hidden" id="imagen-perfil">
                 <div class="form-group">
                     <input type="text" id="nombre-apellido" class="form-style" placeholder="Nombre y Apellido" autocomplete="off" required>
                     <i class="input-icon uil uil-user"></i>
@@ -31,7 +33,7 @@
                 </div>
                 <div class="form-group">
                     <label>Fecha de nacimiento</label>
-                    <input id="fecha-de-nacimiento" class="form-style-date" type="date" required value="<?=$fecha_actual?>">
+                    <input id="fecha-de-nacimiento" class="form-style-date" type="date" required>
                 </div>
                 <div class="form-group">
                     <input type="search" id="buscar-empresa" class="form-style-search" placeholder="Empresa" required>
@@ -80,7 +82,7 @@
                 </div>
                 <div class="form-group">
                     <label>Fecha y Hora</label>
-                    <input type="datetime-local" id="fecha-hora" class="form-style-date" required>
+                    <input type="datetime-local" id="fecha-hora" class="form-style-date" value="<?=$fecha_actual?>" required>
                 </div>
                 <label>Observacion:</label>
                 <textarea class="form-style-textarea" id="observacion"></textarea>  
@@ -101,11 +103,12 @@
                 </form>
                 <form method="post">
                     <div class="file-upload">
-                        <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Agregar Imagen</button>
+                        <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Agregar Imagen de Perfil</button>
+                        <progress class="barra-progreso" id="img-upload-bar" value="0" max="100"></progress>
                         <div class="image-upload-wrap">
-                            <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                            <input class="file-upload-input" type='file' id="btn-subir-imagen-sistema" onchange="readURL(this);" accept="image/*" />
                             <div class="drag-text">
-                            <h3>Arrastre o suelte un imagen o seleccione agregar imagen</h3>
+                            <h3>Arrastre o suelte un imagen o seleccione agregar imagen de perfil</h3>
                             </div>
                         </div>
                         <div class="file-upload-content">
@@ -143,8 +146,10 @@
     </div>
 </body>
 <script src="assets/plugins/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 <script src="assets/plugins/sweetalert2.all.min.js"></script>
 <script src="assets/scripts/ingreso-de-visitas.js"></script>
+<script src="assets/scripts/subir-imagenes.js"></script>
 <?php
 
     if($_SESSION['planta_usuario'] == 'Landl')

@@ -1,10 +1,11 @@
 <?php
 
-    require 'conexion.php';
     session_start();
-
+    require 'conexion_por_planta.php';
+    
     date_default_timezone_set('America/Buenos_Aires');
-    $fecha_actual = date('Y-m-d H:i:s');
+    $fecha_actual = date('Y-m-d H:i');
+    $fecha_actual = str_replace(' ','T', $fecha_actual);
 
     if(isset($_POST['nombre_apellido']) && isset($_SESSION['id_usuario']))
     {
@@ -22,13 +23,13 @@
         $registra_fichada = $_POST['registra_fichada'];
         $fecha_hora = $_POST['fecha_hora'];
         $observacion = $_POST['observacion']; 
-        $imagen = '';
+        $imagen = $_POST['imagen_perfil'];
 
         $sql_select="SELECT * FROM trabajadores WHERE dni = '$dni'";
         $resultado_select=mysqli_query($conexion,$sql_select);
         if($filas_select = mysqli_fetch_array($resultado_select))
         {
-            $id_trabajador = $filas_select['id_trabajador'];
+            $id_trabajador = $filas_select['id'];
         }
         else
         {
@@ -45,19 +46,19 @@
                 $resultado_select=mysqli_query($conexion,$sql_select);
                 if($filas_select = mysqli_fetch_array($resultado_select))
                 {
-                    $id_trabajador = $filas_select['id'];
+                    echo $id_trabajador = $filas_select['id'];
                 }
             }
         }
 
         $sql = "INSERT INTO ingreso (temperatura, sector_habilitado, visita, vehiculo_modelo, patente, 
-        registra_fichada, fecha_hora, observacion, id_usuario, id_trabajador, ingreso) VALUES 
+        registra_fichada, fecha_hora, fecha_salida, observacion, id_usuario, id_trabajador, ingreso) VALUES 
         ('$temperatura', '$sector_habilitado', '$visita', '$vehiculo_modelo', '$patente', 
-        '$registra_fichada', '$fecha_hora', '$observacion', '$id_usuario', '$id_trabajador', 'Visita')";
+        '$registra_fichada', '$fecha_hora', '$fecha_actual', '$observacion', '$id_usuario', '$id_trabajador', 'Visita')";
         $resultado = mysqli_query($conexion, $sql);
         if(!$resultado)
         {
-            echo 'error';
+            echo 'error1';
         }
         else
         {

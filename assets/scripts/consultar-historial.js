@@ -78,7 +78,8 @@ $(document).ready(() =>
                                             <label>Empresa: ${historial.empresa}</label><br>
                                             <label>Sector habilitado: ${historial.sector_habilitado}</label><br>
                                             <label>Visita a:${historial.visita}</label><br>
-                                            <label>Fecha de nacimiento: ${historial.fecha_de_nacimiento}</label>
+                                            <label>Fecha de nacimiento: ${historial.fecha_de_nacimiento}</label><br>
+                                            <label>Ingreso: ${historial.ingreso}</label>
                                         </div>
                                         <div>
                                             <label>Temperatura: ${historial.temperatura}</label><br>
@@ -87,10 +88,11 @@ $(document).ready(() =>
                                             <label>Registra fichada: ${historial.registra_fichada}</label><br>
                                             <label>Observacion: ${historial.observacion}</label><br>
                                             <label>Fecha y hora: ${historial.fecha_hora}</label><br>
+                                            <label>Fecha de fin atencion: ${historial.fecha_salida}</label><br>
                                             <label>Usuario: ${historial.usuario}</label>
                                         </div>
                                         <div class="container-img-card">
-                                            <img class="img-card-tabla" src="https://image.shutterstock.com/image-photo/id-photo-portrait-businessman-suit-260nw-1505360618.jpg">
+                                            <img class="img-card-tabla" src="${historial.imagen}">
                                         </div>
                                     </div>                                    
                                 </div>

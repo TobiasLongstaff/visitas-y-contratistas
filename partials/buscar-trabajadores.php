@@ -1,8 +1,8 @@
 <?php
 
-    require 'conexion.php';
     session_start();
-
+    require 'conexion_por_planta.php';
+    
     if(isset($_POST['dni']) && isset($_SESSION['id_usuario']))
     {
         $dni = $_POST['dni'];
@@ -17,7 +17,9 @@
                 'dni' => $filas['dni'],
                 'fecha_de_nacimiento' => $filas['fecha_de_nacimiento'],
                 'empresa' => $filas['empresa'],
-                'imagen' => $filas['imagen']
+                'fecha_art' => $filas['fecha_art'],
+                'imagen' => $filas['imagen'],
+                'imagen_art' => $filas['imagen_art'],
             );
 
             $jsonstring = json_encode($json[0]);

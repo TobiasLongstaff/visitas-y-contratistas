@@ -1,5 +1,59 @@
 $(document).ready(() =>
 {
+    const fecha = new Date();
+
+    $('#dni').keyup(function()
+    {
+        var dni = $(this).val();
+        if(dni != '')
+        {
+            $.post('partials/buscar-trabajadores.php', {dni}, function (data)
+            {
+                if(data !== '')
+                {
+                    const usuario = JSON.parse(data);
+                    $('#nombre-apellido').val(usuario.nombre);
+                    $('#fecha-de-nacimiento').val(usuario.fecha_de_nacimiento);
+                    $('#buscar-empresa').val(usuario.empresa);      
+                    $('#fecha-art').val(usuario.fecha_art);  
+                    $('.image-upload-wrap').hide();
+                    $('.file-upload-image').attr('src', usuario.imagen);  
+                    $('.file-upload-content').show(); 
+                    $('#imagen-perfil').val(usuario.imagen);
+                    
+                    $('.imagen-upload-art').hide();
+                    $('.file-upload-image-art').attr('src', usuario.imagen_art);  
+                    $('.file-upload-content-art').show(); 
+                    $('#imagen-art').val(usuario.imagen_art);
+
+                    var fecha_art = usuario.fecha_art;
+
+                    let day = fecha.getDate()
+                    let month = fecha.getMonth() + 1
+                    let year = fecha.getFullYear()
+
+                    if(month < 10)
+                    {
+                        var fecha_actual = `${year}-0${month}-${day}`
+                    }
+                    else
+                    {
+                        var fecha_actual = `${year}-${month}-${day}`
+                    }
+
+                    if(fecha_actual <= fecha_art)
+                    {
+                        $('.validar-art').css('background-color', 'var(--verde)');
+                    }
+                    else
+                    {
+                        $('.validar-art').css('background-color', 'var(--rojo)');
+                    }
+                }
+            });
+        }
+    })
+
     $('#form-ingreso-de-contratistas').submit(function(e) 
     {
         const postData =
@@ -15,12 +69,20 @@ $(document).ready(() =>
             registra_fichada: $('#registra-fichada').val(),
             fecha_hora: $('#fecha-hora').val(),
             observacion: $('#observacion').val(),
-            // imagen_perfil: $('#imagen_perfil').val(),
+            fecha_de_salida: $('#fecha-de-salida').val(),
+            fecha_art: $('#fecha-art').val(),
+            imagen_perfil: $('#imagen-perfil').val(),
+            imagen_art: $('#imagen-art').val(),
         };
 
         $.post('partials/agregar-contratista.php', postData, function (data)
         {
+            console.log(data)
             const form = document.getElementById("form-ingreso-de-contratistas");
+            $('.file-upload-content-art').hide();
+            $('.imagen-upload-art').show();
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
             form.reset();
             $('#id-ingreso-contratista').val(data);
             $('#overlay').addClass("active");
@@ -31,14 +93,14 @@ $(document).ready(() =>
 
     $('#btn-ticket').click(function ()
     {
-        var id_ingreso = $('#id-ingreso-visita').val();
+        var id_ingreso = $('#id-ingreso-contratista').val();
         window.open('imprimir-ticket.php?id='+id_ingreso);
     });
 
-    $('#btn-ticket').click(function ()
+    $('#btn-tarjeta').click(function ()
     {
-        var id_ingreso = $('#id-ingreso-visita').val();
-        window.open('imprimir-tarjetas.php?id='+id_ingreso);
+        var id_ingreso = $('#id-ingreso-contratista').val();
+        window.open('imprimir-tarjeta.php?id='+id_ingreso);
     });
 
     $('#btn-cerrar-popup').click(function()
@@ -120,42 +182,4 @@ $(document).ready(() =>
     })
 
     // SUBIR IMAGEN
-});
-
-function readURL(input) 
-{
-    if (input.files && input.files[0]) 
-    {
-        var reader = new FileReader();
-
-        reader.onload = function(e) 
-        {
-            $('.image-upload-wrap').hide(); 
-            $('.file-upload-image').attr('src', e.target.result);
-            $('.file-upload-content').show();   
-            $('.image-title').html(input.files[0].name);
-        };
-        reader.readAsDataURL(input.files[0]);
-    } 
-    else 
-    {
-        removeUpload();
-    }
-}
-
-function removeUpload() 
-{
-    // $('.file-upload-input').replaceWith($('.file-upload-input').clone());
-    $('.file-upload-content').hide();
-    $('.image-upload-wrap').show();
-}
-
-$('.image-upload-wrap').bind('dragover', function () 
-{
-    $('.image-upload-wrap').addClass('image-dropping');
-});
-
-$('.image-upload-wrap').bind('dragleave', function () 
-{
-    $('.image-upload-wrap').removeClass('image-dropping');
 });
