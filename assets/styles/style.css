@@ -420,6 +420,7 @@ input[type="datetime-local"]:before
 .form-color
 {
     width: 30%;
+    height: 45px;
 }
 
 .form-style-textarea

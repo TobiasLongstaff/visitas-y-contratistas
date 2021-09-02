@@ -1,7 +1,8 @@
 <?php
-    require 'partials/header.html';
-    require 'partials/conexion.php';
+
     session_start();
+    require 'partials/header.html';
+    require 'partials/conexion_por_planta.php';
 
     date_default_timezone_set('America/Buenos_Aires');
     $fecha_actual = date('Y-m-d H:i');

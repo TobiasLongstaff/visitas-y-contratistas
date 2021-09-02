@@ -47,6 +47,8 @@ $(document).ready(() =>
         {
             console.log(data);
             const form = document.getElementById("form-ingreso-de-visitas");
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
             form.reset();
             $('#id-ingreso-visita').val(data);
             $('#overlay').addClass("active");

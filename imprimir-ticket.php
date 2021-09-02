@@ -1,7 +1,8 @@
 <?php
 
+    session_start();
     include 'imprimir-plantilla-ticket.php';
-    require 'partials/conexion.php';
+    require 'partials/conexion_por_planta.php';
     include 'assets/plugins/phpqrcode/qrlib.php';
 
     $pdf = new PDF('P','mm',array(100,160)); 

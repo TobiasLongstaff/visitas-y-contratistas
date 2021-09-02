@@ -1,7 +1,6 @@
 <?php
-
-    require 'partials/header.html';
     session_start();
+    require 'partials/header.html';
 ?>
 <body>
     <div class="container">

@@ -1,9 +1,8 @@
 <?php
-
-    require 'assets/plugins/fpdf/fpdf.php';
-    require 'partials/conexion.php';
-    include 'assets/plugins/phpqrcode/qrlib.php';
     session_start();
+    require 'assets/plugins/fpdf/fpdf.php';
+    require 'partials/conexion_por_planta.php';
+    include 'assets/plugins/phpqrcode/qrlib.php';
 
     class PDF extends FPDF
     {
