@@ -33,8 +33,8 @@
         }
         else
         {
-            $sql_insert = "INSERT INTO trabajadores (nombre_apellido, dni, fecha_de_nacimiento, empresa, imagen) 
-            VALUES ('$nombre_apellido', '$dni', '$fecha_de_nacimiento', '$empresa', '$imagen')";
+            $sql_insert = "INSERT INTO trabajadores (nombre_apellido, dni, fecha_de_nacimiento, fecha_art, empresa, imagen_art, imagen) 
+            VALUES ('$nombre_apellido', '$dni', '$fecha_de_nacimiento', '$fecha_de_nacimiento', '$empresa', '', '$imagen')";
             $resultado_insert = mysqli_query($conexion, $sql_insert);
             if(!$resultado_insert)
             {
@@ -54,7 +54,7 @@
         $sql = "INSERT INTO ingreso (temperatura, sector_habilitado, visita, vehiculo_modelo, patente, 
         registra_fichada, fecha_hora, fecha_salida, observacion, id_usuario, id_trabajador, ingreso) VALUES 
         ('$temperatura', '$sector_habilitado', '$visita', '$vehiculo_modelo', '$patente', 
-        '$registra_fichada', '$fecha_hora', '$fecha_actual', '$observacion', '$id_usuario', '$id_trabajador', 'Visita')";
+        '$registra_fichada', '$fecha_hora', '0000-01-01', '$observacion', '$id_usuario', '$id_trabajador', 'Visita')";
         $resultado = mysqli_query($conexion, $sql);
         if(!$resultado)
         {

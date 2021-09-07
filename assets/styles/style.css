@@ -73,6 +73,35 @@ nav h2
 
 /* CONTAINER */
 
+.container-info-egreso-de-visita
+{
+    margin-top: 40px;
+    height: 90%;
+    width: 100%;
+}
+
+.container-info-visita
+{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    height: 25vh;
+    gap: 30px;
+}
+
+.container-codigo-qr
+{
+    border-radius: 10px;
+    background: transparent;
+    padding: 20px;
+    border: none;
+    box-shadow: 0 8px 24px 0 rgb(0 0 0 / 42%);
+    text-align: center;
+    height: 50%;
+    margin-top: 40px;
+    width: 260px;
+}
+
 .container-img-art
 {
     margin-top: 70px;
@@ -143,7 +172,7 @@ nav h2
     margin-bottom: 30px;
 }
 
-#container-empresas
+#container-empresas, #container-nombres
 {
     display: none;
     border: 1px solid var(--font2);
@@ -189,7 +218,7 @@ nav h2
     justify-content: center;
 }
 
-.container-form-ingreso-visitas, .container-form-ingreso-contratistas
+.container-form-ingreso-visitas, .container-form-ingreso-contratistas, .container-egreso-de-visitas
 {
     display: flex;
     padding: 0 5%;
@@ -397,7 +426,7 @@ input[type="datetime-local"]:before
     width: 100%;
 }
 
-.form-style, .form-style-selectlist, .form-style-date, .form-style-textarea, .form-style-search, .form-color
+.form-style, .form-style-selectlist, .form-style-date, .form-style-textarea, .form-style-search, .form-color, .form-qr
 {
     padding: 13px 20px;
     padding-left: 55px;
@@ -415,6 +444,12 @@ input[type="datetime-local"]:before
     font-family: 'Poppins', sans-serif;
     transition: all 200ms linear;
     box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
+}
+
+.form-qr
+{
+    padding-left: 20px;
+    width: calc(100% - 55px);
 }
 
 .form-color
@@ -602,7 +637,7 @@ input[type="datetime-local"]:before
     transition: .3s ease;
 }
 
-.btn-nombre-empresa
+.btn-nombre-empresa, .btn-nombre-trabajador
 {
     width: 100%;
     background-color: transparent;
@@ -613,7 +648,7 @@ input[type="datetime-local"]:before
     cursor: pointer;
 }
 
-.btn-nombre-empresa:hover, .btn-acceder:hover
+.btn-nombre-empresa:hover, .btn-acceder:hover, .btn-nombre-trabajador:hover
 {
     background-color: #3a0dc4;
     transition: .3s ease;
@@ -1067,6 +1102,12 @@ table tr
     border: 3px solid var(--font2);
     -webkit-transition: all 200ms linear;
     transition: all 200ms linear;
+}
+
+.icono-qr
+{
+    font-size: 80px;
+    color: var(--font2);
 }
 
 .icono-popup

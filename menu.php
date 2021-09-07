@@ -25,7 +25,7 @@
                 </button>                
             </a>
             <a href="egreso-de-visitas.php">
-                <button type="button" class="btn-general-menu" disabled="disabled">
+                <button type="button" class="btn-general-menu">
                     <i class="ico-btn-menu uil uil-user-minus"></i><br>
                     <label>Egreso de Visitas</label>
                 </button>                
