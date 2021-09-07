@@ -114,7 +114,7 @@ $(document).ready(() =>
                     </tr>  
                     `                           
                 });
-                $('#container-empresas').html(plantilla);
+                $('#container-empresa').html(plantilla);
             }
         });
     }

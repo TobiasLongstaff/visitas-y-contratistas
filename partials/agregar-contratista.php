@@ -27,6 +27,11 @@
         $imagen = $_POST['imagen_perfil'];
         $imagen_art = $_POST['imagen_art'];
 
+        if($fecha_art == '')
+        {
+            $fecha_art = '0000-01-01';
+        }
+
         $sql_select="SELECT * FROM trabajadores WHERE dni = '$dni'";
         $resultado_select=mysqli_query($conexion,$sql_select);
         if($filas_select = mysqli_fetch_array($resultado_select))

@@ -1,6 +1,5 @@
 <?php
 
-    session_start();
     include 'imprimir-plantilla-ticket.php';
     require 'partials/conexion_por_planta.php';
     include 'assets/plugins/phpqrcode/qrlib.php';

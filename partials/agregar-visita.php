@@ -34,7 +34,7 @@
         else
         {
             $sql_insert = "INSERT INTO trabajadores (nombre_apellido, dni, fecha_de_nacimiento, fecha_art, empresa, imagen_art, imagen) 
-            VALUES ('$nombre_apellido', '$dni', '$fecha_de_nacimiento', '$fecha_de_nacimiento', '$empresa', '', '$imagen')";
+            VALUES ('$nombre_apellido', '$dni', '$fecha_de_nacimiento', '0000-01-01', '$empresa', '', '$imagen')";
             $resultado_insert = mysqli_query($conexion, $sql_insert);
             if(!$resultado_insert)
             {
@@ -46,7 +46,7 @@
                 $resultado_select=mysqli_query($conexion,$sql_select);
                 if($filas_select = mysqli_fetch_array($resultado_select))
                 {
-                    echo $id_trabajador = $filas_select['id'];
+                    $id_trabajador = $filas_select['id'];
                 }
             }
         }

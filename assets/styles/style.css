@@ -64,6 +64,8 @@ nav
     justify-content: space-between;
     padding: 0 5%;
     align-items: center;
+    -webkit-animation: top 1s var(--delay) both;
+    animation: top 1s var(--delay) both;
 }
 
 nav h2
@@ -78,6 +80,8 @@ nav h2
     margin-top: 40px;
     height: 90%;
     width: 100%;
+    -webkit-animation: top 1s var(--delay) both;
+    animation: top 1s var(--delay) both;
 }
 
 .container-info-visita
@@ -87,6 +91,7 @@ nav h2
     margin-top: 20px;
     height: 25vh;
     gap: 30px;
+    color: var(--font2);
 }
 
 .container-codigo-qr
@@ -100,6 +105,8 @@ nav h2
     height: 50%;
     margin-top: 40px;
     width: 260px;
+    -webkit-animation: top 1s var(--delay) both;
+    animation: top 1s var(--delay) both;
 }
 
 .container-img-art
@@ -113,6 +120,8 @@ nav h2
     align-items: center;
     gap: 10px;
     margin-bottom: 20px;
+    -webkit-animation: top 1s var(--delay) both;
+    animation: top 1s var(--delay) both;
 }
 
 .container-info-card
@@ -133,6 +142,8 @@ nav h2
 {
     padding: 0 5%;
     padding-bottom: 20px;
+    -webkit-animation: top 1s var(--delay) both;
+    animation: top 1s var(--delay) both;
 }
 
 .container-btn-popup
@@ -201,6 +212,9 @@ nav h2
 .container-agregar-sector, .container-tabla-sector, .container-agregar-empresa, .container-tabla-empresa
 {
     width: 100%;
+    -webkit-animation: top 1s var(--delay) both;
+    animation: top 1s var(--delay) both;
+
 }
 
 .container-tabla
@@ -231,6 +245,8 @@ nav h2
 .container-right-visitas, .container-right-contratistas, .container-left-ingreso
 {
     width: 100%;
+    -webkit-animation: top 1s var(--delay) both;
+    animation: top 1s var(--delay) both;
 }
 
 .container-controles-nav
@@ -366,6 +382,26 @@ nav h2
 }
 
 /* TEXTBOX */
+.selectlist-permisos
+{
+    border: 2px solid var(--fondo);
+    border-radius: 5px;
+    background-color: transparent;
+    color: var(--fondo);
+    height: 40px;
+    width: 120px;
+    font-size: 15px;
+}
+
+.textbox-verificacion-usuario
+{
+    color: var(--font);
+    border: none;
+    font-size: 15px;
+    background-color: transparent;
+    font-family: 'Poppins', sans-serif;
+    width: 280px;
+}
 
 .textbox-dni
 {
@@ -559,6 +595,15 @@ input[type="datetime-local"]:before
       transition: all 200ms linear;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  
+{
+    -webkit-box-shadow: 0 0 0 30px #0c0c2d inset;
+    -webkit-text-fill-color: white;
+}
+
 /* BOTONES */
 
 .btn-ticket
@@ -748,9 +793,11 @@ input[type="datetime-local"]:before
     border: none;
     box-shadow: 0 8px 24px 0 rgb(0 0 0 / 42%);
     cursor: pointer;
+    -webkit-animation: top 1s var(--delay) both;
+    animation: top 1s var(--delay) both;
 }
 
-.btn-general-menu:hover
+.btn-link-menu:hover
 {
     transform: scale(1.03);
     transition: .3s ease;
@@ -1083,6 +1130,14 @@ table tr
 
 /* OTROS */
 
+.mensaje
+{
+    color: var(--font2); 
+    text-align: center;
+    padding: 40px;
+    padding-top: 0;
+}
+
 .barra-progreso
 {
     width: 100%;
@@ -1192,4 +1247,19 @@ h3
 .mr-auto, .mx-auto 
 {
     margin-right: auto;
+}
+
+@keyframes top 
+{
+    0% 
+    {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    
+    100% 
+    {
+        opacity: 1;
+        transform: none;
+    }
 }

@@ -4,7 +4,7 @@
 ?>
 <body>
     <div class="container">
-        <nav>
+        <nav style="--delay: .3s">
             <h2>ABM Sectores</h2>
             <div class="container-controles-nav">
                 <img class="img-nav" src="assets/img/frigopico.png" alt="">
@@ -16,7 +16,7 @@
             </div>
         </nav>
         <div class="container-abm-secores">
-            <div class="container-tabla-sector">
+            <div class="container-tabla-sector" style="--delay: .5s">
                 <div class="data-tabla">
                     <div class="colborder" id="id-tabla"></div>
                     <div class="colborder" id="sector-tabla"></div>
@@ -44,7 +44,7 @@
                     </table>
                 </div>
             </div>
-            <form method="post" id="form-agregar-sector" class="container-agregar-sector">
+            <form method="post" id="form-agregar-sector" class="container-agregar-sector" style="--delay: .6s">
                 <h3>Agregar sector</h3>
                 <div class="form-group">
                     <input type="hidden" id="id-sector">

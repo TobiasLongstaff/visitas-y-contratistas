@@ -9,7 +9,7 @@
 ?>
 <body>
     <div class="container">
-        <nav>
+        <nav style="--delay: .3s">
             <h2>Egreso de visitas</h2>
             <div class="container-controles-nav">
                 <img class="img-nav" src="assets/img/frigopico.png" alt="">
@@ -21,12 +21,12 @@
             </div>
         </nav>
         <div class="container-egreso-de-visitas">
-            <div class="container-codigo-qr">
+            <div class="container-codigo-qr" style="--delay: .5s">
                 <i class="icono-qr uil uil-qrcode-scan"></i>
                 <h2>Escanear codigo QR</h2>
                 <input type="password" id="codigo-visita" class="form-qr" placeholder="Codigo QR" autocomplete="off" required>
             </div>
-            <form method="post" id="form-egreso-de-visitas" class="container-info-egreso-de-visita">
+            <form method="post" id="form-egreso-de-visitas" class="container-info-egreso-de-visita" style="--delay: .6s">
                 <input type="hidden" id="id-trabajador">
                 <div class="form-group">
                     <input type="search" id="buscar-nombres" class="form-style-search" placeholder="Buscar por nombre" autocomplete="off">

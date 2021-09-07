@@ -10,7 +10,7 @@
 ?>
 <body>
     <div class="container">
-        <nav>
+        <nav style="--delay: .3s">
             <h2>Ingreso de contratistas</h2>
             <div class="container-controles-nav">
                 <img class="img-nav" src="assets/img/frigopico.png" alt="">
@@ -22,7 +22,7 @@
             </div>
         </nav>
         <div class="container-form-ingreso-contratistas">
-            <form class="container-left-ingreso" id="form-ingreso-de-contratistas" method="post">
+            <form class="container-left-ingreso" id="form-ingreso-de-contratistas" method="post" style="--delay: .5s">
                 <input type="hidden" id="imagen-perfil">
                 <input type="hidden" id="imagen-art">
                 <div class="form-group">
@@ -38,7 +38,7 @@
                     <input id="fecha-de-nacimiento" class="form-style-date" type="date" required>
                 </div>
                 <div class="form-group">
-                    <input type="search" id="buscar-empresa" class="form-style-search" placeholder="Empresa" required>
+                    <input type="search" id="buscar-empresa" class="form-style-search" placeholder="Empresa">
                     <i class="input-icon uil uil-building"></i>
                     <div id="container-empresas"></div>
                 </div>
@@ -63,16 +63,16 @@
                     <i class="input-icon uil-chart-pie-alt"></i>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="vehiculo-modelo" class="form-style" placeholder="Vehiculo Modelo" autocomplete="off" required>
+                    <input type="text" id="vehiculo-modelo" class="form-style" placeholder="Vehiculo Modelo" autocomplete="off">
                     <i class="input-icon uil-car-sideview"></i>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="patente" class="form-style" placeholder="Patente" autocomplete="off" required>
+                    <input type="text" id="patente" class="form-style" placeholder="Patente" autocomplete="off">
                     <i class="input-icon uil uil-car"></i>
                 </div>
                 <label>Vencimiento ART</label>
                 <div class="form-group">
-                    <input type="date" id="fecha-art" class="form-style" required>
+                    <input type="date" id="fecha-art" class="form-style">
                     <div class="validar-art"></div>
                 </div>
                 <div class="form-group">
@@ -94,11 +94,11 @@
                 <label>Observacion:</label>
                 <textarea class="form-style-textarea" id="observacion"></textarea>  
                 <div>
-                    <input type="submit" class="btn-acceder" value="Guardar y Imprimir">
+                    <input type="submit" class="btn-acceder" value="Guardar e Imprimir">
                     <button type="button" id="btn-cancelar" class="btn-acceder btn-secundario">Cancelar</button>
                 </div> 
             </form>
-            <div class="container-right-contratistas">
+            <div class="container-right-contratistas" style="--delay: .6s">
                 <div class="container-escanear-dni">
                     <button type="button" class="btn-dni" id="btn-dni">
                         <span>Escaner DNI</span><br>

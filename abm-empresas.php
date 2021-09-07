@@ -4,7 +4,7 @@
 ?>
 <body>
     <div class="container">
-        <nav>
+        <nav style="--delay: .3s">
             <h2>ABM Empresas</h2>
             <div class="container-controles-nav">
                 <img class="img-nav" src="assets/img/frigopico.png" alt="">
@@ -16,7 +16,7 @@
             </div>
         </nav>
         <div class="container-abm-empresa">
-            <div class="container-tabla-empresa">
+            <div class="container-tabla-empresa" style="--delay: .5s">
                 <div class="container-tabla">
                     <table id="tabla">
                         <thead>
@@ -32,12 +32,12 @@
                                 </th>                  
                             </tr>   
                         </thead>
-                        <tbody id="container-empresas">                     
+                        <tbody id="container-empresa">                     
                         </tbody>
                     </table>
                 </div>
             </div>
-            <form method="post" id="form-agregar-empresa" class="container-agregar-empresa">
+            <form method="post" id="form-agregar-empresa" class="container-agregar-empresa" style="--delay: .6s">
                 <h3>Agregar empresa</h3>
                 <div class="form-group">
                     <input type="hidden" id="id-empresa">

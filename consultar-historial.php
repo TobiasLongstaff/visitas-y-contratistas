@@ -9,7 +9,7 @@
 ?>
 <body>
     <div class="container">
-        <nav>
+        <nav style="--delay: .3s">
             <h2>Consultar historial</h2>
             <div class="container-controles-nav">
                 <img class="img-nav" src="assets/img/frigopico.png" alt="">
@@ -21,7 +21,7 @@
             </div>
         </nav>
         <div class="container-tabla-historial">
-            <div class="container-buscar">
+            <div class="container-buscar" style="--delay: .5s">
                 <label>Filtrar: </label>
                 <div class="form-group">
                     <select id="selectlist-filtrar" class="form-style">
@@ -32,7 +32,7 @@
                     <i class="input-icon uil uil-filter"></i>
                 </div>
             </div>
-            <div class="container-tabla">
+            <div class="container-tabla" style="--delay: .6s">
                 <table id="tabla">
                     <thead>
                         <tr>

@@ -37,9 +37,23 @@
         $resultado = mysqli_query($conexion, $sql);
         if($filas = mysqli_fetch_array($resultado, MYSQLI_ASSOC))
         {
-            $id_trabajadores = $filas['id'];
+            $id_trabajadores = $filas['id_trabajador'];
             $fecha_entrada = $filas['fecha_hora'];
             $fecha_salida = $filas['fecha_salida'];
+            $sector = $filas['sector_habilitado'];
+
+            $sql_color="SELECT * FROM sector WHERE nombre = '$sector'";
+            $resultado_color = mysqli_query($conexion, $sql_color);
+            if($filas_color = mysqli_fetch_array($resultado_color, MYSQLI_ASSOC))
+            {
+                $color = $filas_color['color'];
+                list($r, $g, $b) = sscanf($color, "#%02x%02x%02x");
+    
+                $pdf->SetFillColor($r, $g, $b);
+                $pdf->SetTextColor(999,999,999);
+                $pdf->SetDrawColor($r, $g, $b);   
+            }
+
             $sql_trabajador="SELECT * FROM trabajadores WHERE id = '$id_trabajadores'";
             $resultado_trabajador = mysqli_query($conexion, $sql_trabajador);
             if($filas_trabajador= mysqli_fetch_array($resultado_trabajador, MYSQLI_ASSOC))
@@ -60,7 +74,14 @@
                 1
             );
 
-            $pdf->Ln(35);
+            $pdf->Ln(29);
+            $pdf->Cell(-11);
+            $pdf->Cell (57,3, $sector,1,1,'C',1);
+
+            $pdf->SetFillColor(999, 999, 999);
+            $pdf->SetTextColor(102,128,211);
+            $pdf->SetDrawColor(999, 999, 999);
+            $pdf->Ln(7);
             $pdf->Cell(15);
             $pdf->Cell (0,0, $nombre_apellido,1,1,'L',1); 
             $pdf->SetFont('Arial','',7);
@@ -71,9 +92,12 @@
             $pdf->Ln(4);
             $pdf->Cell(15);
             $pdf->Cell (0,0,'DNI: '.$dni,1,1,'L',1); 
-            $pdf->Image($imagen, 17.5, 13.5,'C',24);
-            $pdf->Image('assets/img/codeqr/example2.png', 8, 42, 'L', 16);
-            $pdf->Ln(9);
+            if($imagen != '')
+            {
+                $pdf->Image($imagen, 17.5, 13.5,'C',24);
+            }
+            $pdf->Image('assets/img/codeqr/example2.png', 8, 44, 'L', 16);
+            $pdf->Ln(5);
             $pdf->Cell (0,0,'Fecha de ingreso: '.$fecha_entrada,1,1,'C',1); 
             $pdf->Ln(3);
             $pdf->Cell (0,0,'Fecha de fin atencion: '.$fecha_salida,1,1,'C',1); 
