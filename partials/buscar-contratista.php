@@ -10,14 +10,8 @@
     if(isset($_POST['id']))
     {
         $id = $_POST['id'];
-        $sql="SELECT * FROM ingreso WHERE id = '$id' AND estado = '1'";
+        $sql="SELECT * FROM ingreso WHERE id = '$id' AND estado = '1' AND ingreso = 'Contratista'";
     }
-    else
-    {
-        $sql="SELECT * FROM ingreso WHERE estado = '1'";
-    }
-
-    $nombre_usuario = '';
     
     $resultado=mysqli_query($conexion,$sql);
     $json = array();
@@ -28,15 +22,7 @@
         $fecha_de_nacimiento = '';
         $empresa = '';
         $img = '';
-        $id_usuario = $filas['id_usuario'];
         $id_trabajadores = $filas['id_trabajador'];
-
-        // $sql_usuario="SELECT * FROM usuarios WHERE id = '$id_usuario'";
-        // $resultado_usuario=mysqli_query($conexion,$sql_usuario);
-        // if($filas_usuario = mysqli_fetch_array($resultado_usuario))
-        // {
-        //     $nombre_usuario = $filas_usuario['nombre_apellido'];
-        // }
 
         $sql_trabajadores="SELECT * FROM trabajadores WHERE id = '$id_trabajadores'";
         $resultado_trabajadores=mysqli_query($conexion,$sql_trabajadores);
@@ -64,7 +50,6 @@
             'fecha_hora' => $filas['fecha_hora'],
             'fecha_salida' => $fecha_fin,
             'observacion' => $filas['observacion'],
-            'usuario' => $nombre_usuario,
             'imagen' => $img,
             'ingreso' => $filas['ingreso'],
         );

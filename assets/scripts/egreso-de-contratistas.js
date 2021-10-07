@@ -1,6 +1,6 @@
 $(document).ready(() =>
 {
-    $('#codigo-visita').keyup(function()
+    $('#codigo-contratista').keyup(function()
     {
         var id = $(this).val();
         if(id != '')
@@ -9,9 +9,9 @@ $(document).ready(() =>
 
             $('#id-trabajador').val(id);
 
-            $.post('partials/buscar-ingreso.php', {id}, function (data)
+            $.post('partials/buscar-contratista.php', {id}, function (data)
             {
-                $('#container-info-visita').css('opacity', '1');
+                $('#container-info-contratistas').css('opacity', '1');
                 let sectores = JSON.parse(data);
                 let plantilla = '';
                 
@@ -39,21 +39,50 @@ $(document).ready(() =>
                         <label>Registra fichada: ${historial.registra_fichada}</label><br>
                         <label>Observacion: ${historial.observacion}</label><br>
                         <label>Fecha y hora: ${historial.fecha_hora}</label><br>
-                        <label>Usuario: ${historial.usuario}</label>
                     </div>
                     `
                 });
-                $('#container-info-visita').html(plantilla);
+                $('#container-info-contratistas').html(plantilla);
             });
         }
     });
 
-    $('#form-egreso-de-visitas').submit(function(e)
+    $('#buscar-nombres').keyup(function()
+    {
+        var nombre = $(this).val();
+        $('#container-nombres').show();
+        let ancho = $(this).width();
+        $('#container-nombres').width(ancho + 73);
+        
+        $.post('partials/buscar-nombres-contratista.php', {nombre}, function (data)
+        {
+            let nombres = JSON.parse(data);
+            let plantilla = '';
+
+            if(data == '[]')
+            {
+            }
+            else
+            {
+                nombres.forEach(nombre =>
+                {
+                    plantilla += 
+                    `
+                    <button type="button" class="btn-nombre-trabajador" filaId="${nombre.id}">${nombre.nombre}</button> 
+                    `                           
+                });                
+            }
+
+            $('#container-nombres').html(plantilla);
+        });
+    })
+
+    $('#form-egreso-de-contratista').submit(function(e)
     {
         var id = $('#id-trabajador').val();
-        $.post('partials/terminar-visita.php', {id}, function (data)
+        console.log(id)
+        $.post('partials/terminar-contratista.php', {id}, function (data)
         {
-            console.log(data)
             if(data == '1')
             {
                 Swal.fire(
@@ -61,7 +90,7 @@ $(document).ready(() =>
                     '',
                     'success'
                 )
-                $('#container-info-visita').css('opacity', '0');
+                $('#container-info-contratistas').css('opacity', '0');
                 $('#buscar-nombres').val('');
             }
         });
@@ -70,14 +99,13 @@ $(document).ready(() =>
 
     $(document).on('click','.btn-nombre-trabajador', function(e)
     {
-        $('#container-info-visita').css('opacity', '1');
+        $('#container-info-contratistas').css('opacity', '1');
         let nombre = $(this).html();
         $('#buscar-nombres').val(nombre);
         $('#container-nombres').hide();
 
         let element = $(this)[0];
         let id = $(element).attr('filaid');
-        console.log(id)
 
         $('#id-trabajador').val(id);
 
@@ -85,7 +113,8 @@ $(document).ready(() =>
         {
             let sectores = JSON.parse(data);
             let plantilla = '';
-            console.log(data)
+            console.log(data);
+            
             sectores.forEach(historial =>
             {
                 plantilla += 
@@ -114,39 +143,8 @@ $(document).ready(() =>
                 </div>
                 `
             });
-            $('#container-info-visita').html(plantilla);
+            $('#container-info-contratistas').html(plantilla);
         });
         e.preventDefault();
     })
-
-    $('#buscar-nombres').keyup(function()
-    {
-        var nombre = $(this).val();
-        $('#container-nombres').show();
-        let ancho = $(this).width();
-        $('#container-nombres').width(ancho + 73);
-        
-        $.post('partials/buscar-nombres.php', {nombre}, function (data)
-        {
-            let nombres = JSON.parse(data);
-            let plantilla = '';
-
-            if(data == '[]')
-            {
-            }
-            else
-            {
-                nombres.forEach(nombre =>
-                {
-                    plantilla += 
-                    `
-                    <button type="button" class="btn-nombre-trabajador" filaId="${nombre.id}">${nombre.nombre}</button> 
-                    `                           
-                });                
-            }
-
-            $('#container-nombres').html(plantilla);
-        });
-    })
-});
-
+})

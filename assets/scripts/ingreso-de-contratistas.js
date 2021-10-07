@@ -2,6 +2,26 @@ $(document).ready(() =>
 {
     const fecha = new Date();
 
+    $('#nuevo-contratista').click(function(e)
+    {
+        $(this).addClass('prevision-select');
+        $('#ingresar-contratista').removeClass('prevision-select');
+        $('#opcion-ingresar').css('display', 'none');
+        $('#opcion-nuevo').css('display', 'flex');
+        e.preventDefault();
+    })
+
+    $('#ingresar-contratista').click(function(e)
+    {
+        $(this).addClass('prevision-select');
+        $('#nuevo-contratista').removeClass('prevision-select');
+        $('#opcion-nuevo').css('display', 'none');
+        $('#opcion-ingresar').css('display', 'flex');
+        obtener_contratistas_ingresados()
+        e.preventDefault();
+    })
+
+
     $('#dni').keyup(function()
     {
         var dni = $(this).val();
@@ -181,5 +201,66 @@ $(document).ready(() =>
         e.preventDefault();
     })
 
-    // SUBIR IMAGEN
+    $(document).on('click', '.btn-ingresar-contratista', function(e) 
+    {
+        let element = $(this)[0].parentElement.parentElement;
+        let id = $(element).attr('filaid');
+        $.post('partials/ingresar-contratista.php', {id}, function (data)
+        {
+            console.log(data);
+        })
+
+        e.preventDefault();
+    })
+
+    function obtener_contratistas_ingresados()
+    {
+        $.ajax(
+        {
+            url: 'partials/obtener-contratistas-ingresados.php',
+            type: 'GET',
+            success: function (response)
+            {
+                let plantilla = '';
+                if(response == '[]')
+                {
+                    plantilla += 
+                    `
+                    <div colspan="3">
+                        <span>No se encontraron contratistas habilitados</span>
+                    </div>
+                    `
+                }
+                else
+                {
+                    console.log(response)
+                    let sectores = JSON.parse(response);
+                    
+                    
+                    sectores.forEach(historial =>
+                    {
+                        plantilla += 
+                        `
+                        <tr filaId="${historial.id}">
+                            <td class="td-primer-fila">
+                                <button class="btn-editar btn-ingresar-contratista">
+                                    <i class="uil uil-user-check"></i>
+                                </button>
+                            </td>
+                            <td>${historial.id}</td>
+                            <td>${historial.nombre}</td>
+                            <td>${historial.dni}</td>
+                            <td>${historial.empresa}</td>
+                            <td>${historial.sector_habilitado}</td>
+                            <td>${historial.visita}</td>
+                            <td>${historial.fecha_hora}</td>
+                            <td>${historial.fecha_salida}</td>
+                        </tr>  
+                        `                           
+                    });                    
+                }
+                $('#container-contratistas-ingresados').html(plantilla);
+            }
+        });
+    }
 });

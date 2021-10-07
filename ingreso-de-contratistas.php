@@ -21,7 +21,11 @@
                 </a>                
             </div>
         </nav>
-        <div class="container-form-ingreso-contratistas">
+        <div class="container-btn-opciones" style="--delay: .2s">
+            <button id="nuevo-contratista" class="btn-general-opciones btn-prevision-left prevision-select">Crear Nuevo</button>
+            <button id="ingresar-contratista" class="btn-general-opciones btn-prevision-right">Ingresar</button>
+        </div>
+        <div class="container-form-ingreso-contratistas" id="opcion-nuevo">
             <form class="container-left-ingreso" id="form-ingreso-de-contratistas" method="post" style="--delay: .5s">
                 <input type="hidden" id="imagen-perfil">
                 <input type="hidden" id="imagen-art">
@@ -144,7 +148,46 @@
                         </div>
                     </div>
                 </form>
-            </div>
+            </div>                
+        </div>
+        <div class="container-form-ingreso-contratistas" id="opcion-ingresar">
+            <div class="container-tabla-contratistas" style="--delay: .6s">
+                <table id="tabla">
+                    <thead>
+                        <tr>
+                            <th class="columna-header">
+                                <span>Controles</span>    
+                            </th>
+                            <th class="columna-header">
+                                <span>Id</span>
+                            </th>
+                            <th class="columna-header">
+                                <span>Nombre y apellido</span>
+                            </th>     
+                            <th class="columna-header">
+                                <span>DNI</span>
+                            </th>  
+                            <th class="columna-header">
+                                <span>Empresa</span>
+                            </th>     
+                            <th class="columna-header">
+                                <span>Sector habilitado</span>
+                            </th>  
+                            <th class="columna-header">
+                                <span>Visita a</span>
+                            </th>  
+                            <th class="columna-header">
+                                <span>Fecha y hora</span>
+                            </th>  
+                            <th class="columna-header">
+                                <span>Fecha Limite</span>
+                            </th> 
+                        </tr>   
+                    </thead>
+                    <tbody id="container-contratistas-ingresados">                     
+                    </tbody>
+                </table>
+            </div>            
         </div>
         <div class="overlay" id="overlay">
             <div class="container-popup" id="popup">

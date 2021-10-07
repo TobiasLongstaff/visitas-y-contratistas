@@ -10,7 +10,7 @@
     {
         $id = $_POST['id']; 
 
-        $sql="UPDATE ingreso SET fecha_salida = '$fecha', estado = '0' WHERE id = '$id' AND ingreso = 'Visita'";
+        $sql="UPDATE ingreso SET estado = '0' WHERE id = '$id' AND ingreso = 'Contratista'";
         $resultado = mysqli_query($conexion,$sql);
         if(!$resultado)
         {
@@ -26,5 +26,4 @@
         echo '3';
     }
     mysqli_close($conexion);
-
 ?>

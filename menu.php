@@ -30,6 +30,18 @@
                     <label>Egreso de Visitas</label>
                 </button>                
             </a>
+            <a class="btn-link-menu" href="egreso-de-contratistas.php">
+                <button type="button" class="btn-general-menu" style="--delay: .6s">
+                    <i class="ico-btn-menu uil uil-user-minus"></i><br>
+                    <label>Egreso de Contratistas</label>
+                </button>                
+            </a>
+            <a class="btn-link-menu" href="personal-activo.php">
+                <button type="button" class="btn-general-menu" style="--delay: .7s">
+                    <i class="ico-btn-menu uit uil-history-alt"></i><br>
+                    <label>Personal Activo</label>
+                </button>                
+            </a>
             <a class="btn-link-menu" href="consultar-historial.php">
                 <button type="button" class="btn-general-menu" style="--delay: .7s">
                     <i class="ico-btn-menu uil uil-history"></i><br>

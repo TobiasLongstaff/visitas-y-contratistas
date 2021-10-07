@@ -87,7 +87,7 @@
                 <label>Observacion:</label>
                 <textarea class="form-style-textarea" id="observacion"></textarea>  
                 <div class="container-controles-visitas">
-                    <input type="submit" class="btn-acceder" value="Guardar y Imprimir">
+                    <input type="submit" class="btn-acceder" value="Guardar e Imprimir">
                     <button type="button" id="btn-cancelar" class="btn-acceder btn-secundario">Cancelar</button>
                 </div>  
             </form>

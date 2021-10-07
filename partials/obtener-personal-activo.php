@@ -3,22 +3,7 @@
     session_start();
     require 'conexion_por_planta.php';    
 
-    date_default_timezone_set('America/Buenos_Aires');
-    $fecha_fin = date('Y-m-d H:i');
-    $fecha_fin = str_replace(' ','T', $fecha_fin);
-
-    if(isset($_POST['id']))
-    {
-        $id = $_POST['id'];
-        $sql="SELECT * FROM ingreso WHERE id = '$id' AND estado = '1'";
-    }
-    else
-    {
-        $sql="SELECT * FROM ingreso WHERE estado = '1'";
-    }
-
-    $nombre_usuario = '';
-    
+    $sql="SELECT * FROM ingreso WHERE estado = '1'";
     $resultado=mysqli_query($conexion,$sql);
     $json = array();
     while($filas = mysqli_fetch_array($resultado))
@@ -28,15 +13,7 @@
         $fecha_de_nacimiento = '';
         $empresa = '';
         $img = '';
-        $id_usuario = $filas['id_usuario'];
         $id_trabajadores = $filas['id_trabajador'];
-
-        // $sql_usuario="SELECT * FROM usuarios WHERE id = '$id_usuario'";
-        // $resultado_usuario=mysqli_query($conexion,$sql_usuario);
-        // if($filas_usuario = mysqli_fetch_array($resultado_usuario))
-        // {
-        //     $nombre_usuario = $filas_usuario['nombre_apellido'];
-        // }
 
         $sql_trabajadores="SELECT * FROM trabajadores WHERE id = '$id_trabajadores'";
         $resultado_trabajadores=mysqli_query($conexion,$sql_trabajadores);
@@ -62,9 +39,8 @@
             'patente' => $filas['patente'],
             'registra_fichada' => $filas['registra_fichada'],
             'fecha_hora' => $filas['fecha_hora'],
-            'fecha_salida' => $fecha_fin,
+            'fecha_salida' => $filas['fecha_salida'],
             'observacion' => $filas['observacion'],
-            'usuario' => $nombre_usuario,
             'imagen' => $img,
             'ingreso' => $filas['ingreso'],
         );
