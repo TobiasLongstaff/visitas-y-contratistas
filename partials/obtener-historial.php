@@ -6,11 +6,11 @@
     if(!empty($_POST['filtrar']) && $_POST['filtrar'] != 'Todos')
     {
         $filtro = $_POST['filtrar'];
-        $sql="SELECT * FROM ingreso WHERE ingreso = '$filtro'";
+        $sql="SELECT ingreso.id AS id_ingreso, ingreso.temperatura, ingreso.sector_habilitado, ingreso.visita, ingreso.vehiculo_modelo, ingreso.patente, ingreso.registra_fichada, ingreso.fecha_hora, ingreso.fecha_salida AS fecha_salida_final, ingreso.observacion, ingreso.id_usuario, ingreso.id_trabajador, ingreso.ingreso, ingreso.estado, reingreso_contratistas.id AS id ,reingreso_contratistas.id_ingreso AS id_reingreso, reingreso_contratistas.fecha_movimiento FROM ingreso INNER JOIN reingreso_contratistas ON ingreso.id = reingreso_contratistas.id_ingreso WHERE ingreso.ingreso = '$filtro'";
     }
     else
     {
-        $sql="SELECT * FROM ingreso";
+        $sql="SELECT ingreso.id AS id_ingreso, ingreso.temperatura, ingreso.sector_habilitado, ingreso.visita, ingreso.vehiculo_modelo, ingreso.patente, ingreso.registra_fichada, ingreso.fecha_hora, ingreso.fecha_salida AS fecha_salida_final, ingreso.observacion, ingreso.id_usuario, ingreso.id_trabajador, ingreso.ingreso, ingreso.estado, reingreso_contratistas.id AS id ,reingreso_contratistas.id_ingreso AS id_reingreso, reingreso_contratistas.fecha_movimiento FROM ingreso INNER JOIN reingreso_contratistas ON ingreso.id = reingreso_contratistas.id_ingreso";
     }
 
     $nombre_usuario = '';
@@ -26,13 +26,6 @@
         $img = '';
         $id_usuario = $filas['id_usuario'];
         $id_trabajadores = $filas['id_trabajador'];
-
-        // $sql_usuario="SELECT * FROM usuarios WHERE id = '$id_usuario'";
-        // $resultado_usuario=mysqli_query($conexion,$sql_usuario);
-        // if($filas_usuario = mysqli_fetch_array($resultado_usuario))
-        // {
-        //     $nombre_usuario = $filas_usuario['nombre_apellido'];
-        // }
 
         $sql_trabajadores="SELECT * FROM trabajadores WHERE id = '$id_trabajadores'";
         $resultado_trabajadores=mysqli_query($conexion,$sql_trabajadores);
@@ -57,8 +50,8 @@
             'vehiculo_modelo' => $filas['vehiculo_modelo'],
             'patente' => $filas['patente'],
             'registra_fichada' => $filas['registra_fichada'],
-            'fecha_hora' => $filas['fecha_hora'],
-            'fecha_salida' => $filas['fecha_salida'],
+            'fecha_hora' => $filas['fecha_movimiento'],
+            'fecha_salida' => $filas['fecha_salida_final'],
             'observacion' => $filas['observacion'],
             'usuario' => $nombre_usuario,
             'imagen' => $img,

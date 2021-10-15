@@ -59,10 +59,7 @@
                             </th>  
                             <th class="columna-header">
                                 <span>Fecha y hora</span>
-                            </th>  
-                            <th class="columna-header">
-                                <span>Usuario</span>
-                            </th>  
+                            </th>   
                         </tr>   
                     </thead>
                     <tbody id="container-historial">                     

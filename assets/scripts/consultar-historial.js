@@ -63,7 +63,6 @@ $(document).ready(() =>
                         <td>${historial.sector_habilitado}</td>
                         <td>${historial.visita}</td>
                         <td>${historial.fecha_hora}</td>
-                        <td>${historial.usuario}</td>
                     </tr>  
                     <tr filaid="28" class="tr-historial tr-historial-${historial.id}">
                         <td colspan="9">

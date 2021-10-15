@@ -205,9 +205,9 @@ $(document).ready(() =>
     {
         let element = $(this)[0].parentElement.parentElement;
         let id = $(element).attr('filaid');
-        $.post('partials/ingresar-contratista.php', {id}, function (data)
+        $.post('partials/ingresar-contratista.php', {id}, function ()
         {
-            console.log(data);
+            obtener_contratistas_ingresados()
         })
 
         e.preventDefault();

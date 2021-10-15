@@ -5,6 +5,7 @@
 
     date_default_timezone_set('America/Buenos_Aires');
     $fecha = date('Y-m-d');
+    $fecha_actual = date('Y-m-d H:i:s');
 
     if(isset($_POST['id']))
     {
@@ -19,6 +20,13 @@
         else
         {
             echo '1';
+            $sql_insert = "INSERT INTO reingreso_contratistas (id_ingreso, fecha_movimiento) 
+            VALUES ('$id', '$fecha_actual')";
+            $resultado_insert = mysqli_query($conexion, $sql_insert);
+            if(!$resultado_insert)
+            {
+                echo 'error';
+            }
         }
     }
     else

@@ -36,7 +36,7 @@
         $resultado_select=mysqli_query($conexion,$sql_select);
         if($filas_select = mysqli_fetch_array($resultado_select))
         {
-            $id_trabajador = $filas_select['id_trabajador'];
+            $id_trabajador = $filas_select['id'];
         }
         else
         {
@@ -59,9 +59,9 @@
         }
 
         $sql = "INSERT INTO ingreso (temperatura, sector_habilitado, visita, vehiculo_modelo, patente, 
-        registra_fichada, fecha_hora, fecha_salida, observacion, id_usuario, id_trabajador, ingreso) VALUES 
+        registra_fichada, fecha_hora, fecha_salida, observacion, id_usuario, id_trabajador, ingreso, estado) VALUES 
         ('$temperatura', '$sector_habilitado', '','$vehiculo_modelo', '$patente', '$registra_fichada', 
-        '$fecha_hora', '$fecha_de_salida', '$observacion', '$id_usuario', '$id_trabajador', 'Contratista')";
+        '$fecha_hora', '$fecha_de_salida', '$observacion', '$id_usuario', '$id_trabajador', 'Contratista', '1')";
         $resultado = mysqli_query($conexion, $sql);
         if(!$resultado)
         {
@@ -76,6 +76,14 @@
                 $id_ingreso = $filas['id'];
             }
             
+            $sql_insert = "INSERT INTO reingreso_contratistas (id_ingreso, fecha_movimiento) 
+            VALUES ('$id_ingreso', '$fecha_actual')";
+            $resultado_insert = mysqli_query($conexion, $sql_insert);
+            if(!$resultado_insert)
+            {
+                echo 'error';
+            }
+
             echo $id_ingreso;
         }
     }
