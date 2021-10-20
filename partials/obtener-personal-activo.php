@@ -3,7 +3,7 @@
     session_start();
     require 'conexion_por_planta.php';    
 
-    $sql="SELECT * FROM ingreso WHERE estado = '1'";
+    $sql="SELECT * FROM ingreso WHERE estado = '1' ORDER BY fecha_hora DESC";
     $resultado=mysqli_query($conexion,$sql);
     $json = array();
     while($filas = mysqli_fetch_array($resultado))

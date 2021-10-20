@@ -26,8 +26,8 @@
                 <div class="form-group">
                     <select id="selectlist-filtrar" class="form-style">
                         <option value="Todos">Todos</option>
-                        <option value="visitas">Visitas</option>
-                        <option value="contratistas">Contratistas</option>
+                        <option value="Visita">Visitas</option>
+                        <option value="Contratista">Contratistas</option>
                     </select>                    
                     <i class="input-icon uil uil-filter"></i>
                 </div>

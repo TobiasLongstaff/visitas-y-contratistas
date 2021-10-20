@@ -80,7 +80,7 @@
                     <div class="validar-art"></div>
                 </div>
                 <div class="form-group">
-                    <select id="registra-fichada" class="form-style" autocomplete="off" required>
+                    <select id="registra-fichada" class="form-style" autocomplete="off">
                         <option value="" selected disabled>Registra Fichada S/N</option>
                         <option value="Si">Si</option>
                         <option value="No">No</option>
