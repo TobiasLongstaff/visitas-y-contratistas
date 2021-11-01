@@ -37,7 +37,7 @@ $(document).ready(() =>
             visita_a: $('#visita-a').val(),
             vehiculo_modelo: $('#vehiculo-modelo').val(),
             patente: $('#patente').val(),
-            registra_fichada: $('#registra-fichada').val(),
+            // registra_fichada: $('#registra-fichada').val(),
             fecha_hora: $('#fecha-hora').val(),
             observacion: $('#observacion').val(),
             imagen_perfil: $('#imagen-perfil').val(),

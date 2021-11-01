@@ -72,14 +72,14 @@
                     <input type="text" id="patente" class="form-style" placeholder="Patente" autocomplete="off">
                     <i class="input-icon uil uil-car"></i>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <select id="registra-fichada" class="form-style" autocomplete="off">
                         <option value="" selected disabled>Registra Fichada S/N</option>
                         <option value="Si">Si</option>
                         <option value="No">No</option>
                     </select>
                     <i class="input-icon uil uil-registered"></i>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label>Fecha y Hora</label>
                     <input type="datetime-local" id="fecha-hora" class="form-style-date" value="<?=$fecha_actual?>" required>

@@ -6,11 +6,11 @@
     if(!empty($_POST['filtrar']) && $_POST['filtrar'] != 'Todos')
     {
         $filtro = $_POST['filtrar'];
-        $sql="SELECT ingreso.id AS id_ingreso, ingreso.temperatura, ingreso.sector_habilitado, ingreso.visita, ingreso.vehiculo_modelo, ingreso.patente, ingreso.registra_fichada, ingreso.fecha_hora, ingreso.fecha_salida AS fecha_salida_final, ingreso.observacion, ingreso.id_usuario, ingreso.id_trabajador, ingreso.ingreso, ingreso.estado, reingreso_contratistas.id AS id ,reingreso_contratistas.id_ingreso AS id_reingreso, reingreso_contratistas.fecha_movimiento FROM ingreso INNER JOIN reingreso_contratistas ON ingreso.id = reingreso_contratistas.id_ingreso WHERE ingreso = '$filtro' ORDER BY fecha_movimiento DESC";
+        $sql="SELECT ingreso.id AS id_ingreso, ingreso.temperatura, ingreso.sector_habilitado, ingreso.visita, ingreso.vehiculo_modelo, ingreso.patente, ingreso.fecha_hora, ingreso.fecha_salida AS fecha_salida_final, ingreso.observacion, ingreso.id_usuario, ingreso.id_trabajador, ingreso.ingreso, ingreso.estado, reingreso_contratistas.id AS id ,reingreso_contratistas.id_ingreso AS id_reingreso, reingreso_contratistas.fecha_movimiento FROM ingreso INNER JOIN reingreso_contratistas ON ingreso.id = reingreso_contratistas.id_ingreso WHERE ingreso = '$filtro' ORDER BY fecha_movimiento DESC";
     }
     else
     {
-        $sql="SELECT ingreso.id AS id_ingreso, ingreso.temperatura, ingreso.sector_habilitado, ingreso.visita, ingreso.vehiculo_modelo, ingreso.patente, ingreso.registra_fichada, ingreso.fecha_hora, ingreso.fecha_salida AS fecha_salida_final, ingreso.observacion, ingreso.id_usuario, ingreso.id_trabajador, ingreso.ingreso, ingreso.estado, reingreso_contratistas.id AS id ,reingreso_contratistas.id_ingreso AS id_reingreso, reingreso_contratistas.fecha_movimiento FROM ingreso INNER JOIN reingreso_contratistas ON ingreso.id = reingreso_contratistas.id_ingreso ORDER BY fecha_movimiento DESC";
+        $sql="SELECT ingreso.id AS id_ingreso, ingreso.temperatura, ingreso.sector_habilitado, ingreso.visita, ingreso.vehiculo_modelo, ingreso.patente, ingreso.fecha_hora, ingreso.fecha_salida AS fecha_salida_final, ingreso.observacion, ingreso.id_usuario, ingreso.id_trabajador, ingreso.ingreso, ingreso.estado, reingreso_contratistas.id AS id ,reingreso_contratistas.id_ingreso AS id_reingreso, reingreso_contratistas.fecha_movimiento FROM ingreso INNER JOIN reingreso_contratistas ON ingreso.id = reingreso_contratistas.id_ingreso ORDER BY fecha_movimiento DESC";
     }
 
     $nombre_usuario = '';
@@ -49,7 +49,7 @@
             'visita' => $filas['visita'],
             'vehiculo_modelo' => $filas['vehiculo_modelo'],
             'patente' => $filas['patente'],
-            'registra_fichada' => $filas['registra_fichada'],
+            // 'registra_fichada' => $filas['registra_fichada'],
             'fecha_hora' => $filas['fecha_movimiento'],
             'fecha_salida' => $filas['fecha_salida_final'],
             'observacion' => $filas['observacion'],

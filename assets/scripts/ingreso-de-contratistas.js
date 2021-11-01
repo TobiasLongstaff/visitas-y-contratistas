@@ -86,7 +86,7 @@ $(document).ready(() =>
             sector_habilitado: $('#sector-habilitado').val(),
             vehiculo_modelo: $('#vehiculo-modelo').val(),
             patente: $('#patente').val(),
-            registra_fichada: $('#registra-fichada').val(),
+            // registra_fichada: $('#registra-fichada').val(),
             fecha_hora: $('#fecha-hora').val(),
             observacion: $('#observacion').val(),
             fecha_de_salida: $('#fecha-de-salida').val(),

@@ -36,7 +36,6 @@ $(document).ready(() =>
                         <label>Temperatura: ${historial.temperatura}</label><br>
                         <label>Modelo de vehiculo: ${historial.vehiculo_modelo}</label><br>
                         <label>Patente: ${historial.patente}</label><br>
-                        <label>Registra fichada: ${historial.registra_fichada}</label><br>
                         <label>Observacion: ${historial.observacion}</label><br>
                         <label>Fecha y hora: ${historial.fecha_hora}</label><br>
                     </div>
@@ -136,7 +135,6 @@ $(document).ready(() =>
                     <label>Temperatura: ${historial.temperatura}</label><br>
                     <label>Modelo de vehiculo: ${historial.vehiculo_modelo}</label><br>
                     <label>Patente: ${historial.patente}</label><br>
-                    <label>Registra fichada: ${historial.registra_fichada}</label><br>
                     <label>Observacion: ${historial.observacion}</label><br>
                     <label>Fecha y hora: ${historial.fecha_hora}</label><br>
                     <label>Usuario: ${historial.usuario}</label>

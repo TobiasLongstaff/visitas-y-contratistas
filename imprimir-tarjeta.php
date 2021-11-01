@@ -82,21 +82,25 @@
             $pdf->SetTextColor(102,128,211);
             $pdf->SetDrawColor(999, 999, 999);
             $pdf->Ln(7);
-            $pdf->Cell(15);
+            $pdf->Cell(11);
             $pdf->Cell (0,0, $nombre_apellido,1,1,'L',1); 
             $pdf->SetFont('Arial','',7);
             $pdf->SetTextColor(95,95,95);
             $pdf->Ln(4);
-            $pdf->Cell(15);
-            $pdf->Cell (0,0,'Empresa: '.$empresa,1,1,'L',1); 
+            $pdf->Cell(11);
+            $pdf->Cell (0,0,'Emp: '.$empresa,1,1,'L',1); 
             $pdf->Ln(4);
-            $pdf->Cell(15);
+            $pdf->Cell(11);
             $pdf->Cell (0,0,'DNI: '.$dni,1,1,'L',1); 
             if($imagen != '')
             {
-                $pdf->Image($imagen, 17.5, 13.5,'C',24);
+                $pdf->Image($imagen, 16, 13.5,'C',22);
             }
-            $pdf->Image('assets/img/codeqr/example2.png', 8, 44, 'L', 16);
+            else
+            {
+                $pdf->Image('assets/img/usuario.jpg', 16, 13.5,'C',22);
+            }
+            $pdf->Image('assets/img/codeqr/example2.png', 5, 44, 'L', 16);
             $pdf->Ln(5);
             $pdf->Cell (0,0,'Fecha de ingreso: '.$fecha_entrada,1,1,'C',1); 
             $pdf->Ln(3);

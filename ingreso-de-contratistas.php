@@ -79,14 +79,14 @@
                     <input type="date" id="fecha-art" class="form-style">
                     <div class="validar-art"></div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <select id="registra-fichada" class="form-style" autocomplete="off">
                         <option value="" selected disabled>Registra Fichada S/N</option>
                         <option value="Si">Si</option>
                         <option value="No">No</option>
                     </select>
                     <i class="input-icon uil uil-registered"></i>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label>Fecha y Hora de entrada</label>
                     <input type="datetime-local" id="fecha-hora" class="form-style-date" required value="<?=$fecha_actual?>">

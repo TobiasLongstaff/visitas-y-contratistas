@@ -19,7 +19,7 @@
         $sector_habilitado = $_POST['sector_habilitado'];
         $vehiculo_modelo = $_POST['vehiculo_modelo'];
         $patente = $_POST['patente'];
-        $registra_fichada = $_POST['registra_fichada'];
+        // $registra_fichada = $_POST['registra_fichada'];
         $fecha_hora = $_POST['fecha_hora'];
         $fecha_de_salida = $_POST['fecha_de_salida'];
         $observacion = $_POST['observacion']; 
@@ -37,6 +37,14 @@
         if($filas_select = mysqli_fetch_array($resultado_select))
         {
             $id_trabajador = $filas_select['id'];
+
+            $sql="UPDATE trabajadores SET nombre_apellido = '$nombre_apellido', fecha_de_nacimiento = '$fecha_de_nacimiento',
+            dni = '$dni', fecha_art = '$fecha_art', empresa = '$empresa', imagen = '$imagen', imagen_art = '$imagen_art' WHERE id = '$id_trabajador'";
+            $resultado = mysqli_query($conexion,$sql);
+            if(!$resultado)
+            {
+                echo 'error1';
+            }
         }
         else
         {
@@ -45,7 +53,7 @@
             $resultado_insert = mysqli_query($conexion, $sql_insert);
             if(!$resultado_insert)
             {
-                echo 'error';
+                echo 'error2';
             }
             else
             {
@@ -60,12 +68,12 @@
 
         $sql = "INSERT INTO ingreso (temperatura, sector_habilitado, visita, vehiculo_modelo, patente, 
         registra_fichada, fecha_hora, fecha_salida, observacion, id_usuario, id_trabajador, ingreso, estado) VALUES 
-        ('$temperatura', '$sector_habilitado', '','$vehiculo_modelo', '$patente', '$registra_fichada', 
+        ('$temperatura', '$sector_habilitado', '','$vehiculo_modelo', '$patente', '',
         '$fecha_hora', '$fecha_de_salida', '$observacion', '$id_usuario', '$id_trabajador', 'Contratista', '1')";
         $resultado = mysqli_query($conexion, $sql);
         if(!$resultado)
         {
-            echo 'error';
+            echo 'error3';
         }
         else
         {
@@ -81,7 +89,7 @@
             $resultado_insert = mysqli_query($conexion, $sql_insert);
             if(!$resultado_insert)
             {
-                echo 'error';
+                echo 'error4';
             }
 
             echo $id_ingreso;

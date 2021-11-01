@@ -39,7 +39,7 @@
             'visita' => $filas['visita'],
             'vehiculo_modelo' => $filas['vehiculo_modelo'],
             'patente' => $filas['patente'],
-            'registra_fichada' => $filas['registra_fichada'],
+            // 'registra_fichada' => $filas['registra_fichada'],
             'fecha_hora' => $filas['fecha_hora'],
             'fecha_salida' => $filas['fecha_salida'],
             'observacion' => $filas['observacion'],
