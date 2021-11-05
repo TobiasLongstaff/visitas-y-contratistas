@@ -10,11 +10,7 @@
     if(isset($_POST['id']))
     {
         $id = $_POST['id'];
-        $sql="SELECT * FROM ingreso WHERE id = '$id' AND estado = '1'";
-    }
-    else
-    {
-        $sql="SELECT * FROM ingreso WHERE estado = '1'";
+        $sql="SELECT * FROM ingreso WHERE id = '$id' AND estado = '1' AND ingreso = 'Visita'";
     }
 
     $nombre_usuario = '';

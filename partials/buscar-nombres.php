@@ -10,7 +10,7 @@
         $sql="SELECT ingreso.id AS id_ingreso, ingreso.id_trabajador, ingreso.fecha_salida,
         trabajadores.nombre_apellido, trabajadores.id AS id_tabla_trabajador
         FROM ingreso INNER JOIN trabajadores ON ingreso.id_trabajador = trabajadores.id WHERE 
-        nombre_apellido LIKE '%".$nombre."%' AND fecha_salida = '0000-01-01' AND ingreso='Visita' LIMIT 7";
+        nombre_apellido LIKE '%".$nombre."%' AND estado = '1' AND ingreso='Visita' LIMIT 7";
         $resultado=mysqli_query($conexion,$sql);
         $json = array();
         while($filas = mysqli_fetch_array($resultado))
