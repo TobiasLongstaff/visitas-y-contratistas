@@ -2,7 +2,9 @@ $(document).ready(() =>
 {
     $('#codigo-contratista').keyup(function()
     {
-        var id = $(this).val();
+        var codigo = $(this).val();
+        array_codigo = codigo.split("@"); 
+        var id = array_codigo[0];
         if(id != '')
         {
             console.log(id);
@@ -14,6 +16,7 @@ $(document).ready(() =>
                 $('#container-info-contratistas').css('opacity', '1');
                 let sectores = JSON.parse(data);
                 let plantilla = '';
+                $('#codigo-contratista').val('') ;
                 
                 sectores.forEach(historial =>
                 {

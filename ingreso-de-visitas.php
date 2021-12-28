@@ -17,14 +17,14 @@
                     <button type="button" class="btn-nav">
                         <i class="uil uil-sign-out-alt"></i>
                     </button>                 
-                </a>                
+                </a>
             </div>
         </nav>
         <div class="container-form-ingreso-visitas">
             <form class="container-left-ingreso" id="form-ingreso-de-visitas" method="post" style="--delay: .5s">
                 <input type="hidden" id="imagen-perfil">
                 <div class="form-group">
-                    <input type="text" id="nombre-apellido" class="form-style" placeholder="Nombre y Apellido" autocomplete="off" required>
+                    <input type="text" id="nombre-apellido" maxlength="40" class="form-style" placeholder="Nombre y Apellido" autocomplete="off" required>
                     <i class="input-icon uil uil-user"></i>
                 </div>	
                 <div class="form-group">
@@ -94,7 +94,7 @@
             <div class="container-right-visitas" style="--delay: .6s">
                 <div class="container-escanear-dni">
                     <button type="button" class="btn-dni" id="btn-dni">
-                        <span>Escaner DNI</span><br>
+                        <span>Precionar para escaner DNI</span><br>
                         <i class="icono-barcode fas fa-barcode"></i>
                     </button>
                 </div>

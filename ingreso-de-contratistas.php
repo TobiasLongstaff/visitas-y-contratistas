@@ -30,7 +30,7 @@
                 <input type="hidden" id="imagen-perfil">
                 <input type="hidden" id="imagen-art">
                 <div class="form-group">
-                    <input type="text" id="nombre-apellido" class="form-style" placeholder="Nombre y Apellido" autocomplete="off" required>
+                    <input type="text" id="nombre-apellido" maxlength="40" class="form-style" placeholder="Nombre y Apellido" autocomplete="off" required>
                     <i class="input-icon uil uil-user"></i>
                 </div>	
                 <div class="form-group">
@@ -105,7 +105,7 @@
             <div class="container-right-contratistas" style="--delay: .6s">
                 <div class="container-escanear-dni">
                     <button type="button" class="btn-dni" id="btn-dni">
-                        <span>Escaner DNI</span><br>
+                        <span>Precionar para escaner DNI</span><br>
                         <i class="icono-barcode fas fa-barcode"></i>
                     </button>
                 </div>

@@ -65,8 +65,19 @@
             $pdf->Cell(-5);
             $pdf->Cell (0,6,'DNI: '.$dni,1,1,'L',1); 
             $pdf->Cell(-5);
-            $pdf->Cell (0,6,'Empresa: '.$empresa,1,1,'L',1);
-            $pdf->Ln(6);   
+            if(strlen($empresa) > 30)
+            {
+                $empresa1 = substr($empresa, 0,30);
+                $empresa2 = substr($empresa, 30);
+                $pdf->Cell (0,6,'Empresa: '.$empresa,1,1,'L',1);
+                $pdf->Cell(-5);
+                $pdf->Cell (0,6,$empresa2,1,1,'L',1);
+            }
+            else
+            {
+                $pdf->Cell (0,6,'Empresa: '.$empresa,1,1,'L',1);
+            }
+            $pdf->Ln(2);   
             $pdf->Cell(-5);
             $pdf->Cell (0,6,'Fecha de ingreso: '.$fecha_de_ingreso,1,1,'L',1);
             $pdf->Cell(-5);

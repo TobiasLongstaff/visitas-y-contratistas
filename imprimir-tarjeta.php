@@ -12,7 +12,7 @@
         }
     }
 
-    $pdf = new PDF('P','mm',array(53.98,85.60)); 
+    $pdf = new PDF('P','mm',array(53.98,120.60)); 
     $pdf->AliasNbPages();
     $pdf->AddPage();
 
@@ -77,33 +77,75 @@
             $pdf->Ln(29);
             $pdf->Cell(-11);
             $pdf->Cell (57,3, $sector,1,1,'C',1);
-
+            $pdf->SetFont('Arial','B',7);
             $pdf->SetFillColor(999, 999, 999);
             $pdf->SetTextColor(102,128,211);
             $pdf->SetDrawColor(999, 999, 999);
             $pdf->Ln(7);
-            $pdf->Cell(11);
-            $pdf->Cell (0,0, $nombre_apellido,1,1,'L',1); 
-            $pdf->SetFont('Arial','',7);
+            $pdf->Cell(8);
+            if(strlen($nombre_apellido) > 20)
+            {
+                $nombre_apellido1 = substr($nombre_apellido, 0,20);
+                $nombre_apellido2 = substr($nombre_apellido, 20);
+                $pdf->Cell (0,0,$nombre_apellido1,1,1,'L',1);
+                $pdf->Ln(3);
+                $pdf->Cell(8);
+                $pdf->Cell (0,0,$nombre_apellido2,1,1,'L',1);
+            }
+            else
+            {
+                $pdf->Cell (0,0,$nombre_apellido,1,1,'L',1); 
+            }
+
+            $pdf->SetFont('Arial','',5);
             $pdf->SetTextColor(95,95,95);
-            $pdf->Ln(4);
-            $pdf->Cell(11);
-            $pdf->Cell (0,0,'Emp: '.$empresa,1,1,'L',1); 
-            $pdf->Ln(4);
-            $pdf->Cell(11);
+            $pdf->Ln(3);
+            $pdf->Cell(8);
+            $pdf->Cell (0,0,'Empresa:',1,1,'L',1); 
+            $pdf->Ln(3);
+            $pdf->Cell(8);
+            if(strlen($empresa) > 30)
+            {
+                $empresa1 = substr($empresa, 0,30);
+                $empresa2 = substr($empresa, 30);
+                $pdf->Cell (0,0,$empresa1,1,1,'L',1); 
+                $pdf->Ln(3);
+                $pdf->Cell(8);
+                $pdf->Cell (0,0,$empresa2,1,1,'L',1);
+            }
+            else
+            {
+                $pdf->Cell (0,0,$empresa,1,1,'L',1); 
+            }
+            $pdf->Ln(3);
+            $pdf->Cell(8);
             $pdf->Cell (0,0,'DNI: '.$dni,1,1,'L',1); 
             if($imagen != '')
             {
-                $pdf->Image($imagen, 16, 13.5,'C',22);
+                if($_SESSION['planta_usuario'] == 'Landl')
+                {
+                    $pdf->Image($imagen, 9, 14,'C',22);
+                }
+                else
+                {
+                    $pdf->Image($imagen, 16, 13.5,'C',22);
+                }
             }
             else
             {
                 $pdf->Image('assets/img/usuario.jpg', 16, 13.5,'C',22);
             }
-            $pdf->Image('assets/img/codeqr/example2.png', 5, 44, 'L', 16);
-            $pdf->Ln(5);
+            $pdf->Image('assets/img/codeqr/example2.png', 2, 47, 'L', 16);
+            if(strlen($empresa) > 30)
+            {
+                $pdf->Ln(4);
+            }
+            else
+            {
+                $pdf->Ln(7);
+            }
             $pdf->Cell (0,0,'Fecha de ingreso: '.$fecha_entrada,1,1,'C',1); 
-            $pdf->Ln(3);
+            $pdf->Ln(2);
             $pdf->Cell (0,0,'Fecha de fin atencion: '.$fecha_salida,1,1,'C',1); 
         }
     }    

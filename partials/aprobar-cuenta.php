@@ -36,7 +36,7 @@
             if($filas = mysqli_fetch_array($resultado))
             {   
                 $mail = new PHPMailer();
-                $mail->IsSMTP();
+                // $mail->IsSMTP();
                 $mail->SMTPAuth = true;
                 $mail->Port = 465; 
                 $mail->SMTPSecure = 'ssl';

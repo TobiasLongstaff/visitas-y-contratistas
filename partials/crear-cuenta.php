@@ -47,11 +47,12 @@
                 else
                 { 
                     $mail = new PHPMailer();
-                    $mail->IsSMTP();
+                    // $mail->IsSMTP();
                     $mail->SMTPAuth = true;
                     $mail->Port = 465; 
                     $mail->SMTPSecure = 'ssl';
                     $mail->IsHTML(true); 
+                    // $mail->SMTPDebug  = 2;
                 
                 
                     // VALORES A MODIFICAR //
@@ -142,11 +143,12 @@
                     }
                     
                     $mail = new PHPMailer();
-                    $mail->IsSMTP();
+                    // $mail->IsSMTP();
                     $mail->SMTPAuth = true;
                     $mail->Port = 465; 
                     $mail->SMTPSecure = 'ssl';
                     $mail->IsHTML(true); 
+                    // $mail->SMTPDebug  = 2;
                 
                 
                     // VALORES A MODIFICAR //

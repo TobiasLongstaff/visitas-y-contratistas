@@ -41,7 +41,7 @@
                 <h3>Agregar empresa</h3>
                 <div class="form-group">
                     <input type="hidden" id="id-empresa">
-                    <input type="text" id="nombre-empresa" class="form-style" placeholder="Empresa" autocomplete="off" required>
+                    <input type="text" id="nombre-empresa" class="form-style" placeholder="Empresa" maxlength="60" required autocomplete="off" required>
                     <i class="input-icon uil-chart-pie-alt"></i>
                 </div>	
                 <input type="submit" class="btn-acceder" id="btn-agregar-nueva-empresa" value="Agregar">
