@@ -1,5 +1,5 @@
 <?php
-    require 'partials/header.html';
+    require 'partials/header.php';
     require 'partials/conexion.php';
     session_start();
 

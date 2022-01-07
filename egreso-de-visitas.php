@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require 'partials/header.html';
+    require 'partials/header.php';
     require 'partials/conexion_por_planta.php';
 
     date_default_timezone_set('America/Buenos_Aires');

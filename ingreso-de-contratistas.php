@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-    require 'partials/header.html';
+    require 'partials/header.php';
     require 'partials/conexion_por_planta.php';
 
     date_default_timezone_set('America/Buenos_Aires');
@@ -200,6 +200,17 @@
                         <span>Imprimir tarjeta</span><br>
                         <i class="icono-popup uil uil-postcard"></i>   
                     </button>
+                    <?php
+                        if($_SESSION['planta_usuario'] == 'Landl')
+                        {
+                    ?>
+                        <button type="button" class="btn-imprimir-general btn-imprimir-estado" id="btn-estado-salud">
+                            <span>Imprimir estado de salud</span><br>
+                            <i class="icono-popup uil uil-file-medical-alt"></i>
+                        </button> 
+                    <?php
+                        }
+                    ?>  
                     <button type="button" class="btn-imprimir-general btn-cancelar" id="btn-cerrar-popup">
                         <span>Cancelar</span><br>
                         <i class="icono-popup uil uil-times-circle"></i>

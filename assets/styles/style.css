@@ -1,20 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
 
-:root
-{
-    --bg-color: #220088;
-    --subfondo: #1100334a;
-    --fondo: #110033;
-    --secundario: #883399;
-    --azul: #2200ee;
-    --font: rgb(113 119 144 / 78%);
-    --font2: #f9fafb;
-    --rojo: #de1c47;
-    --verde: #15a95b;
-    --theme-bg-color: rgba(16 18 27 / 22%);
-    --delay: 0s;
-}
-
 ::-webkit-scrollbar 
 {
     width: 10px;
@@ -268,6 +253,8 @@ nav h2
     display: flex;
     align-items: center;
 }
+
+
 
 .container-btn-menu
 {
@@ -623,6 +610,22 @@ input:-webkit-autofill:active
 
 /* BOTONES */
 
+.btn-imprimir-historial
+{
+    border-radius: 5px;
+    border: none;
+    background-color: var(--azul);
+    font-size: 30px;
+    padding: 5px;
+    color: var(--font2);
+    cursor: pointer;
+}
+
+.btn-imprimir-historial:hover
+{
+    background-color: #4a2ef3;
+}
+
 .btn-prevision-left
 {
     border-top-left-radius: 4px;
@@ -659,6 +662,16 @@ input:-webkit-autofill:active
 .btn-tarjeta
 {
     background-color: var(--secundario);
+}
+
+.btn-imprimir-estado
+{
+    background-color: #4a2ef3;
+}
+
+.btn-imprimir-estado:hover
+{
+    background-color: #8370f1;
 }
 
 .btn-tarjeta:hover

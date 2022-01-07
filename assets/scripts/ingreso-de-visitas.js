@@ -69,6 +69,12 @@ $(document).ready(() =>
         window.open('imprimir-tarjeta.php?id='+id_ingreso);
     });
 
+    $('#btn-estado-salud').click(function ()
+    {
+        var id_ingreso = $('#id-ingreso-visita').val();
+        window.open('imprimir-estado-de-salud.php?id='+id_ingreso);
+    });
+
     $('#btn-cerrar-popup').click(function()
     {
         $('#overlay').removeClass("active");

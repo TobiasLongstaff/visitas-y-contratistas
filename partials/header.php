@@ -11,6 +11,20 @@
     <script src="https://kit.fontawesome.com/1b601aa92b.js" crossorigin="anonymous"></script>
 
     <!-- CSS -->
+    <?php
+        if($_SESSION['planta_usuario'] == 'Landl')
+        {
+        ?>
+            <link rel="stylesheet" href="assets/styles/root_land.css">
+        <?php
+        }
+        else
+        {
+        ?>
+            <link rel="stylesheet" href="assets/styles/root_frigopico.css">
+        <?php
+        }
+    ?>
     <link rel="stylesheet" href="assets/styles/style.css">
 
     <!-- ANIMACIONES -->

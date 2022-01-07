@@ -24,7 +24,7 @@ $(document).ready(() =>
                 )
                 const form = document.getElementById("form-agregar-empresa");
                 form.reset();
-                edit_empresa = false;
+                edit_empresa = false;7
                 $('#btn-agregar-nueva-empresa').val('Agregar');
                 $('#btn-agregar-nueva-empresa').css('background-color', 'var(--azul)')
                 obtener_empresas()

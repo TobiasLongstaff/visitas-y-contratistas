@@ -4,7 +4,7 @@
 
     if(!empty($_SESSION['id_usuario']))
     {
-        require 'partials/header.html';
+        require 'partials/header.php';
         require 'menu.php';
         if($_SESSION['planta_usuario'] == 'Landl')
         {
@@ -19,7 +19,7 @@
     }
     else
     {
-        require 'partials/header.html';
+        require 'partials/header.php';
         require 'login.php';
     }
 ?>

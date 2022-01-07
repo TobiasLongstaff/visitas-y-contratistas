@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-    require 'partials/header.html';
+    require 'partials/header.php';
     require 'partials/conexion_por_planta.php';    
 
     date_default_timezone_set('America/Buenos_Aires');
@@ -31,6 +31,17 @@
                     </select>                    
                     <i class="input-icon uil uil-filter"></i>
                 </div>
+                <?php
+
+                if($_SESSION['planta_usuario'] == 'Landl')
+                {
+                ?>
+                    <a target="_blank" href="imprimir-ingreso-y-egreso.php">
+                        <button type="button" id="imprimir-historial" class="btn-imprimir-historial"><i class="uil uil-clipboard-alt"></i></button>
+                    </a>
+                <?php
+                }
+                ?>
             </div>
             <div class="container-tabla" style="--delay: .6s">
                 <table id="tabla">
