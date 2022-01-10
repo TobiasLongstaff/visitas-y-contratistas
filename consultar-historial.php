@@ -36,14 +36,12 @@
                 if($_SESSION['planta_usuario'] == 'Landl')
                 {
                 ?>
-                    <a target="_blank" href="imprimir-ingreso-y-egreso.php">
-                        <button type="button" id="imprimir-historial" class="btn-imprimir-historial"><i class="uil uil-clipboard-alt"></i></button>
-                    </a>
+                    <button type="button" id="imprimir-historial" class="btn-imprimir-historial"><i class="uil uil-clipboard-alt"></i></button>
                 <?php
                 }
                 ?>
             </div>
-            <div class="container-tabla" style="--delay: .6s">
+            <div class="tbl-header" style="--delay: .6s">
                 <table id="tabla">
                     <thead>
                         <tr>
@@ -73,10 +71,37 @@
                             </th>   
                         </tr>   
                     </thead>
-                    <tbody id="container-historial">                     
+                </table>
+            </div>  
+            <div class="tbl-content" style="--delay: .6s">
+                <table id="tabla">
+                    <tbody id="container-historial">  
+                        <div class="container-carga">
+                            <div class="loader"></div>
+                        </div>  
                     </tbody>
                 </table>
-            </div>            
+            </div>          
+        </div>
+    </div>
+    <div class="overlay" id="overlay">
+        <div class="container-popup-imprimir" id="popup">
+            <div class="header-popup-imprimir">
+                <h2>Elegir Fechas</h2>
+                <hr>
+                <form id="form-imprimir-historial" method="post">
+                    <div class="form-group">
+                        <label>Fecha Desde</label>
+                        <input type="date" id="fecha-desde" class="form-style-date" max="<?=$fecha_actual?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha Hasta</label>
+                        <input type="date" id="fecha-hasta" class="form-style-date" max="<?=$fecha_actual?>" required>
+                    </div>
+                    <input type="submit" class="btn-acceder-imprimir" value="Imprimir">
+                    <button type="button" id="btn-cerrar-popup" class="btn-acceder-imprimir btn-secundario-imprimir">Cerrar</button>
+                </form>
+            </div>                  
         </div>
     </div>
 </body>

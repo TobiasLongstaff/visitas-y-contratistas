@@ -26,6 +26,26 @@ $(document).ready(() =>
             $('.btn-mas-'+id_habilitacion).removeClass('fa-angle-down').addClass('fa-angle-right');
         }
     }); 
+
+    $('#imprimir-historial').click(function()
+    {
+        $('#overlay').addClass("active");
+        $('#popup').addClass("active");  
+    });
+
+    $('#btn-cerrar-popup').click(function()
+    {
+        $('#overlay').removeClass("active");
+        $('#popup').removeClass("active");
+    });
+
+    $('#form-imprimir-historial').submit(function(e)
+    {
+        e.preventDefault();
+        let fecha_desde = $('#fecha-desde').val()
+        let fecha_hasta = $('#fecha-hasta').val()
+        window.open('imprimir-ingreso-y-egreso.php?desde='+fecha_desde+'&hasta='+fecha_hasta);
+    });
     
     $('#selectlist-filtrar').change(function() 
     {
@@ -40,8 +60,13 @@ $(document).ready(() =>
             url: 'partials/obtener-historial.php',
             type: 'POST',
             data: { filtrar },
+            beforeSend: function()
+            {
+                $('.container-carga').css('display', 'flex');
+            },
             success: function (response)
             {
+                $('.container-carga').css('display', 'none');
                 let sectores = JSON.parse(response);
                 let plantilla = '';
                 

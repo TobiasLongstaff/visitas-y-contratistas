@@ -75,7 +75,7 @@
     $pdf->Multicell(35,3, "MOTIVO DE LA VISITA\n O PERSONA VINCU-\nLADA A LAND L S.A.",0,0,'C',1);
     $pdf->Ln(-10);
     $pdf->Cell(256);
-    $pdf->Multicell(20,5, "DOMINIO DE\n VEICULO",0,0,'L',1);
+    $pdf->Multicell(20,5, "DOMINIO DE\n VEHICULO",0,0,'L',1);
 
     $pdf->Ln(3);
     $pdf->SetDrawColor(000,000,000);
