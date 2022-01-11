@@ -38,12 +38,22 @@
         {
             $id_trabajador = $filas_select['id'];
 
-            $sql="UPDATE trabajadores SET nombre_apellido = '$nombre_apellido', fecha_de_nacimiento = '$fecha_de_nacimiento',
-            dni = '$dni', fecha_art = '$fecha_art', empresa = '$empresa', imagen = '$imagen', imagen_art = '$imagen_art' WHERE id = '$id_trabajador'";
-            $resultado = mysqli_query($conexion,$sql);
-            if(!$resultado)
+            $sql_tra_veri="SELECT id FROM ingreso WHERE id_trabajador = '$id_trabajador' AND estado = '1'";
+            $resultado_tra_veri = mysqli_query($conexion, $sql_tra_veri);
+            $numero_fila_tra_veri = mysqli_num_rows($resultado_tra_veri);
+            if($numero_fila_tra_veri >= '1')
             {
-                echo 'error1';
+                echo 'error0';
+            }
+            else
+            {
+                $sql="UPDATE trabajadores SET nombre_apellido = '$nombre_apellido', fecha_de_nacimiento = '$fecha_de_nacimiento',
+                dni = '$dni', fecha_art = '$fecha_art', empresa = '$empresa', imagen = '$imagen', imagen_art = '$imagen_art' WHERE id = '$id_trabajador'";
+                $resultado = mysqli_query($conexion,$sql);
+                if(!$resultado)
+                {
+                    echo 'error1';
+                }
             }
         }
         else

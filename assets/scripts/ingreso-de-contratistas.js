@@ -21,6 +21,31 @@ $(document).ready(() =>
         e.preventDefault();
     })
 
+    $('#btn-buscar-qr').click(function()
+    {
+        $(this).css('background', '#9552a2');
+
+        $('#textbox-codigo-qr').show();
+        $('#textbox-codigo-qr').focus();
+    });
+
+    $('#form-buscar-por-qr').submit(function(e)
+    {
+        e.preventDefault();
+        var codigo_qr = ''
+        codigo_qr = $('#textbox-codigo-qr').val();
+        array_qr = codigo_qr.split("@"); 
+        if(codigo_qr != '')
+        {
+            const tipo = 'qr'
+            let filtro = array_qr[0];
+            console.log(filtro);
+            obtener_contratistas_ingresados(filtro, tipo)
+        }
+        $('#textbox-codigo-qr').val('');
+        $('#textbox-codigo-qr').hide();
+        $('#btn-buscar-qr').css('background', 'var(--azul)');
+    })
 
     $('#dni').keyup(function()
     {
@@ -97,16 +122,27 @@ $(document).ready(() =>
 
         $.post('partials/agregar-contratista.php', postData, function (data)
         {
-            console.log(data)
-            const form = document.getElementById("form-ingreso-de-contratistas");
-            $('.file-upload-content-art').hide();
-            $('.imagen-upload-art').show();
-            $('.file-upload-content').hide();
-            $('.image-upload-wrap').show();
-            form.reset();
-            $('#id-ingreso-contratista').val(data);
-            $('#overlay').addClass("active");
-            $('#popup').addClass("active");  
+            let response = data.substr(0, 6) 
+            if(response == 'error0')
+            {
+                Swal.fire(
+                    'Error',
+                    'Este trabajador ya se encuentra activo',
+                    'error'
+                )
+            }
+            else
+            {
+                const form = document.getElementById("form-ingreso-de-contratistas");
+                $('.file-upload-content-art').hide();
+                $('.imagen-upload-art').show();
+                $('.file-upload-content').hide();
+                $('.image-upload-wrap').show();
+                form.reset();
+                $('#id-ingreso-contratista').val(data);
+                $('#overlay').addClass("active");
+                $('#popup').addClass("active");  
+            }
         }); 
         e.preventDefault();
     })
@@ -219,12 +255,28 @@ $(document).ready(() =>
         e.preventDefault();
     })
 
-    function obtener_contratistas_ingresados()
+    $(document).on('click', '.btn-re-inprimir-trajeta', function()
+    {
+        let element = $(this)[0].parentElement.parentElement;
+        let id_ingreso = $(element).attr('filaid');
+        window.open('imprimir-tarjeta.php?id='+id_ingreso);
+    })
+
+    $('#form-filtrar-dni').submit(function(e) 
+    {
+        e.preventDefault();
+        const tipo = 'dni';
+        let filtro = $('#buscar-nombres').val()
+        obtener_contratistas_ingresados(filtro, tipo)
+    })
+
+    function obtener_contratistas_ingresados(filtro, tipo)
     {
         $.ajax(
         {
             url: 'partials/obtener-contratistas-ingresados.php',
-            type: 'GET',
+            type: 'POST',
+            data: {filtro, tipo},
             success: function (response)
             {
                 let plantilla = '';
@@ -239,21 +291,21 @@ $(document).ready(() =>
                 }
                 else
                 {
-                    console.log(response)
                     let sectores = JSON.parse(response);
-                    
                     
                     sectores.forEach(historial =>
                     {
                         plantilla += 
                         `
                         <tr filaId="${historial.id}">
-                            <td class="td-primer-fila">
+                            <td class="td-primer-fila-controles">
                                 <button class="btn-editar btn-ingresar-contratista">
                                     <i class="uil uil-user-check"></i>
                                 </button>
+                                <button class="btn-eliminar btn-re-inprimir-trajeta">
+                                    <i class="uil uil-postcard"></i>
+                                </button>
                             </td>
-                            <td>${historial.id}</td>
                             <td>${historial.nombre}</td>
                             <td>${historial.dni}</td>
                             <td>${historial.empresa}</td>

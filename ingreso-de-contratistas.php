@@ -150,44 +150,63 @@
                 </form>
             </div>                
         </div>
-        <div class="container-form-ingreso-contratistas" id="opcion-ingresar">
-            <div class="container-tabla-contratistas" style="--delay: .6s">
-                <table id="tabla">
-                    <thead>
-                        <tr>
-                            <th class="columna-header">
-                                <span>Controles</span>    
-                            </th>
-                            <th class="columna-header">
-                                <span>Id</span>
-                            </th>
-                            <th class="columna-header">
-                                <span>Nombre y apellido</span>
-                            </th>     
-                            <th class="columna-header">
-                                <span>DNI</span>
-                            </th>  
-                            <th class="columna-header">
-                                <span>Empresa</span>
-                            </th>     
-                            <th class="columna-header">
-                                <span>Sector habilitado</span>
-                            </th>  
-                            <th class="columna-header">
-                                <span>Visita a</span>
-                            </th>  
-                            <th class="columna-header">
-                                <span>Fecha y hora</span>
-                            </th>  
-                            <th class="columna-header">
-                                <span>Fecha Limite</span>
-                            </th> 
-                        </tr>   
-                    </thead>
-                    <tbody id="container-contratistas-ingresados">                     
-                    </tbody>
-                </table>
-            </div>            
+        <div class="container-tabla-historial" id="opcion-ingresar">
+            <div style="width: 100%">
+                <form id="form-filtrar-dni" class="form-filtrar-dni" method="post">
+                    <div class="form-group" style="margin: 0">
+                        <input type="search" id="buscar-nombres" class="form-style-search" placeholder="Buscar por DNI" autocomplete="off">
+                        <i class="input-icon uil uil-postcard"></i>
+                    </div>
+                    <button type="submit" class="btn-filtrar-contratista"><i class="uil uil-search"></i></button>                    
+                </form>
+                <div class="conteiner-buscar-por-qr">
+                    <button type="button" id="btn-buscar-qr" class="btn-buscar-qr">
+                        Buscar por QR
+                        <i class="uil uil-qrcode-scan"></i>
+                    </button>
+                    <form id="form-buscar-por-qr" method="post" class="container-textbox-qr">
+                        <input type="text" id="textbox-codigo-qr" autocomplete="off" class="textbox-buscar-qr">
+                    </form>
+                </div>
+                <div class="tbl-header" style="--delay: .6s">
+                    <table id="tabla">
+                        <thead>
+                            <tr>
+                                <th class="columna-header">
+                                    <span>Controles</span>    
+                                </th>
+                                <th class="columna-header">
+                                    <span>Nombre y apellido</span>
+                                </th>     
+                                <th class="columna-header">
+                                    <span>DNI</span>
+                                </th>  
+                                <th class="columna-header">
+                                    <span>Empresa</span>
+                                </th>     
+                                <th class="columna-header">
+                                    <span>Sector habilitado</span>
+                                </th>  
+                                <th class="columna-header">
+                                    <span>Visita a</span>
+                                </th>  
+                                <th class="columna-header">
+                                    <span>Fecha y hora</span>
+                                </th>  
+                                <th class="columna-header">
+                                    <span>Fecha Limite</span>
+                                </th> 
+                            </tr>   
+                        </thead>
+                    </table>  
+                </div> 
+                <div class="tbl-content-contratistas" style="--delay: .6s">
+                    <table id="tabla">    
+                        <tbody id="container-contratistas-ingresados">                     
+                        </tbody>
+                    </table>   
+                </div>           
+            </div>
         </div>
         <div class="overlay" id="overlay">
             <div class="container-popup" id="popup">

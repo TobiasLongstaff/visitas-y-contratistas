@@ -162,6 +162,20 @@ nav h2
 
 /* CONTAINER */
 
+.container-textbox-qr
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.conteiner-buscar-por-qr
+{
+    display: flex;
+}
+
 .container-btn-opciones
 {
     margin: 30px;
@@ -244,7 +258,10 @@ nav h2
 
 .container-tabla-contratistas
 {
+    padding: 0;
     width: 100%;
+    margin-top: 20px;
+    overflow: auto;
 }
 
 .tbl-header
@@ -255,13 +272,18 @@ nav h2
     animation: top 1s var(--delay) both;
 }
 
-.tbl-content
+.tbl-content, .tbl-content-contratistas
 {
-    height: 260px;
+    height: calc(100vh - 355px);
     overflow-x:auto;
     margin-top: 0px;
     -webkit-animation: top 1s var(--delay) both;
     animation: top 1s var(--delay) both;
+}
+
+.tbl-content-contratistas
+{
+    height: calc(100vh - 455px);
 }
 
 .container-carga
@@ -380,6 +402,19 @@ nav h2
     overflow: auto;
 }
 
+.container-form-ingreso-contratistas
+{
+    padding: 0 3%;
+}
+
+.form-filtrar-dni
+{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
 .container-right-visitas, .container-right-contratistas, .container-left-ingreso
 {
     width: 100%;
@@ -392,8 +427,6 @@ nav h2
     display: flex;
     align-items: center;
 }
-
-
 
 .container-btn-menu
 {
@@ -546,7 +579,7 @@ nav h2
     width: 280px;
 }
 
-.textbox-dni
+.textbox-dni, .textbox-buscar-qr
 {
     font-family: 'Poppins', sans-serif;
     display: none;
@@ -559,6 +592,12 @@ nav h2
     text-align: center;
     padding: 10px;
     margin-bottom: 20px;
+}
+
+.textbox-buscar-qr
+{
+    width: 35%;  
+    margin: 0;
 }
 
 .form-style-date
@@ -749,7 +788,7 @@ input:-webkit-autofill:active
 
 /* BOTONES */
 
-.btn-imprimir-historial
+.btn-imprimir-historial, .btn-filtrar-contratista
 {
     border-radius: 5px;
     border: none;
@@ -760,9 +799,16 @@ input:-webkit-autofill:active
     cursor: pointer;
 }
 
-.btn-imprimir-historial:hover
+.btn-imprimir-historial:hover, .btn-filtrar-contratista:hover
 {
     background-color: #4a2ef3;
+}
+
+.btn-filtrar-contratista
+{
+    font-size: 25px;
+    width: 55px;
+    height: 48px;
 }
 
 .btn-prevision-left
@@ -884,7 +930,7 @@ input:-webkit-autofill:active
     cursor: pointer;
 }
 
-.btn-nombre-empresa:hover, .btn-acceder:hover, .btn-nombre-trabajador:hover, .btn-acceder-imprimir:hover
+.btn-nombre-empresa:hover, .btn-acceder:hover, .btn-nombre-trabajador:hover, .btn-acceder-imprimir:hover, .btn-buscar-qr:hover
 {
     background-color: #3a0dc4;
     transition: .3s ease;
@@ -994,7 +1040,7 @@ input:-webkit-autofill:active
     transition: .3s ease;
 }
 
-.btn-acceder, .btn-enviar-comentario, .btn-cancelar-comentario, .btn-cerrar-comentario, .btn-acceder-imprimir
+.btn-acceder, .btn-enviar-comentario, .btn-cancelar-comentario, .btn-cerrar-comentario, .btn-acceder-imprimir, .btn-buscar-qr
 {
     width: 100%;
     height: 40px;
@@ -1008,6 +1054,13 @@ input:-webkit-autofill:active
     box-shadow: 0 8px 24px 0 rgba(66, 85, 212, .3);
     -webkit-transition: all 200ms linear;
         transition: all 200ms linear;
+}
+
+.btn-buscar-qr
+{
+    width: 30%;
+    margin: 0;
+    margin-bottom: 10px;
 }
 
 .btn-acceder-imprimir
@@ -1140,6 +1193,12 @@ th.right, td.right
 .td-primer-fila
 {
     padding: 15px;
+}
+
+.td-primer-fila-controles
+{
+    display: flex;
+    gap: 5px;
 }
 
 .columna-header

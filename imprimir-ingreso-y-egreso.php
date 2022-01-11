@@ -13,7 +13,6 @@
 
     date_default_timezone_set('America/Buenos_Aires');
     $fecha_actual = date('d/m/Y');
-    $fecha_actual_sql = date('Y-m-d');
 
     $pdf = new PDF();
     $pdf->AliasNbPages();
@@ -57,8 +56,8 @@
     $pdf->Ln(7);
     $pdf->Cell(35,15, 'FECHA', 1,0,'C',1);
     $pdf->Cell(25,15, ' ', 1,0,'C',1);
-    $pdf->Cell(50,15, 'NOMBRE Y APELLIDO', 1,0,'C',1);
-    $pdf->Cell(30,15, 'D.N.I', 1,0,'C',1);
+    $pdf->Cell(64,15, 'NOMBRE Y APELLIDO', 1,0,'C',1);
+    $pdf->Cell(16,15, 'D.N.I', 1,0,'C',1);
     $pdf->Cell(40,15, ' ', 1,0,'C',1);
     $pdf->Cell(40,15, ' ', 1,0,'C',1);
     $pdf->Cell(35,15, 'HORA SALIDA', 1,0,'C',1);
@@ -82,50 +81,57 @@
     $pdf->SetFillColor(999, 999, 999);
     $pdf->SetFont('Arial','',9);
 
-    $sql="SELECT ingreso.id AS id_ingreso, ingreso.temperatura, ingreso.sector_habilitado, 
-    ingreso.visita, ingreso.vehiculo_modelo, ingreso.patente, ingreso.fecha_hora, 
-    ingreso.fecha_salida AS fecha_salida_final, ingreso.observacion, ingreso.id_usuario, 
-    ingreso.id_trabajador, ingreso.ingreso, ingreso.estado, reingreso_contratistas.id AS id 
-    ,reingreso_contratistas.id_ingreso AS id_reingreso, reingreso_contratistas.fecha_movimiento 
-    FROM ingreso INNER JOIN reingreso_contratistas ON ingreso.id = reingreso_contratistas.id_ingreso 
-    WHERE ingreso.fecha_salida != '0000-01-01' AND reingreso_contratistas.fecha_movimiento LIKE '$fecha_actual_sql%'";
-    $resultado=mysqli_query($conexion,$sql);
-    while($filas = mysqli_fetch_array($resultado))
+    if(isset($_GET['desde']) && isset($_GET['hasta']))
     {
-        $id_trabajadores = $filas['id_trabajador'];
-        $fecha_movimiento = $filas['fecha_movimiento'];
-        $fehca_hora = explode(' ', $fecha_movimiento);
-        $fecha = $fehca_hora[0];
-        $hora = $fehca_hora[1];
-        $visita = $filas['visita'];
-        $fecha_salida = $filas['fecha_salida_final'];
-        $patente = $filas['patente'];
+        $fecha_desde = $_GET['desde'];
+        $fecha_hasta = $_GET['hasta'];
 
-        $sql_trabajadores="SELECT * FROM trabajadores WHERE id = '$id_trabajadores'";
-        $resultado_trabajadores=mysqli_query($conexion,$sql_trabajadores);
-        if($filas_trabajadores = mysqli_fetch_array($resultado_trabajadores))
+        $sql="SELECT ingreso.id AS id_ingreso, ingreso.temperatura, ingreso.sector_habilitado, 
+        ingreso.visita, ingreso.vehiculo_modelo, ingreso.patente, ingreso.fecha_hora, 
+        ingreso.fecha_salida AS fecha_salida_final, ingreso.observacion, ingreso.id_usuario, 
+        ingreso.id_trabajador, ingreso.ingreso, ingreso.estado, reingreso_contratistas.id AS id 
+        ,reingreso_contratistas.id_ingreso AS id_reingreso, reingreso_contratistas.fecha_movimiento 
+        FROM ingreso INNER JOIN reingreso_contratistas ON ingreso.id = reingreso_contratistas.id_ingreso 
+        WHERE ingreso.fecha_salida != '0000-01-01' AND reingreso_contratistas.fecha_movimiento >= '$fecha_desde%' AND reingreso_contratistas.fecha_movimiento <= '$fecha_hasta%'";
+        $resultado=mysqli_query($conexion,$sql);
+        while($filas = mysqli_fetch_array($resultado))
         {
-            $nombre_apellido = $filas_trabajadores['nombre_apellido'];
-            $DNI = $filas_trabajadores['dni'];
-            $empresa = $filas_trabajadores['empresa'];
-            $pdf->Cell(35,6, $fecha,1,0,'C',1);
-            $pdf->Cell(25,6, $hora,1,0,'C',1);
-            $pdf->Cell(50,6, $nombre_apellido,1,0,'C',1);
-            $pdf->Cell(30,6, $DNI,1,0,'C',1);
-            if(strlen($empresa) > 20)
+            $id_trabajadores = $filas['id_trabajador'];
+            $fecha_movimiento = $filas['fecha_movimiento'];
+            $fehca_hora = explode(' ', $fecha_movimiento);
+            $fecha = $fehca_hora[0];
+            $hora = $fehca_hora[1];
+            $visita = $filas['visita'];
+            $fecha_salida = $filas['fecha_salida_final'];
+            $patente = $filas['patente'];
+    
+            $sql_trabajadores="SELECT * FROM trabajadores WHERE id = '$id_trabajadores'";
+            $resultado_trabajadores=mysqli_query($conexion,$sql_trabajadores);
+            if($filas_trabajadores = mysqli_fetch_array($resultado_trabajadores))
             {
-                $empresa = str_split($empresa, 20);
-                $pdf->Cell(40,6, $empresa[0].'...',1,0,'C',1);
+                $nombre_apellido = $filas_trabajadores['nombre_apellido'];
+                $DNI = $filas_trabajadores['dni'];
+                $empresa = $filas_trabajadores['empresa'];
+                $pdf->Cell(35,6, $fecha,1,0,'C',1);
+                $pdf->Cell(25,6, $hora,1,0,'C',1);
+                $pdf->Cell(64,6, $nombre_apellido,1,0,'C',1);
+                $pdf->Cell(16,6, $DNI,1,0,'C',1);
+                if(strlen($empresa) > 20)
+                {
+                    $empresa = str_split($empresa, 20);
+                    $pdf->Cell(40,6, $empresa[0].'...',1,0,'C',1);
+                }
+                else
+                {
+                    $pdf->Cell(40,6, $empresa,1,0,'C',1);
+                }
+                $pdf->Cell(40,6, $visita,1,0,'C',1);
+                $pdf->Cell(35,6, $fecha_salida,1,0,'C',1);
+                $pdf->Cell(24,6, $patente,1,1,'C',1);
             }
-            else
-            {
-                $pdf->Cell(40,6, $empresa,1,0,'C',1);
-            }
-            $pdf->Cell(40,6, $visita,1,0,'C',1);
-            $pdf->Cell(35,6, $fecha_salida,1,0,'C',1);
-            $pdf->Cell(24,6, $patente,1,1,'C',1);
         }
     }
+    
     $pdf->Ln(10);
     $pdf->Cell(70);
     $pdf->SetFillColor(000, 000, 204);

@@ -5,28 +5,47 @@
     date_default_timezone_set('America/Buenos_Aires');  
     $fecha_actual = date('Y-m-d');
 
-    $sql="SELECT * FROM ingreso WHERE estado = '0' AND ingreso = 'Contratista' AND fecha_salida >= '$fecha_actual'";
+    if(isset($_POST['filtro']) && isset($_POST['tipo']))
+    {
+        $filtro = $_POST['filtro'];
+        $tipo = $_POST['tipo'];
+
+        if($tipo != 'dni')
+        {
+            $sql="SELECT ingreso.*, trabajadores.nombre_apellido, trabajadores.dni, 
+            trabajadores.fecha_de_nacimiento, trabajadores.empresa, trabajadores.imagen 
+            FROM ingreso INNER JOIN trabajadores ON ingreso.id_trabajador = trabajadores.id 
+            WHERE estado = '0' AND ingreso = 'Contratista' AND fecha_salida >= '$fecha_actual' AND 
+            ingreso.id = '$filtro'"; 
+        }
+        else
+        {
+            $sql="SELECT ingreso.*, trabajadores.nombre_apellido, trabajadores.dni, 
+            trabajadores.fecha_de_nacimiento, trabajadores.empresa, trabajadores.imagen 
+            FROM ingreso INNER JOIN trabajadores ON ingreso.id_trabajador = trabajadores.id 
+            WHERE estado = '0' AND ingreso = 'Contratista' AND fecha_salida >= '$fecha_actual' AND 
+            trabajadores.dni LIKE '%$filtro%'"; 
+        }
+    }
+    else
+    {
+        $sql="SELECT ingreso.*, trabajadores.nombre_apellido, trabajadores.dni, 
+        trabajadores.fecha_de_nacimiento, trabajadores.empresa, trabajadores.imagen 
+        FROM ingreso INNER JOIN trabajadores ON ingreso.id_trabajador = trabajadores.id 
+        WHERE estado = '0' AND ingreso = 'Contratista' AND fecha_salida >= '$fecha_actual'"; 
+    }
+
     $resultado=mysqli_query($conexion,$sql);
     $json = array();
     while($filas = mysqli_fetch_array($resultado))
     {
-        $nombre = '';
-        $dni = '';
-        $fecha_de_nacimiento = '';
-        $empresa = '';
         $img = '';
-        $id_trabajadores = $filas['id_trabajador'];
 
-        $sql_trabajadores="SELECT * FROM trabajadores WHERE id = '$id_trabajadores'";
-        $resultado_trabajadores=mysqli_query($conexion,$sql_trabajadores);
-        if($filas_trabajadores = mysqli_fetch_array($resultado_trabajadores))
-        {
-            $nombre = $filas_trabajadores['nombre_apellido'];
-            $dni = $filas_trabajadores['dni'];
-            $fecha_de_nacimiento = $filas_trabajadores['fecha_de_nacimiento'];
-            $empresa = $filas_trabajadores['empresa'];
-            $img = $filas_trabajadores['imagen'];
-        }
+        $nombre = $filas['nombre_apellido'];
+        $dni = $filas['dni'];
+        $fecha_de_nacimiento = $filas['fecha_de_nacimiento'];
+        $empresa = $filas['empresa'];
+        $img = $filas['imagen'];
 
         $json[] = array(
             'id' => $filas['id'],
