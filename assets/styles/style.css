@@ -433,19 +433,21 @@ nav h2
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 50px;
-    padding: 5% 20%;
-    padding-top: 2%;
-    max-height: 70vh;
+    padding: 0 20%;
+    padding-top: 18px;
+    padding-bottom: 32px;
+    height: calc(95% - 91px);
     overflow: auto;
+    box-sizing: border-box;
 }
 
 .container
 {
     background-color: var(--theme-bg-color);
     backdrop-filter: blur(20px);
-    margin: 2% 10%;
+    margin: 20px 10%;
     border-radius: 10px;
-    max-height: 94%;
+    height: calc(100vh - 40px);
 }
 
 .container-alerta

@@ -1,6 +1,20 @@
 $(document).ready(() =>
 {
-    obtener_historial()
+    let limite = 20
+    let tipo = ''
+    let dni = ''
+    let fecha = ''
+
+    obtener_historial() 
+
+    $('#form-filtrar-historial').submit(function(e)
+    {
+        e.preventDefault()
+        tipo = $('#selectlist-filtrar').val()
+        dni = $('#buscar-nombres').val()
+        fecha = $('#fecha-filtro').val()
+        obtener_historial() 
+    });
 
     $(document).on('click', '.btn-mostrar-historial',function() 
     {
@@ -46,30 +60,31 @@ $(document).ready(() =>
         let fecha_hasta = $('#fecha-hasta').val()
         window.open('imprimir-ingreso-y-egreso.php?desde='+fecha_desde+'&hasta='+fecha_hasta);
     });
-    
-    $('#selectlist-filtrar').change(function() 
-    {
-        var filtrar = $(this).val();
-        obtener_historial(filtrar);
-    });
 
-    function obtener_historial(filtrar)
+    $('#cargar-mas-filas').click(function()
+    {
+        limite = limite+20
+        obtener_historial()
+    })
+
+    function obtener_historial()
     {
         $.ajax(
         {
             url: 'partials/obtener-historial.php',
             type: 'POST',
-            data: { filtrar },
+            data: { tipo, dni, fecha, limite },
             beforeSend: function()
             {
                 $('.container-carga').css('display', 'flex');
             },
             success: function (response)
             {
+                console.log(response)
                 $('.container-carga').css('display', 'none');
                 let sectores = JSON.parse(response);
                 let plantilla = '';
-                
+
                 sectores.forEach(historial =>
                 {
                     plantilla += 

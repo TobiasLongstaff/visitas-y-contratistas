@@ -3,16 +3,58 @@
     session_start();
     require 'conexion_por_planta.php';    
 
-    if(!empty($_POST['filtrar']) && $_POST['filtrar'] != 'Todos')
+    $sql_limit = '';
+    $filtro = '';
+
+    if(isset($_POST['limite']))
     {
-        $filtro = $_POST['filtrar'];
-        $sql="SELECT ingreso.id AS id_ingreso, ingreso.temperatura, ingreso.sector_habilitado, ingreso.visita, ingreso.vehiculo_modelo, ingreso.patente, ingreso.fecha_hora, ingreso.fecha_salida AS fecha_salida_final, ingreso.observacion, ingreso.id_usuario, ingreso.id_trabajador, ingreso.ingreso, ingreso.estado, reingreso_contratistas.id AS id ,reingreso_contratistas.id_ingreso AS id_reingreso, reingreso_contratistas.fecha_movimiento FROM ingreso INNER JOIN reingreso_contratistas ON ingreso.id = reingreso_contratistas.id_ingreso WHERE ingreso = '$filtro' ORDER BY fecha_movimiento DESC";
-    }
-    else
-    {
-        $sql="SELECT ingreso.id AS id_ingreso, ingreso.temperatura, ingreso.sector_habilitado, ingreso.visita, ingreso.vehiculo_modelo, ingreso.patente, ingreso.fecha_hora, ingreso.fecha_salida AS fecha_salida_final, ingreso.observacion, ingreso.id_usuario, ingreso.id_trabajador, ingreso.ingreso, ingreso.estado, reingreso_contratistas.id AS id ,reingreso_contratistas.id_ingreso AS id_reingreso, reingreso_contratistas.fecha_movimiento FROM ingreso INNER JOIN reingreso_contratistas ON ingreso.id = reingreso_contratistas.id_ingreso ORDER BY fecha_movimiento DESC";
+        $limite = $_POST['limite'];
+        $sql_limit = "LIMIT $limite";
     }
 
+    if(!empty($_POST['tipo']) && $_POST['tipo'] != 'Todos')
+    {
+        $tipo = $_POST['tipo'];
+
+        $filtro = "WHERE ingreso.ingreso = '$tipo'";
+    }
+
+    if(!empty($_POST['dni']))
+    {
+        $dni = $_POST['dni'];
+        if($filtro != '')
+        {
+            $filtro = $filtro." AND trabajadores.dni LIKE '%".$dni."%'";
+        }
+        else
+        {
+            $filtro = "WHERE trabajadores.dni LIKE '%".$dni."%'";
+        }
+    }
+
+    if(!empty($_POST['fecha']) && $_POST['fecha'])
+    {
+        $fecha = $_POST['fecha'];
+
+        if($filtro != '')
+        {
+            $filtro = $filtro." AND ingreso.fecha_hora LIKE '".$fecha."%'";
+        }
+        else
+        {
+            $filtro = "WHERE ingreso.fecha_hora LIKE '".$fecha."%'";
+        }
+    }
+
+    $sql="SELECT ingreso.id AS id_ingreso, ingreso.temperatura, ingreso.sector_habilitado, 
+    ingreso.visita, ingreso.vehiculo_modelo, ingreso.patente, ingreso.fecha_hora, 
+    ingreso.fecha_salida AS fecha_salida_final, ingreso.observacion, ingreso.id_usuario, 
+    ingreso.id_trabajador, ingreso.ingreso, ingreso.estado, reingreso_contratistas.id AS id, 
+    reingreso_contratistas.id_ingreso AS id_reingreso, reingreso_contratistas.fecha_movimiento, 
+    trabajadores.nombre_apellido, trabajadores.dni, trabajadores.fecha_de_nacimiento, 
+    trabajadores.empresa, trabajadores.imagen FROM ingreso INNER JOIN reingreso_contratistas ON 
+    ingreso.id = reingreso_contratistas.id_ingreso INNER JOIN trabajadores ON 
+    ingreso.id_trabajador = trabajadores.id $filtro ORDER BY fecha_movimiento DESC ".$sql_limit;
     $nombre_usuario = '';
     
     $resultado=mysqli_query($conexion,$sql);
@@ -25,21 +67,16 @@
         $empresa = '';
         $img = '';
         $id_usuario = $filas['id_usuario'];
-        $id_trabajadores = $filas['id_trabajador'];
+        $nombre = $filas['nombre_apellido'];
+        $dni = $filas['dni'];
+        $fecha_de_nacimiento = $filas['fecha_de_nacimiento'];
+        $empresa = $filas['empresa'];
+        $img = $filas['imagen'];
 
-        $sql_trabajadores="SELECT * FROM trabajadores WHERE id = '$id_trabajadores'";
-        $resultado_trabajadores=mysqli_query($conexion,$sql_trabajadores);
-        if($filas_trabajadores = mysqli_fetch_array($resultado_trabajadores))
-        {
-            $nombre = $filas_trabajadores['nombre_apellido'];
-            $dni = $filas_trabajadores['dni'];
-            $fecha_de_nacimiento = $filas_trabajadores['fecha_de_nacimiento'];
-            $empresa = $filas_trabajadores['empresa'];
-            $img = $filas_trabajadores['imagen'];
-        }
+        $id = $filas['id'];
 
         $json[] = array(
-            'id' => $filas['id'],
+            'id' => $id,
             'nombre' => $nombre,
             'dni' => $dni,
             'fecha_de_nacimiento' => $fecha_de_nacimiento,

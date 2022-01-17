@@ -21,26 +21,35 @@
             </div>
         </nav>
         <div class="container-tabla-historial">
-            <div class="container-buscar" style="--delay: .5s">
-                <label>Filtrar: </label>
-                <div class="form-group">
-                    <select id="selectlist-filtrar" class="form-style">
+            <form method="post" id="form-filtrar-historial" class="container-buscar" style="--delay: .5s">
+                <div class="form-group" style="margin: 0">
+                    <select id="selectlist-filtrar" class="form-style" style="width: 100%">
                         <option value="Todos">Todos</option>
                         <option value="Visita">Visitas</option>
                         <option value="Contratista">Contratistas</option>
                     </select>                    
                     <i class="input-icon uil uil-filter"></i>
                 </div>
-                <?php
-
+                <div class="form-group" style="margin: 0">
+                    <input type="search" id="buscar-nombres" class="form-style-search" placeholder="Buscar por DNI" autocomplete="off">
+                    <i class="input-icon uil uil-postcard"></i>
+                </div>
+                <div class="form-group" style="margin: 0">
+                    <input id="fecha-filtro" class="form-style-date" type="date" max="<?=$fecha_actual?>">
+                </div>
+                <button type="submit" class="btn-filtrar-contratista"><i class="uil uil-search"></i></button> 
+            </form>
+            <?php
                 if($_SESSION['planta_usuario'] == 'Landl')
                 {
                 ?>
-                    <button type="button" id="imprimir-historial" class="btn-imprimir-historial"><i class="uil uil-clipboard-alt"></i></button>
+                    <button type="button" id="imprimir-historial" class="btn-buscar-qr">
+                        Imprimir ingreso y egreso
+                        <i class="uil uil-clipboard-alt"></i>
+                    </button>
                 <?php
                 }
-                ?>
-            </div>
+            ?>
             <div class="tbl-header" style="--delay: .6s">
                 <table id="tabla">
                     <thead>
@@ -74,13 +83,16 @@
                 </table>
             </div>  
             <div class="tbl-content" style="--delay: .6s">
-                <table id="tabla">
-                    <tbody id="container-historial">  
+                <table id="tabla"> 
+                    <tbody id="container-historial">
                         <div class="container-carga">
                             <div class="loader"></div>
-                        </div>  
+                        </div>
                     </tbody>
                 </table>
+                <button type="button" id="cargar-mas-filas" class="file-upload-btn">
+                    <i class="uil uil-angle-down"></i>
+                </button>
             </div>          
         </div>
     </div>
