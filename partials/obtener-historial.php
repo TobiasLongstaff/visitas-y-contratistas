@@ -51,7 +51,7 @@
     ingreso.fecha_salida AS fecha_salida_final, ingreso.observacion, ingreso.id_usuario, 
     ingreso.id_trabajador, ingreso.ingreso, ingreso.estado, reingreso_contratistas.id AS id, 
     reingreso_contratistas.id_ingreso AS id_reingreso, reingreso_contratistas.fecha_movimiento, 
-    trabajadores.nombre_apellido, trabajadores.dni, trabajadores.fecha_de_nacimiento, 
+    reingreso_contratistas.tipo, trabajadores.nombre_apellido, trabajadores.dni, trabajadores.fecha_de_nacimiento, 
     trabajadores.empresa, trabajadores.imagen FROM ingreso INNER JOIN reingreso_contratistas ON 
     ingreso.id = reingreso_contratistas.id_ingreso INNER JOIN trabajadores ON 
     ingreso.id_trabajador = trabajadores.id $filtro ORDER BY fecha_movimiento DESC ".$sql_limit;
@@ -93,6 +93,7 @@
             'usuario' => $nombre_usuario,
             'imagen' => $img,
             'ingreso' => $filas['ingreso'],
+            'tipo' => $filas['tipo'],
         );
     }
 

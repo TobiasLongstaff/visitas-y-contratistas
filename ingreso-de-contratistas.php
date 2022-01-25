@@ -11,7 +11,12 @@
 <body>
     <div class="container">
         <nav style="--delay: .3s">
-            <h2>Ingreso de contratistas</h2>
+            <div class="container-volver-nav">
+                <button type="button" id="btn-volver" class="btn-volver">
+                    <i class="uil uil-angle-left"></i>
+                </button>
+                <h2>Ingreso de contratistas</h2>
+            </div>
             <div class="container-controles-nav">
                 <img class="img-nav" src="assets/img/frigopico.png" alt="">
                 <a href="cerrarsesion.php">

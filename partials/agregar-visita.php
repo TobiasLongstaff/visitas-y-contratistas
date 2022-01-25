@@ -76,8 +76,8 @@
                 $id_ingreso = $filas['id'];
             }
 
-            $sql_insert = "INSERT INTO reingreso_contratistas (id_ingreso, fecha_movimiento) 
-            VALUES ('$id_ingreso', '$fecha_actual')";
+            $sql_insert = "INSERT INTO reingreso_contratistas (id_ingreso, fecha_movimiento, tipo) 
+            VALUES ('$id_ingreso', '$fecha_actual', 'Ingreso')";
             $resultado_insert = mysqli_query($conexion, $sql_insert);
             if(!$resultado_insert)
             {

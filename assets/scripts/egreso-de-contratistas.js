@@ -1,5 +1,10 @@
 $(document).ready(() =>
 {
+    $('#btn-volver').click(function()
+    {
+        window.location.replace('/');
+    })
+
     $('#codigo-contratista').keyup(function()
     {
         var codigo = $(this).val();

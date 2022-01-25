@@ -3,6 +3,11 @@ $(document).ready(() =>
     var edit_empresa = false;
     obtener_empresas();
 
+    $('#btn-volver').click(function()
+    {
+        window.location.replace('/');
+    })
+
     $("#form-agregar-empresa").submit(function(e)
     {
         const postData =

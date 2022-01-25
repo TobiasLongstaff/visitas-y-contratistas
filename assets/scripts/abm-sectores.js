@@ -2,25 +2,11 @@ $(document).ready(() =>
 {
     var edit_sector = false;
     obtener_sectores();
-    // var height_tabla = $('#tabla').innerHeight();
-    
-    // $('.data-tabla').height(height_tabla);
 
-    // var left_controles = $('.columna-controles').innerWidth();
-    // var left_id = $('.columna-id').innerWidth(); 
-    // var left_sector = $('.columna-sector').innerWidth();
-
-    // console.log(left_id)
-    // console.log(left_sector)
-
-    // $('#id-tabla').css({left: left_controles + left_id})
-    // $('#sector-tabla').css({left: left_controles + left_id + left_sector});
-
-    // $("#id-tabla").click(function(event){
-    //     var x = event.pageX;
-    //     // $('#id-tabla').css({left: x + left_id})
-    //     console.log(x)
-    // });
+    $('#btn-volver').click(function()
+    {
+        window.location.replace('/');
+    })
 
     $("#form-agregar-sector").submit(function(e)
     {

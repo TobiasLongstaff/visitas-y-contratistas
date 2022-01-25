@@ -1,6 +1,11 @@
 $(document).ready(() =>
 {
     const fecha = new Date();
+    
+    $('#btn-volver').click(function()
+    {
+        window.location.replace('/');
+    })
 
     $('#nuevo-contratista').click(function(e)
     {

@@ -162,6 +162,12 @@ nav h2
 
 /* CONTAINER */
 
+.container-volver-nav
+{
+    display: flex;
+    gap: 10px;
+}
+
 .container-textbox-qr
 {
     display: flex;
@@ -789,6 +795,17 @@ input:-webkit-autofill:active
 }
 
 /* BOTONES */
+
+.btn-volver
+{
+    border-radius: 5px;
+    background-color: var(--azul);
+    border: none;
+    color: var(--font2);
+    font-size: 30px;
+    padding: 0;
+    cursor: pointer;
+}
 
 .btn-imprimir-historial, .btn-filtrar-contratista
 {

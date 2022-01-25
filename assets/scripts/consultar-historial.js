@@ -7,6 +7,11 @@ $(document).ready(() =>
 
     obtener_historial() 
 
+    $('#btn-volver').click(function()
+    {
+        window.location.replace('/');
+    })
+
     $('#form-filtrar-historial').submit(function(e)
     {
         e.preventDefault()
@@ -80,7 +85,6 @@ $(document).ready(() =>
             },
             success: function (response)
             {
-                console.log(response)
                 $('.container-carga').css('display', 'none');
                 let sectores = JSON.parse(response);
                 let plantilla = '';
@@ -127,7 +131,7 @@ $(document).ready(() =>
                                             <label>Observacion: ${historial.observacion}</label><br>
                                             <label>Fecha y hora: ${historial.fecha_hora}</label><br>
                                             <label>Fecha de fin atencion: ${historial.fecha_salida}</label><br>
-                                            <label>Usuario: ${historial.usuario}</label>
+                                            <label>Movimiento: ${historial.tipo}</label>
                                         </div>
                                         <div class="container-img-card">
                                             <img class="img-card-tabla" src="${historial.imagen}">

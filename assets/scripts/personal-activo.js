@@ -2,6 +2,11 @@ $(document).ready(() =>
 {
     obtener_personal_activo()
 
+    $('#btn-volver').click(function()
+    {
+        window.location.replace('/');
+    })
+
     $(document).on('click', '.btn-mostrar-historial',function() 
     {
         console.log('click');

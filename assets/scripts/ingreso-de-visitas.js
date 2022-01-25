@@ -1,6 +1,10 @@
 
 $(document).ready(() =>
 {
+    $('#btn-volver').click(function()
+    {
+        window.location.replace('/');
+    })
 
     $('#dni').keyup(function()
     {
