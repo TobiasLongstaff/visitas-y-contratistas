@@ -10,13 +10,21 @@
         $filtro = $_POST['filtro'];
         $tipo = $_POST['tipo'];
 
-        if($tipo != 'dni')
+        if($tipo == 'nombre')
         {
             $sql="SELECT ingreso.*, trabajadores.nombre_apellido, trabajadores.dni, 
             trabajadores.fecha_de_nacimiento, trabajadores.empresa, trabajadores.imagen 
             FROM ingreso INNER JOIN trabajadores ON ingreso.id_trabajador = trabajadores.id 
             WHERE estado = '0' AND ingreso = 'Contratista' AND fecha_salida >= '$fecha_actual' AND 
-            ingreso.id = '$filtro'"; 
+            trabajadores.nombre_apellido LIKE '%$filtro%'"; 
+        }
+        elseif($tipo == 'dni')
+        {
+            $sql="SELECT ingreso.*, trabajadores.nombre_apellido, trabajadores.dni, 
+            trabajadores.fecha_de_nacimiento, trabajadores.empresa, trabajadores.imagen 
+            FROM ingreso INNER JOIN trabajadores ON ingreso.id_trabajador = trabajadores.id 
+            WHERE estado = '0' AND ingreso = 'Contratista' AND fecha_salida >= '$fecha_actual' AND 
+            trabajadores.dni LIKE '%$filtro%'"; 
         }
         else
         {
@@ -24,7 +32,7 @@
             trabajadores.fecha_de_nacimiento, trabajadores.empresa, trabajadores.imagen 
             FROM ingreso INNER JOIN trabajadores ON ingreso.id_trabajador = trabajadores.id 
             WHERE estado = '0' AND ingreso = 'Contratista' AND fecha_salida >= '$fecha_actual' AND 
-            trabajadores.dni LIKE '%$filtro%'"; 
+            ingreso.id = '$filtro'"; 
         }
     }
     else

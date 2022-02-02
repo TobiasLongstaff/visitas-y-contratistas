@@ -159,7 +159,7 @@
             <div style="width: 100%">
                 <form id="form-filtrar-dni" class="form-filtrar-dni" method="post">
                     <div class="form-group" style="margin: 0">
-                        <input type="search" id="buscar-nombres" class="form-style-search" placeholder="Buscar por DNI" autocomplete="off">
+                        <input type="search" id="buscar-nombres" class="form-style-search" placeholder="Buscar por DNI o nombre" autocomplete="off">
                         <i class="input-icon uil uil-postcard"></i>
                     </div>
                     <button type="submit" class="btn-filtrar-contratista"><i class="uil uil-search"></i></button>                    

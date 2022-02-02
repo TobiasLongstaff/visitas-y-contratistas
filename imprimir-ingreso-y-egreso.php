@@ -54,26 +54,24 @@
     $pdf->SetDrawColor(000,000,000);
     $pdf->SetFont('Arial','B',8);
     $pdf->Ln(7);
-    $pdf->Cell(35,15, 'FECHA', 1,0,'C',1);
-    $pdf->Cell(25,15, ' ', 1,0,'C',1);
+    $pdf->Cell(20,15, 'FECHA', 1,0,'C',1);
+    $pdf->Cell(18,15, 'HORA', 1,0,'C',1);
     $pdf->Cell(64,15, 'NOMBRE Y APELLIDO', 1,0,'C',1);
     $pdf->Cell(16,15, 'D.N.I', 1,0,'C',1);
     $pdf->Cell(40,15, ' ', 1,0,'C',1);
     $pdf->Cell(40,15, ' ', 1,0,'C',1);
-    $pdf->Cell(35,15, 'HORA SALIDA', 1,0,'C',1);
+    $pdf->Cell(35,15, 'SALIDA', 1,0,'C',1);
     $pdf->Cell(24,15, '', 1,0,'C',1);
+    $pdf->Cell(20,15, 'TIPO', 1,0,'C',1);
 
     $pdf->Ln(2);
-    $pdf->Cell(35.5);
-    $pdf->Multicell(20,5, "HORA DE\n INGRESO",0,0,'L',1);
-    $pdf->Ln(-9);
-    $pdf->Cell(150);
+    $pdf->Cell(127);
     $pdf->Multicell(21,5, "INSTITUCION/EMPRESA  ",0,0,'L',1);
     $pdf->Ln(-10);
-    $pdf->Cell(181);
+    $pdf->Cell(159);
     $pdf->Multicell(35,3, "MOTIVO DE LA VISITA\n O PERSONA VINCU-\nLADA A LAND L S.A.",0,0,'C',1);
     $pdf->Ln(-10);
-    $pdf->Cell(256);
+    $pdf->Cell(234);
     $pdf->Multicell(20,5, "DOMINIO DE\n VEHICULO",0,0,'L',1);
 
     $pdf->Ln(3);
@@ -90,8 +88,9 @@
         ingreso.visita, ingreso.vehiculo_modelo, ingreso.patente, ingreso.fecha_hora, 
         ingreso.fecha_salida AS fecha_salida_final, ingreso.observacion, ingreso.id_usuario, 
         ingreso.id_trabajador, ingreso.ingreso, ingreso.estado, reingreso_contratistas.id AS id 
-        ,reingreso_contratistas.id_ingreso AS id_reingreso, reingreso_contratistas.fecha_movimiento 
-        FROM ingreso INNER JOIN reingreso_contratistas ON ingreso.id = reingreso_contratistas.id_ingreso 
+        ,reingreso_contratistas.id_ingreso AS id_reingreso, reingreso_contratistas.fecha_movimiento,
+        reingreso_contratistas.tipo FROM ingreso 
+        INNER JOIN reingreso_contratistas ON ingreso.id = reingreso_contratistas.id_ingreso 
         WHERE ingreso.fecha_salida != '0000-01-01' AND reingreso_contratistas.fecha_movimiento >= '$fecha_desde%' AND reingreso_contratistas.fecha_movimiento <= '$fecha_hasta%'";
         $resultado=mysqli_query($conexion,$sql);
         while($filas = mysqli_fetch_array($resultado))
@@ -104,6 +103,8 @@
             $visita = $filas['visita'];
             $fecha_salida = $filas['fecha_salida_final'];
             $patente = $filas['patente'];
+            $tipo = $filas['ingreso'];
+            $ingreso = $filas['tipo'];
     
             $sql_trabajadores="SELECT * FROM trabajadores WHERE id = '$id_trabajadores'";
             $resultado_trabajadores=mysqli_query($conexion,$sql_trabajadores);
@@ -112,8 +113,8 @@
                 $nombre_apellido = $filas_trabajadores['nombre_apellido'];
                 $DNI = $filas_trabajadores['dni'];
                 $empresa = $filas_trabajadores['empresa'];
-                $pdf->Cell(35,6, $fecha,1,0,'C',1);
-                $pdf->Cell(25,6, $hora,1,0,'C',1);
+                $pdf->Cell(20,6, $fecha,1,0,'C',1);
+                $pdf->Cell(18,6, $hora,1,0,'C',1);
                 $pdf->Cell(64,6, $nombre_apellido,1,0,'C',1);
                 $pdf->Cell(16,6, $DNI,1,0,'C',1);
                 if(strlen($empresa) > 20)
@@ -125,9 +126,19 @@
                 {
                     $pdf->Cell(40,6, $empresa,1,0,'C',1);
                 }
+
                 $pdf->Cell(40,6, $visita,1,0,'C',1);
-                $pdf->Cell(35,6, $fecha_salida,1,0,'C',1);
-                $pdf->Cell(24,6, $patente,1,1,'C',1);
+                if($tipo == 'Contratista')
+                {
+                    $fecha_salida2 = explode(' ', $fecha_salida);
+                    $pdf->Cell(35,6, $fecha_salida2[0],1,0,'C',1);
+                } 
+                else
+                {
+                    $pdf->Cell(35,6, $fecha_salida,1,0,'C',1);
+                }
+                $pdf->Cell(24,6, $patente,1,0,'C',1);
+                $pdf->Cell(20,6, $ingreso,1,1,'C',1);
             }
         }
     }

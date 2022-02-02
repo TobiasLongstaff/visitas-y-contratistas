@@ -267,11 +267,19 @@ $(document).ready(() =>
         window.open('imprimir-tarjeta.php?id='+id_ingreso);
     })
 
-    $('#form-filtrar-dni').submit(function(e) 
+    $('#form-filtrar-dni').submit(function(e)
     {
         e.preventDefault();
-        const tipo = 'dni';
+        let tipo = ''
         let filtro = $('#buscar-nombres').val()
+        if(isNaN(filtro))
+        {
+            tipo = 'nombre';
+        }
+        else
+        {
+            tipo = 'dni';
+        }
         obtener_contratistas_ingresados(filtro, tipo)
     })
 

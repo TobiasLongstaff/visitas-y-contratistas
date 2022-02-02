@@ -41,6 +41,7 @@
             $fecha_entrada = $filas['fecha_hora'];
             $fecha_salida = $filas['fecha_salida'];
             $sector = $filas['sector_habilitado'];
+            $observacion = $filas['observacion'];
 
             $sql_color="SELECT * FROM sector WHERE nombre = '$sector'";
             $resultado_color = mysqli_query($conexion, $sql_color);
@@ -120,6 +121,8 @@
             $pdf->Ln(3);
             $pdf->Cell(8);
             $pdf->Cell (0,0,'DNI: '.$dni,1,1,'L',1); 
+            $pdf->Ln(5);
+            $pdf->Cell (0,0,'Observacion: '.$observacion,1,1,'C',1); 
             if($imagen != '')
             {
                 if($_SESSION['planta_usuario'] == 'Landl')
@@ -138,11 +141,11 @@
             $pdf->Image('assets/img/codeqr/example2.png', 2, 47, 'L', 16);
             if(strlen($empresa) > 30)
             {
-                $pdf->Ln(4);
+                $pdf->Ln(2);
             }
             else
             {
-                $pdf->Ln(7);
+                $pdf->Ln(5);
             }
             $pdf->Cell (0,0,'Fecha de ingreso: '.$fecha_entrada,1,1,'C',1); 
             $pdf->Ln(2);
