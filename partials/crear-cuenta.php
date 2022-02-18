@@ -125,8 +125,8 @@
                             <div>
                                 <div>
                                     <h1>¡Hola!</h1>
-                                    <h2 style="color: #7D7D7D;">Su cuente se encuentra en espera de aprobación, espere a que comprobemos todos los <br>
-                                        datos para dar de alta su cuente, una vez esté aprobado llegara un mail <br>
+                                    <h2 style="color: #7D7D7D;">Su cuenta se encuentra en espera de aprobación, espere a que comprobemos todos los <br>
+                                        datos para dar de alta su cuenta, una vez esté aprobado llegara un mail <br>
                                         de aviso. Gracias por utilizar viewingmanagement.com<br>
                                         En caso de inconvenientes contactar con soporte técnico.</h2>              
                                 </div>               

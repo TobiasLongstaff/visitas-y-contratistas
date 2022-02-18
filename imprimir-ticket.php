@@ -10,7 +10,7 @@
 
     $pdf->Cell(-5);
     $pdf->SetFillColor(999, 999, 999);
-    $pdf->SetTextColor(112,112,112);
+    $pdf->SetTextColor(000,000,000);
     $pdf->SetDrawColor(999, 999, 999);
     $pdf->SetFont('Arial','',11);
 

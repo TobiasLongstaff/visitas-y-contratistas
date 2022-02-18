@@ -45,7 +45,7 @@
     $pdf->Cell(1,0, 'Revision 01',1,1,'L',1);
     $pdf->Ln(5);
     $pdf->Cell(195);
-    $pdf->Cell(1,0, 'Fecha: '.$fecha_actual,1,1,'L',1);
+    $pdf->Cell(1,0, 'Fecha: 11/02/19',1,1,'L',1);
     $pdf->Ln(5);
     $pdf->Cell(195);
     $pdf->Cell(1,0, 'Pagina: '.$pdf->PageNo().' de {nb}',1,1,'L',1);

@@ -121,8 +121,7 @@
             $pdf->Ln(3);
             $pdf->Cell(8);
             $pdf->Cell (0,0,'DNI: '.$dni,1,1,'L',1); 
-            $pdf->Ln(5);
-            $pdf->Cell (0,0,'Observacion: '.$observacion,1,1,'C',1); 
+            $pdf->Ln(3);
             if($imagen != '')
             {
                 if($_SESSION['planta_usuario'] == 'Landl')
@@ -147,6 +146,8 @@
             {
                 $pdf->Ln(5);
             }
+            $pdf->Cell (0,0,'Observacion: '.$observacion,1,1,'C',1); 
+            $pdf->Ln(2);
             $pdf->Cell (0,0,'Fecha de ingreso: '.$fecha_entrada,1,1,'C',1); 
             $pdf->Ln(2);
             $pdf->Cell (0,0,'Fecha de fin atencion: '.$fecha_salida,1,1,'C',1); 
