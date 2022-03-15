@@ -45,7 +45,7 @@
     $pdf->Cell(1,0, 'Revision 01',1,1,'L',1);
     $pdf->Ln(5);
     $pdf->Cell(195);
-    $pdf->Cell(1,0, 'Fecha: 11/02/19',1,1,'L',1);
+    $pdf->Cell(1,0, 'Fecha: 15/03/22',1,1,'L',1);
     $pdf->Ln(5);
     $pdf->Cell(195);
     $pdf->Cell(1,0, 'Pagina: '.$pdf->PageNo().' de {nb}',1,1,'L',1);
@@ -100,7 +100,7 @@
             $fehca_hora = explode(' ', $fecha_movimiento);
             $fecha = $fehca_hora[0];
             $hora = $fehca_hora[1];
-            $visita = $filas['visita'];
+            $visita = $filas['observacion'];
             $fecha_salida = $filas['fecha_salida_final'];
             $patente = $filas['patente'];
             $tipo = $filas['ingreso'];
@@ -127,7 +127,16 @@
                     $pdf->Cell(40,6, $empresa,1,0,'C',1);
                 }
 
-                $pdf->Cell(40,6, $visita,1,0,'C',1);
+                if(strlen($visita) > 20)
+                {
+                    $visita = str_split($visita, 20);
+                    $pdf->Cell(40,6, $visita[0].'...',1,0,'C',1);
+                }
+                else
+                {
+                    $pdf->Cell(40,6, $visita,1,0,'C',1);
+                }
+
                 if($tipo == 'Contratista')
                 {
                     $fecha_salida2 = explode(' ', $fecha_salida);
@@ -160,9 +169,9 @@
     $pdf->Cell(45,6, 'Oscar Prizzon', 1,1,'C',1);
     $pdf->SetFont('Arial','B',10);
     $pdf->Cell(70);
-    $pdf->Cell(45,6, 'Fecha: '.$fecha_actual, 1,0,'C',1);
-    $pdf->Cell(45,6, 'Fecha: '.$fecha_actual, 1,0,'C',1);
-    $pdf->Cell(45,6, 'Fecha: '.$fecha_actual, 1,0,'C',1);
+    $pdf->Cell(45,6, 'Fecha: 15/03/2022', 1,0,'C',1);
+    $pdf->Cell(45,6, 'Fecha: 15/03/2022', 1,0,'C',1);
+    $pdf->Cell(45,6, 'Fecha: 15/03/2022', 1,0,'C',1);
 
     $pdf->Output();
 ?>
