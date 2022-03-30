@@ -85,6 +85,9 @@ $(document).ready(() =>
                                             <label>Observacion: ${historial.observacion}</label><br>
                                             <label>Fecha y hora: ${historial.fecha_hora}</label><br>
                                             <label>Fecha de fin atencion: ${historial.fecha_salida}</label><br>
+                                            <a href="imprimir-ticket.php?id=${historial.id}" target="_blank">
+                                                <button class="btn-acceder">Imprimir ticket</button>
+                                            </a>
                                         </div>
                                         <div class="container-img-card">
                                             <img class="img-card-tabla" src="${historial.imagen}">

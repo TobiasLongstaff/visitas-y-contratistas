@@ -49,14 +49,25 @@ $(document).ready(() =>
 
         $.post('partials/agregar-visita.php', postData, function (data)
         {
-            console.log(data);
-            const form = document.getElementById("form-ingreso-de-visitas");
-            $('.file-upload-content').hide();
-            $('.image-upload-wrap').show();
-            form.reset();
-            $('#id-ingreso-visita').val(data);
-            $('#overlay').addClass("active");
-            $('#popup').addClass("active");  
+            let response = data.substr(0, 6) 
+            if(response == 'error0')
+            {
+                Swal.fire(
+                    'Error',
+                    'Este trabajador ya se encuentra activo',
+                    'error'
+                )
+            }
+            else
+            {
+                const form = document.getElementById("form-ingreso-de-visitas");
+                $('.file-upload-content').hide();
+                $('.image-upload-wrap').show();
+                form.reset();
+                $('#id-ingreso-visita').val(data);
+                $('#overlay').addClass("active");
+                $('#popup').addClass("active");  
+            }
         }); 
         e.preventDefault();
     })

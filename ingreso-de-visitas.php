@@ -87,10 +87,10 @@
                 </div> -->
                 <div class="form-group">
                     <label>Fecha y Hora</label>
-                    <input type="datetime-local" id="fecha-hora" class="form-style-date" value="<?=$fecha_actual?>" required>
+                    <input type="datetime-local" min="<?=$fecha_actual?>" id="fecha-hora" class="form-style-date" value="<?=$fecha_actual?>" required>
                 </div>
                 <label>Observacion:</label>
-                <textarea class="form-style-textarea" id="observacion"></textarea>  
+                <textarea class="form-style-textarea" id="observacion" required></textarea>  
                 <div class="container-controles-visitas">
                     <input type="submit" class="btn-acceder" value="Guardar e Imprimir">
                     <button type="button" id="btn-cancelar" class="btn-acceder btn-secundario">Cancelar</button>

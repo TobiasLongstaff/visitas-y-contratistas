@@ -91,7 +91,7 @@
         ,reingreso_contratistas.id_ingreso AS id_reingreso, reingreso_contratistas.fecha_movimiento,
         reingreso_contratistas.tipo FROM ingreso 
         INNER JOIN reingreso_contratistas ON ingreso.id = reingreso_contratistas.id_ingreso 
-        WHERE ingreso.fecha_salida != '0000-01-01' AND reingreso_contratistas.fecha_movimiento >= '$fecha_desde%' AND reingreso_contratistas.fecha_movimiento <= '$fecha_hasta%'";
+        WHERE reingreso_contratistas.fecha_movimiento >= '$fecha_desde 00:00:00' AND reingreso_contratistas.fecha_movimiento <= '$fecha_hasta 23:59:00'";
         $resultado=mysqli_query($conexion,$sql);
         while($filas = mysqli_fetch_array($resultado))
         {
@@ -117,9 +117,9 @@
                 $pdf->Cell(18,6, $hora,1,0,'C',1);
                 $pdf->Cell(64,6, $nombre_apellido,1,0,'C',1);
                 $pdf->Cell(16,6, $DNI,1,0,'C',1);
-                if(strlen($empresa) > 20)
+                if(strlen($empresa) > 16)
                 {
-                    $empresa = str_split($empresa, 20);
+                    $empresa = str_split($empresa, 16);
                     $pdf->Cell(40,6, $empresa[0].'...',1,0,'C',1);
                 }
                 else
@@ -127,26 +127,49 @@
                     $pdf->Cell(40,6, $empresa,1,0,'C',1);
                 }
 
-                if(strlen($visita) > 20)
+                if(!empty($visita))
                 {
-                    $visita = str_split($visita, 20);
-                    $pdf->Cell(40,6, $visita[0].'...',1,0,'C',1);
+                    if(strlen($visita) > 20)
+                    {
+                        $visita = str_split($visita, 20);
+                        $pdf->Cell(40,6, $visita[0].'...',1,0,'C',1);
+                    }
+                    else
+                    {
+                        $pdf->Cell(40,6, $visita,1,0,'C',1);
+                    }
                 }
                 else
                 {
-                    $pdf->Cell(40,6, $visita,1,0,'C',1);
+                    $pdf->Cell(40,6, '-',1,0,'C',1);
                 }
 
                 if($tipo == 'Contratista')
                 {
                     $fecha_salida2 = explode(' ', $fecha_salida);
                     $pdf->Cell(35,6, $fecha_salida2[0],1,0,'C',1);
-                } 
+                }
                 else
                 {
-                    $pdf->Cell(35,6, $fecha_salida,1,0,'C',1);
+                    if($fecha_salida == '0000-01-01 00:00:00')
+                    {
+                        $pdf->Cell(35,6, '-',1,0,'C',1);
+                    }
+                    else
+                    {
+                        $pdf->Cell(35,6, $fecha_salida,1,0,'C',1);
+                    }
                 }
-                $pdf->Cell(24,6, $patente,1,0,'C',1);
+
+                if(empty($patente))
+                {
+                    $pdf->Cell(24,6, 'No aplica',1,0,'C',1);
+                }
+                else
+                {
+                    $pdf->Cell(24,6, $patente,1,0,'C',1);
+                }
+
                 $pdf->Cell(20,6, $ingreso,1,1,'C',1);
             }
         }

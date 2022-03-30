@@ -15,7 +15,7 @@
             $sql="SELECT ingreso.*, trabajadores.nombre_apellido, trabajadores.dni, 
             trabajadores.fecha_de_nacimiento, trabajadores.empresa, trabajadores.imagen 
             FROM ingreso INNER JOIN trabajadores ON ingreso.id_trabajador = trabajadores.id 
-            WHERE estado = '0' AND ingreso = 'Contratista' AND fecha_salida >= '$fecha_actual' AND 
+            WHERE estado = '0' AND ingreso = 'Contratista' AND ingreso.fecha_salida >= '$fecha_actual' AND 
             trabajadores.nombre_apellido LIKE '%$filtro%'"; 
         }
         elseif($tipo == 'dni')
@@ -23,7 +23,7 @@
             $sql="SELECT ingreso.*, trabajadores.nombre_apellido, trabajadores.dni, 
             trabajadores.fecha_de_nacimiento, trabajadores.empresa, trabajadores.imagen 
             FROM ingreso INNER JOIN trabajadores ON ingreso.id_trabajador = trabajadores.id 
-            WHERE estado = '0' AND ingreso = 'Contratista' AND fecha_salida >= '$fecha_actual' AND 
+            WHERE estado = '0' AND ingreso = 'Contratista' AND ingreso.fecha_salida >= '$fecha_actual' AND 
             trabajadores.dni LIKE '%$filtro%'"; 
         }
         else
@@ -31,7 +31,7 @@
             $sql="SELECT ingreso.*, trabajadores.nombre_apellido, trabajadores.dni, 
             trabajadores.fecha_de_nacimiento, trabajadores.empresa, trabajadores.imagen 
             FROM ingreso INNER JOIN trabajadores ON ingreso.id_trabajador = trabajadores.id 
-            WHERE estado = '0' AND ingreso = 'Contratista' AND fecha_salida >= '$fecha_actual' AND 
+            WHERE estado = '0' AND ingreso = 'Contratista' AND ingreso.fecha_salida >= '$fecha_actual' AND 
             ingreso.id = '$filtro'"; 
         }
     }
@@ -40,7 +40,7 @@
         $sql="SELECT ingreso.*, trabajadores.nombre_apellido, trabajadores.dni, 
         trabajadores.fecha_de_nacimiento, trabajadores.empresa, trabajadores.imagen 
         FROM ingreso INNER JOIN trabajadores ON ingreso.id_trabajador = trabajadores.id 
-        WHERE estado = '0' AND ingreso = 'Contratista' AND fecha_salida >= '$fecha_actual'"; 
+        WHERE estado = '0' AND ingreso = 'Contratista' AND ingreso.fecha_salida >= '$fecha_actual'"; 
     }
 
     $resultado=mysqli_query($conexion,$sql);

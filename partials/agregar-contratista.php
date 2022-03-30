@@ -76,33 +76,43 @@
             }
         }
 
-        $sql = "INSERT INTO ingreso (temperatura, sector_habilitado, visita, vehiculo_modelo, patente, 
-        registra_fichada, fecha_hora, fecha_salida, observacion, id_usuario, id_trabajador, ingreso, estado) VALUES 
-        ('$temperatura', '$sector_habilitado', '','$vehiculo_modelo', '$patente', '',
-        '$fecha_hora', '$fecha_de_salida', '$observacion', '$id_usuario', '$id_trabajador', 'Contratista', '1')";
-        $resultado = mysqli_query($conexion, $sql);
-        if(!$resultado)
+        $sql_tra_veri="SELECT id FROM ingreso WHERE id_trabajador = '$id_trabajador' AND fecha_salida >= '$fecha_actual'";
+        $resultado_tra_veri = mysqli_query($conexion, $sql_tra_veri);
+        $numero_fila_tra_veri = mysqli_num_rows($resultado_tra_veri);
+        if($numero_fila_tra_veri >= '1')
         {
-            echo 'error3';
+            echo 'error5';
         }
         else
         {
-            $sql = "SELECT id FROM ingreso";
-            $resultado=mysqli_query($conexion,$sql);
-            while($filas = mysqli_fetch_array($resultado))
+            $sql = "INSERT INTO ingreso (temperatura, sector_habilitado, visita, vehiculo_modelo, patente, 
+            registra_fichada, fecha_hora, fecha_salida, observacion, id_usuario, id_trabajador, ingreso, estado) VALUES 
+            ('$temperatura', '$sector_habilitado', '','$vehiculo_modelo', '$patente', '',
+            '$fecha_hora', '$fecha_de_salida', '$observacion', '$id_usuario', '$id_trabajador', 'Contratista', '1')";
+            $resultado = mysqli_query($conexion, $sql);
+            if(!$resultado)
             {
-                $id_ingreso = $filas['id'];
+                echo 'error3';
             }
-            
-            $sql_insert = "INSERT INTO reingreso_contratistas (id_ingreso, fecha_movimiento, tipo) 
-            VALUES ('$id_ingreso', '$fecha_actual', 'Ingreso')";
-            $resultado_insert = mysqli_query($conexion, $sql_insert);
-            if(!$resultado_insert)
+            else
             {
-                echo 'error4';
-            }
+                $sql = "SELECT id FROM ingreso ORDER BY id DESC LIMIT 1";
+                $resultado=mysqli_query($conexion,$sql);
+                if($filas = mysqli_fetch_array($resultado))
+                {
+                    $id_ingreso = $filas['id'];
+                }
+                
+                $sql_insert = "INSERT INTO reingreso_contratistas (id_ingreso, fecha_movimiento, tipo) 
+                VALUES ('$id_ingreso', '$fecha_actual', 'Ingreso')";
+                $resultado_insert = mysqli_query($conexion, $sql_insert);
+                if(!$resultado_insert)
+                {
+                    echo 'error4 ';
+                }
 
-            echo $id_ingreso;
+                echo $id_ingreso;
+            }            
         }
     }
     mysqli_close($conexion);

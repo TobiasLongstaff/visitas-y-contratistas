@@ -128,6 +128,7 @@ $(document).ready(() =>
         $.post('partials/agregar-contratista.php', postData, function (data)
         {
             let response = data.substr(0, 6) 
+            console.log(response)
             if(response == 'error0')
             {
                 Swal.fire(
@@ -135,6 +136,14 @@ $(document).ready(() =>
                     'Este trabajador ya se encuentra activo',
                     'error'
                 )
+            }
+            else if(response == 'error5')
+            {
+                Swal.fire(
+                    'Este trabajador ya se encuentra ingresado',
+                    "Activar en la pestaña 'Ingresar'",
+                    'error'
+                ) 
             }
             else
             {

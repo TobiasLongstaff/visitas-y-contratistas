@@ -7,6 +7,7 @@
     date_default_timezone_set('America/Buenos_Aires');
     $fecha_actual = date('Y-m-d H:i');
     $fecha_actual = str_replace(' ','T', $fecha_actual);
+    $fecha = date('Y-m-d');
 ?>
 <body>
     <div class="container">
@@ -98,10 +99,10 @@
                 </div>
                 <div class="form-group">
                     <label>Fecha de salida</label>
-                    <input type="date" id="fecha-de-salida" class="form-style-date" required>
+                    <input type="date" min="<?=$fecha?>" id="fecha-de-salida" class="form-style-date" required>
                 </div>
                 <label>Observacion:</label>
-                <textarea class="form-style-textarea" id="observacion"></textarea>  
+                <textarea class="form-style-textarea" id="observacion" required></textarea>  
                 <div>
                     <input type="submit" class="btn-acceder" value="Guardar e Imprimir">
                     <button type="button" id="btn-cancelar" class="btn-acceder btn-secundario">Cancelar</button>
